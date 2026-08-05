@@ -6,34 +6,406 @@
 <title>MeowGames07</title>
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header>
-<h1>🎮 MeowGames07</h1>
-<p>Play Free HTML5 Games</p>
+<header class="header">
+<div class="logo">🎮 MeowGames07</div>
+
+<input type="text" id="search" placeholder="Search Games..." onkeyup="searchGames()">
+
+<div class="categories">
+<button onclick="filterGames('all')">All</button>
+<button onclick="filterGames('action')">Action</button>
+<button onclick="filterGames('racing')">Racing</button>
+<button onclick="filterGames('puzzle')">Puzzle</button>
+<button onclick="filterGames('sports')">Sports</button>
+<button onclick="filterGames('arcade')">Arcade</button>
+</div>
 </header>
 
 <div class="games">
 
-<div class="card">
-<img src="https://via.placeholder.com/300x180" alt="Game">
-<h2>Snake Game</h2>
-<a href="games/snake/index.html">Play Now</a>
+<!-- Game 1 -->
+<div class="card action">
+<img src="images/game1.jpg" alt="Subway Surfers">
+<h3>Subway Surfers</h3>
+<a href="#">Play Now</a>
 </div>
 
-<div class="card">
-<img src="https://via.placeholder.com/300x180" alt="Game">
-<h2>Car Racing</h2>
-<a href="games/racing/index.html">Play Now</a>
+<!-- Game 2 -->
+<div class="card racing">
+<img src="images/game2.jpg" alt="Moto X3M">
+<h3>Moto X3M</h3>
+<a href="#">Play Now</a>
 </div>
 
-<div class="card">
-<img src="https://via.placeholder.com/300x180" alt="Game">
-<h2>Puzzle Game</h2>
-<a href="games/puzzle/index.html">Play Now</a>
+<!-- Game 3 -->
+<div class="card action">
+<img src="images/game3.jpg" alt="Temple Run">
+<h3>Temple Run</h3>
+<a href="#">Play Now</a>
+</div>
+
+<!-- Game 4 -->
+<div class="card arcade">
+<img src="images/game4.jpg" alt="Minecraft">
+<h3>Minecraft</h3>
+<a href="#">Play Now</a>
+</div>
+
+<!-- Game 5 -->
+<div class="card arcade">
+<img src="images/game5.jpg" alt="Among Us">
+<h3>Among Us</h3>
+<a href="#">Play Now</a>
+</div>
+
+<!-- Game 6 -->
+<div class="card puzzle">
+<img src="images/game6.jpg" alt="Snake">
+<h3>Snake Game</h3>
+<a href="#">Play Now</a>
+</div>
+
+<!-- Game 7 -->
+<div class="card puzzle">
+<img src="images/game7.jpg" alt="Chess">
+<h3>Chess</h3>
+<a href="#">Play Now</a>
+</div>
+
+<!-- Game 8 -->
+<div class="card puzzle">
+<img src="images/game8.jpg" alt="Sudoku">
+<h3>Sudoku</h3>
+<a href="#">Play Now</a>
+</div>
+
+<!-- Game 9 -->
+<div class="card sports">
+<img src="images/game9.jpg" alt="Basketball Stars">
+<h3>Basketball Stars</h3>
+<a href="#">Play Now</a>
+</div>
+
+<!-- Game 10 -->
+<div class="card racing">
+<img src="images/game10.jpg" alt="Car Racing">
+<h3>Car Racing</h3>
+<a href="#">Play Now</a>
+</div>
+<!-- Game Cards 11–20 -->
+
+<div class="card action">
+<img src="images/game11.jpg" alt="Stickman Hook">
+<h3>Stickman Hook</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card puzzle">
+<img src="images/game12.jpg" alt="Bubble Shooter">
+<h3>Bubble Shooter</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card racing">
+<img src="images/game13.jpg" alt="Traffic Racer">
+<h3>Traffic Racer</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card sports">
+<img src="images/game14.jpg" alt="8 Ball Pool">
+<h3>8 Ball Pool</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card arcade">
+<img src="images/game15.jpg" alt="Fruit Ninja">
+<h3>Fruit Ninja</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card action">
+<img src="images/game16.jpg" alt="Fireboy & Watergirl">
+<h3>Fireboy & Watergirl</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card puzzle">
+<img src="images/game17.jpg" alt="Cut The Rope">
+<h3>Cut The Rope</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card arcade">
+<img src="images/game18.jpg" alt="Geometry Dash">
+<h3>Geometry Dash</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card racing">
+<img src="images/game19.jpg" alt="Asphalt Nitro">
+<h3>Asphalt Nitro</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card sports">
+<img src="images/game20.jpg" alt="Basketball Stars">
+<h3>Basketball Stars</h3>
+<a href="#">Play Now</a>
+</div>
+<!-- Game Cards 21–40 -->
+
+<div class="card racing">
+<img src="images/game21.jpg" alt="Hill Climb Racing">
+<h3>Hill Climb Racing</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card action">
+<img src="images/game22.jpg" alt="Zombie Shooter">
+<h3>Zombie Shooter</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card puzzle">
+<img src="images/game23.jpg" alt="2048">
+<h3>2048</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card arcade">
+<img src="images/game24.jpg" alt="Crossy Road">
+<h3>Crossy Road</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card sports">
+<img src="images/game25.jpg" alt="Cricket">
+<h3>Cricket Hero</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card racing">
+<img src="images/game26.jpg">
+<h3>Drift King</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card action">
+<img src="images/game27.jpg">
+<h3>Ninja Warrior</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card arcade">
+<img src="images/game28.jpg">
+<h3>Stack Ball</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card puzzle">
+<img src="images/game29.jpg">
+<h3>Block Blast</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card sports">
+<img src="images/game30.jpg">
+<h3>Tennis Pro</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card action">
+<img src="images/game31.jpg">
+<h3>Stick Hero</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card racing">
+<img src="images/game32.jpg">
+<h3>Bike Stunt</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card puzzle">
+<img src="images/game33.jpg">
+<h3>Mahjong</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card arcade">
+<img src="images/game34.jpg">
+<h3>Flappy Bird</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card sports">
+<img src="images/game35.jpg">
+<h3>Penalty Kick</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card action">
+<img src="images/game36.jpg">
+<h3>War Robots</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card racing">
+<img src="images/game37.jpg">
+<h3>Monster Truck</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card arcade">
+<img src="images/game38.jpg">
+<h3>Fruit Slice</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card puzzle">
+<img src="images/game39.jpg">
+<h3>Color Sort</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card sports">
+<img src="images/game40.jpg">
+<h3>Table Tennis</h3>
+<a href="#">Play Now</a>
+</div>
+<!-- Game Cards 41–60 -->
+
+<div class="card action">
+<img src="images/game41.jpg" alt="Shadow Ninja">
+<h3>Shadow Ninja</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card racing">
+<img src="images/game42.jpg" alt="Extreme Racing">
+<h3>Extreme Racing</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card puzzle">
+<img src="images/game43.jpg" alt="Jigsaw Master">
+<h3>Jigsaw Master</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card arcade">
+<img src="images/game44.jpg" alt="Pac Hero">
+<h3>Pac Hero</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card sports">
+<img src="images/game45.jpg" alt="Street Cricket">
+<h3>Street Cricket</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card action">
+<img src="images/game46.jpg" alt="Gun Strike">
+<h3>Gun Strike</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card racing">
+<img src="images/game47.jpg" alt="City Drift">
+<h3>City Drift</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card puzzle">
+<img src="images/game48.jpg" alt="Hexa Puzzle">
+<h3>Hexa Puzzle</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card arcade">
+<img src="images/game49.jpg" alt="Space Shooter">
+<h3>Space Shooter</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card sports">
+<img src="images/game50.jpg" alt="Soccer Stars">
+<h3>Soccer Stars</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card action">
+<img src="images/game51.jpg" alt="Battle Arena">
+<h3>Battle Arena</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card racing">
+<img src="images/game52.jpg" alt="Turbo Cars">
+<h3>Turbo Cars</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card puzzle">
+<img src="images/game53.jpg" alt="Word Search">
+<h3>Word Search</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card arcade">
+<img src="images/game54.jpg" alt="Jump Hero">
+<h3>Jump Hero</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card sports">
+<img src="images/game55.jpg" alt="Volleyball">
+<h3>Volleyball</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card action">
+<img src="images/game56.jpg" alt="Tank Battle">
+<h3>Tank Battle</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card racing">
+<img src="images/game57.jpg" alt="Speed Bike">
+<h3>Speed Bike</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card puzzle">
+<img src="images/game58.jpg" alt="Candy Match">
+<h3>Candy Match</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card arcade">
+<img src="images/game59.jpg" alt="Pixel Adventure">
+<h3>Pixel Adventure</h3>
+<a href="#">Play Now</a>
+</div>
+
+<div class="card sports">
+<img src="images/game60.jpg" alt="Hockey Stars">
+<h3>Hockey Stars</h3>
+<a href="#">Play Now</a>
 </div>
 
 </div>
+
+<footer>
+<p>© 2026 MeowGames07 | Play Free HTML5 Games</p>
+</footer>
+
+<script src="script.js"></script>
 
 </body>
 </html>

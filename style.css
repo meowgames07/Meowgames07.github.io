@@ -84,3 +84,430 @@ transform:translateY(-50%);
 color:#00e676;
 font-size:18px;
 }
+/* ===========================
+   Hero Section
+=========================== */
+
+.hero{
+padding:80px 20px;
+text-align:center;
+background:linear-gradient(135deg,#0f172a,#1e293b);
+}
+
+.hero h1{
+font-size:48px;
+font-weight:700;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:18px;
+color:#cbd5e1;
+margin-bottom:30px;
+}
+
+.play-btn{
+display:inline-block;
+padding:14px 35px;
+background:#22c55e;
+color:#fff;
+text-decoration:none;
+border-radius:50px;
+font-weight:600;
+transition:.3s;
+}
+
+.play-btn:hover{
+background:#16a34a;
+transform:scale(1.05);
+}
+
+/* ===========================
+   Categories
+=========================== */
+
+.categories{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:12px;
+padding:30px 20px;
+}
+
+.categories button{
+padding:12px 22px;
+border:none;
+border-radius:30px;
+background:#1f2937;
+color:#fff;
+cursor:pointer;
+font-size:15px;
+transition:.3s;
+}
+
+.categories button:hover,
+.categories button.active{
+background:#22c55e;
+}
+
+/* ===========================
+   Games Grid
+=========================== */
+
+.games-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:25px;
+padding:20px;
+}
+/* ===========================
+   Game Cards
+=========================== */
+
+.card{
+background:#1f2937;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 8px 20px rgba(0,0,0,.35);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 15px 30px rgba(34,197,94,.35);
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+display:block;
+}
+
+.card h3{
+font-size:22px;
+padding:15px 15px 5px;
+color:#fff;
+}
+
+.card p{
+padding:0 15px 15px;
+color:#cbd5e1;
+font-size:14px;
+}
+
+.card .play{
+display:block;
+margin:15px;
+padding:12px;
+text-align:center;
+text-decoration:none;
+background:#22c55e;
+color:#fff;
+font-weight:600;
+border-radius:10px;
+transition:.3s;
+}
+
+.card .play:hover{
+background:#16a34a;
+transform:scale(1.03);
+}
+
+.card img:hover{
+transform:scale(1.05);
+transition:.4s;
+}
+/* ===========================
+   About Section
+=========================== */
+
+.about{
+padding:60px 20px;
+text-align:center;
+background:#0f172a;
+}
+
+.about h2{
+font-size:32px;
+margin-bottom:20px;
+}
+
+.about p{
+max-width:800px;
+margin:auto;
+color:#cbd5e1;
+line-height:1.8;
+}
+
+/* ===========================
+   FAQ
+=========================== */
+
+.faq{
+padding:60px 20px;
+}
+
+.faq h2{
+text-align:center;
+margin-bottom:30px;
+}
+
+.faq-box{
+background:#1f2937;
+padding:20px;
+margin:15px auto;
+max-width:800px;
+border-radius:12px;
+}
+
+.faq-box h3{
+margin-bottom:10px;
+color:#22c55e;
+}
+
+.faq-box p{
+color:#d1d5db;
+}
+
+/* ===========================
+   Newsletter
+=========================== */
+
+.newsletter{
+padding:60px 20px;
+text-align:center;
+}
+
+.newsletter input{
+width:320px;
+max-width:90%;
+padding:12px;
+border:none;
+border-radius:8px;
+margin:10px;
+}
+
+.newsletter button{
+padding:12px 25px;
+border:none;
+border-radius:8px;
+background:#22c55e;
+color:#fff;
+cursor:pointer;
+font-weight:600;
+}
+
+.newsletter button:hover{
+background:#16a34a;
+}
+
+/* ===========================
+   Footer
+=========================== */
+
+.footer{
+background:#0b1120;
+padding:50px 20px;
+margin-top:40px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+}
+
+.footer h3{
+margin-bottom:15px;
+color:#22c55e;
+}
+
+.footer ul{
+list-style:none;
+}
+
+.footer ul li{
+margin:10px 0;
+}
+
+.footer a{
+color:#d1d5db;
+text-decoration:none;
+}
+
+.footer a:hover{
+color:#22c55e;
+}
+
+.footer-bottom{
+border-top:1px solid #374151;
+margin-top:30px;
+padding-top:20px;
+text-align:center;
+color:#9ca3af;
+}
+
+/* ===========================
+   Back To Top Button
+=========================== */
+
+#topBtn{
+position:fixed;
+bottom:20px;
+right:20px;
+display:none;
+padding:12px 15px;
+border:none;
+border-radius:50%;
+background:#22c55e;
+color:#fff;
+cursor:pointer;
+font-size:18px;
+}
+/* ===========================
+   Responsive Design
+=========================== */
+
+@media (max-width:992px){
+
+.header{
+flex-direction:column;
+gap:15px;
+padding:20px;
+}
+
+.search-box{
+width:100%;
+}
+
+nav ul{
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+}
+
+.hero h1{
+font-size:36px;
+}
+
+.hero p{
+font-size:16px;
+}
+
+}
+
+@media (max-width:768px){
+
+.logo{
+font-size:24px;
+text-align:center;
+}
+
+.hero{
+padding:50px 15px;
+}
+
+.hero h1{
+font-size:28px;
+}
+
+.hero p{
+font-size:15px;
+}
+
+.games-grid{
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+padding:15px;
+}
+
+.card img{
+height:150px;
+}
+
+.categories{
+gap:10px;
+}
+
+.categories button{
+padding:10px 15px;
+font-size:14px;
+}
+
+.footer-grid{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+}
+
+@media (max-width:480px){
+
+.games-grid{
+grid-template-columns:1fr;
+}
+
+.card img{
+height:190px;
+}
+
+.logo{
+font-size:22px;
+}
+
+.search-box input{
+font-size:14px;
+padding:12px;
+}
+
+.hero h1{
+font-size:24px;
+}
+
+.hero p{
+font-size:14px;
+}
+
+.play-btn{
+padding:12px 24px;
+}
+
+}
+
+/* ===========================
+   Scroll Bar
+=========================== */
+
+::-webkit-scrollbar{
+width:10px;
+}
+
+::-webkit-scrollbar-track{
+background:#111827;
+}
+
+::-webkit-scrollbar-thumb{
+background:#22c55e;
+border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+background:#16a34a;
+}
+
+/* ===========================
+   Smooth Animation
+=========================== */
+
+html{
+scroll-behavior:smooth;
+}
+
+.card,
+button,
+.play-btn,
+.play,
+img{
+transition:all .3s ease;
+}

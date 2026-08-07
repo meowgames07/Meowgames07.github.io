@@ -1,0 +1,86 @@
+/* ===========================
+   MeowGames07 - Style Part 1
+=========================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#111827;
+color:#ffffff;
+overflow-x:hidden;
+}
+
+/* Header */
+
+.header{
+position:sticky;
+top:0;
+z-index:1000;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 30px;
+background:#1f2937;
+box-shadow:0 4px 10px rgba(0,0,0,.4);
+}
+
+.logo{
+font-size:28px;
+font-weight:700;
+color:#00e676;
+}
+
+.logo span{
+color:#ffffff;
+}
+
+/* Navigation */
+
+nav ul{
+display:flex;
+list-style:none;
+gap:25px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:#ffffff;
+font-weight:500;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#00e676;
+}
+
+/* Search */
+
+.search-box{
+position:relative;
+width:320px;
+}
+
+.search-box input{
+width:100%;
+padding:12px 45px 12px 18px;
+border:none;
+border-radius:50px;
+background:#374151;
+color:#fff;
+font-size:15px;
+outline:none;
+}
+
+.search-box i{
+position:absolute;
+right:18px;
+top:50%;
+transform:translateY(-50%);
+color:#00e676;
+font-size:18px;
+}

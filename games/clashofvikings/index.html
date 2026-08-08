@@ -1,4 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Clash of Vikings</title>
-<h1>Clash of Vikings</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#172033;color:white;text-align:center;font-family:Arial}
+#arena{width:min(94vw,420px);height:500px;margin:auto;background:linear-gradient(#315b75,#1e293b);position:relative;border:4px solid #64748b;border-radius:15px}
+.hero{position:absolute;font-size:70px;bottom:50px}
+#viking{left:25px}#enemy{right:25px}
+.bar{width:80%;height:20px;background:#111;margin:15px auto;border-radius:10px;overflow:hidden}
+#hp{height:100%;width:100%;background:#22c55e}
+button{padding:14px 30px;margin:8px;border:0;border-radius:10px;background:#f59e0b;font-size:20px}
+</style>
+</head>
+<body>
+<h1>🛡️ Clash of Vikings</h1>
+<div class="bar"><div id="hp"></div></div>
+<div id="arena">
+<div id="viking" class="hero">🛡️</div>
+<div id="enemy" class="hero">👹</div>
+</div>
+<button onclick="attack()">⚔️ Attack</button>
+<button onclick="location.reload()">🔄</button>
+<p id="msg">Defeat the opponent!</p>
+
+<script>
+let hp=100,enemy=100,playing=true;
+
+function attack(){
+ if(!playing)return;
+ enemy-=20;
+ document.getElementById("msg").textContent=
+   "⚔️ You attacked! Enemy HP: "+Math.max(enemy,0);
+ if(enemy<=0){
+  playing=false;
+  document.getElementById("msg").textContent="🏆 Victory!";
+  return;
+ }
+ setTimeout(()=>{
+  if(!playing)return;
+  hp-=10;
+  document.getElementById("hp").style.width=hp+"%";
+  if(hp<=0){
+   playing=false;
+   document.getElementById("msg").textContent="Game Over!";
+  }
+ },500);
+}
+</script>
+</body>
+</html>

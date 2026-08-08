@@ -1,4 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>8 Ball Pool</title>
-<h1>8 Ball Pool</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#101827;
+  color:white;
+  font-family:Arial,sans-serif;
+  text-align:center;
+}
+
+h1{margin:20px 0 5px}
+
+#score{
+  font-size:20px;
+  margin:10px;
+}
+
+#table{
+  position:relative;
+  width:92vw;
+  max-width:700px;
+  height:60vw;
+  max-height:460px;
+  min-height:300px;
+  margin:15px auto;
+  background:#087443;
+  border:18px solid #5b351c;
+  border-radius:20px;
+  box-shadow:0 0 0 5px #222;
+  overflow:hidden;
+}
+
+.hole{
+  position:absolute;
+  width:34px;
+  height:34px;
+  background:#050505;
+  border-radius:50%;
+}
+
+.h1{left:-12px;top:-12px}
+.h2{right:-12px;top:-12px}
+.h3{left:-12px;bottom:-12px}
+.h4{right:-12px;bottom:-12px}
+.h5{left:50%;top:-18px;transform:translateX(-50%)}
+.h6{left:50%;bottom:-18px;transform:translateX(-50%)}
+
+.ball{
+  position:absolute;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  border:2px solid #111;
+}
+
+#cue{
+  background:white;
+  left:25%;
+  top:50%;
+}
+
+#eight{
+  background:#111;
+  left:65%;
+  top:50%;
+}
+
+#target{
+  background:#e53935;
+  left:48%;
+  top:50%;
+}
+
+button{
+  padding:14px 25px;
+  border:0;
+  border-radius:10px;
+  background:#22c55e;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+}
+
+#message{
+  margin:15px;
+  font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎱 8 Ball Pool</h1>
+<div id="score">Score: 0</div>
+
+<div id="table">
+
+  <div class="hole h1"></div>
+  <div class="hole h2"></div>
+  <div class="hole h3"></div>
+  <div class="hole h4"></div>
+  <div class="hole h5"></div>
+  <div class="hole h6"></div>
+
+  <div id="cue" class="ball"></div>
+  <div id="target" class="ball"></div>
+  <div id="eight" class="ball"></div>
+
+</div>
+
+<button onclick="shoot()">🎯 Shoot</button>
+
+<div id="message">
+Tap Shoot to play
+</div>
+
+<script>
+let score=0;
+let target=document.getElementById("target");
+let eight=document.getElementById("eight");
+let message=document.getElementById("message");
+
+function randomPosition(){
+
+  let x=15+Math.random()*70;
+  let y=15+Math.random()*70;
+
+  target.style.left=x+"%";
+  target.style.top=y+"%";
+}
+
+function shoot(){
+
+  let chance=Math.random();
+
+  if(chance<0.65){
+
+    score+=10;
+
+    message.textContent=
+      "🎉 Great shot! You pocketed the ball.";
+
+    randomPosition();
+
+  }else if(chance<0.85){
+
+    score=Math.max(0,score-5);
+
+    message.textContent=
+      "😅 Missed! Try again.";
+
+  }else{
+
+    message.textContent=
+      "🎱 Nice! You found the 8 Ball!";
+
+    score+=25;
+
+    eight.style.left=
+      (15+Math.random()*70)+"%";
+
+    eight.style.top=
+      (15+Math.random()*70)+"%";
+  }
+
+  document.getElementById("score").textContent=
+    "Score: "+score;
+}
+
+randomPosition();
+</script>
+
+</body>
+</html>

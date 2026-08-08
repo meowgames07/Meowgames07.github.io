@@ -1,4 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Block Blast</title>
-<h1>Block Blast</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#111827;
+  color:white;
+  font-family:Arial,sans-serif;
+  text-align:center;
+}
+
+h1{
+  margin:20px 0 5px;
+}
+
+#score{
+  font-size:20px;
+  margin:10px;
+}
+
+#board{
+  width:360px;
+  max-width:94vw;
+  aspect-ratio:1;
+  margin:15px auto;
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  gap:4px;
+  padding:5px;
+  background:#374151;
+  border-radius:12px;
+}
+
+.cell{
+  background:#1f2937;
+  border-radius:5px;
+}
+
+.cell.filled{
+  background:#3b82f6;
+}
+
+#pieces{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin:15px auto;
+}
+
+.piece{
+  width:90px;
+  height:90px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:3px;
+  padding:5px;
+  background:#1f2937;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.piece div{
+  border-radius:4px;
+}
+
+button{
+  padding:13px 25px;
+  border:0;
+  border-radius:10px;
+  background:#22c55e;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+}
+
+#message{
+  min-height:28px;
+  margin:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🧱 Block Blast</h1>
+
+<div id="score">Score: 0</div>
+
+<div id="board"></div>
+
+<div id="pieces"></div>
+
+<button onclick="newGame()">🔄 New Game</button>
+
+<div id="message">
+Choose a block and place it on the board.
+</div>
+
+<script>
+
+const boardEl=document.getElementById("board");
+const piecesEl=document.getElementById("pieces");
+const scoreEl=document.getElementById("score");
+const message=document.getElementById("message");
+
+const SIZE=8;
+
+let board=[];
+let score=0;
+let selected=null;
+
+const shapes=[
+  [[1]],
+  [[1,1]],
+  [[1,1,1]],
+  [[1],[1]],
+  [[1],[1],[1]],
+  [[1,1],[1,1]],
+  [[1,1,1],[1,1,1]],
+  [[1,0],[1,1]],
+  [[0,1],[1,1]]
+];
+
+function newGame(){
+
+  board=Array(SIZE*SIZE).fill(0);
+  score=0;
+  selected=null;
+
+  scoreEl.textContent="Score: 0";
+  message.textContent=
+    "Choose a block and place it on the board.";
+
+  drawBoard();
+  makePieces();
+}
+
+function drawBoard(){
+
+  boardEl.innerHTML="";
+
+  board.forEach((v,i)=>{
+
+    const cell=document.createElement("div");
+
+    cell.className="cell";
+
+    if(v){
+      cell.classList.add("filled");
+    }
+
+    cell.onclick=()=>{
+      place(i);
+    };
+
+    boardEl.appendChild(cell);
+  });
+}
+
+function makePieces(){
+
+  piecesEl.innerHTML="";
+
+  for(let i=0;i<3;i++){
+
+    const shape=
+      shapes[Math.floor(Math.random()*shapes.length)];
+
+    const piece=document.createElement("div");
+
+    piece.className="piece";
+
+    for(let r=0;r<3;r++){
+
+      for(let c=0;c<3;c++){
+
+        const p=document.createElement("div");
+
+        if(shape[r] && shape[r][c]){
+          p.style.background=
+            ["#ef4444","#22c55e","#f59e0b",
+             "#8b5cf6","#06b6d4"][i];
+        }
+
+        piece.appendChild(p);
+      }
+    }
+
+    piece.onclick=()=>{
+
+      selected={
+        shape:shape,
+        color:["#ef4444","#22c55e","#f59e0b"][i]
+      };
+
+      message.textContent=
+        "अब board में जगह चुनें।";
+    };
+
+    piecesEl.appendChild(piece);
+  }
+}
+
+function canPlace(shape,index){
+
+  const row=Math.floor(index/SIZE);
+  const col=index%SIZE;
+
+  for(let r=0;r<shape.length;r++){
+
+    for(let c=0;c<shape[r].length;c++){
+
+      if(!shape[r][c])continue;
+
+      const nr=row+r;
+      const nc=col+c;
+
+      if(nr>=SIZE || nc>=SIZE){
+        return false;
+      }
+
+      if(board[nr*SIZE+nc]){
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+
+function place(index){
+
+  if(!selected)return;
+
+  if(!canPlace(selected.shape,index)){
+
+    message.textContent=
+      "❌ यहाँ block नहीं रख सकते।";
+
+    return;
+  }
+
+  const row=Math.floor(index/SIZE);
+  const col=index%SIZE;
+
+  for(let r=0;r<selected.shape.length;r++){
+
+    for(let c=0;c<selected.shape[r].length;c++){
+
+      if(selected.shape[r][c]){
+
+        board[(row+r)*SIZE+(col+c)]=1;
+      }
+    }
+  }
+
+  score+=selected.shape.flat().filter(Boolean).length;
+
+  clearLines();
+
+  selected=null;
+
+  scoreEl.textContent=
+    "Score: "+score;
+
+  drawBoard();
+
+  message.textContent=
+    "अच्छा! अगला block चुनें।";
+}
+
+function clearLines(){
+
+  let rows=[];
+
+  for(let r=0;r<SIZE;r++){
+
+    let full=true;
+
+    for(let c=0;c<SIZE;c++){
+
+      if(!board[r*SIZE+c]){
+        full=false;
+        break;
+      }
+    }
+
+    if(full)rows.push(r);
+  }
+
+  let cols=[];
+
+  for(let c=0;c<SIZE;c++){
+
+    let full=true;
+
+    for(let r=0;r<SIZE;r++){
+
+      if(!board[r*SIZE+c]){
+        full=false;
+        break;
+      }
+    }
+
+    if(full)cols.push(c);
+  }
+
+  rows.forEach(r=>{
+
+    for(let c=0;c<SIZE;c++){
+      board[r*SIZE+c]=0;
+    }
+
+    score+=10;
+  });
+
+  cols.forEach(c=>{
+
+    for(let r=0;r<SIZE;r++){
+      board[r*SIZE+c]=0;
+    }
+
+    score+=10;
+  });
+}
+
+newGame();
+
+</script>
+
+</body>
+</html>

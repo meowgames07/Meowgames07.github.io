@@ -1,4 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Air Hockey</title>
-<h1>Air Hockey</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#101827;
+  color:white;
+  font-family:Arial,sans-serif;
+  text-align:center;
+}
+
+h1{
+  margin:18px 0 5px;
+}
+
+#score{
+  font-size:20px;
+  margin:8px;
+}
+
+#game{
+  position:relative;
+  width:92vw;
+  max-width:650px;
+  height:600px;
+  margin:15px auto;
+  background:#0b7a75;
+  border:8px solid #d9d9d9;
+  border-radius:18px;
+  overflow:hidden;
+  touch-action:none;
+}
+
+.line{
+  position:absolute;
+  left:0;
+  right:0;
+  top:50%;
+  border-top:3px solid rgba(255,255,255,.7);
+}
+
+.center{
+  position:absolute;
+  width:110px;
+  height:110px;
+  border:3px solid white;
+  border-radius:50%;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+}
+
+.goal{
+  position:absolute;
+  left:50%;
+  width:150px;
+  height:25px;
+  background:#111;
+  transform:translateX(-50%);
+}
+
+.topGoal{top:-8px}
+.bottomGoal{bottom:-8px}
+
+.paddle{
+  position:absolute;
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  border:5px solid white;
+}
+
+#player{
+  background:#e53935;
+  left:50%;
+  top:85%;
+}
+
+#computer{
+  background:#2979ff;
+  left:50%;
+  top:15%;
+}
+
+#puck{
+  position:absolute;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:#111;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+}
+
+button{
+  padding:14px 28px;
+  border:0;
+  border-radius:10px;
+  background:#22c55e;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🏒 Air Hockey</h1>
+
+<div id="score">
+  You: 0 | Computer: 0
+</div>
+
+<div id="game">
+
+  <div class="goal topGoal"></div>
+  <div class="goal bottomGoal"></div>
+
+  <div class="line"></div>
+  <div class="center"></div>
+
+  <div id="computer" class="paddle"></div>
+  <div id="player" class="paddle"></div>
+  <div id="puck"></div>
+
+</div>
+
+<button onclick="resetGame()">New Game</button>
+
+<script>
+const game=document.getElementById("game");
+const player=document.getElementById("player");
+const computer=document.getElementById("computer");
+const puck=document.getElementById("puck");
+const scoreText=document.getElementById("score");
+
+let playerScore=0;
+let computerScore=0;
+
+let px=50;
+let py=85;
+
+let bx=50;
+let by=50;
+
+let vx=(Math.random()<0.5?-1:1)*0.55;
+let vy=0.7;
+
+let running=true;
+
+function updatePlayer(x,y){
+
+  const rect=game.getBoundingClientRect();
+
+  px=((x-rect.left)/rect.width)*100;
+  py=((y-rect.top)/rect.height)*100;
+
+  px=Math.max(12,Math.min(88,px));
+  py=Math.max(55,Math.min(92,py));
+
+  player.style.left=px+"%";
+  player.style.top=py+"%";
+}
+
+game.addEventListener("pointermove",e=>{
+  updatePlayer(e.clientX,e.clientY);
+});
+
+game.addEventListener("pointerdown",e=>{
+  updatePlayer(e.clientX,e.clientY);
+});
+
+function distance(x1,y1,x2,y2){
+  return Math.sqrt(
+    Math.pow(x1-x2,2)+
+    Math.pow(y1-y2,2)
+  );
+}
+
+function resetPuck(direction){
+
+  bx=50;
+  by=50;
+
+  vx=(Math.random()<0.5?-1:1)*0.55;
+  vy=direction*0.7;
+}
+
+function resetGame(){
+
+  playerScore=0;
+  computerScore=0;
+
+  px=50;
+  py=85;
+
+  computer.style.left="50%";
+  computer.style.top="15%";
+
+  resetPuck(1);
+
+  running=true;
+
+  updateScore();
+}
+
+function updateScore(){
+
+  scoreText.textContent=
+    "You: "+playerScore+
+    " | Computer: "+computerScore;
+}
+
+function gameLoop(){
+
+  if(!running){
+    requestAnimationFrame(gameLoop);
+    return;
+  }
+
+  bx+=vx;
+  by+=vy;
+
+  // Side walls
+  if(bx<4){
+    bx=4;
+    vx=Math.abs(vx);
+  }
+
+  if(bx>96){
+    bx=96;
+    vx=-Math.abs(vx);
+  }
+
+  // Computer AI
+  let targetX=bx;
+
+  let cx=parseFloat(computer.style.left)||50;
+  let cy=parseFloat(computer.style.top)||15;
+
+  cx+=(targetX-cx)*0.025;
+
+  cx=Math.max(12,Math.min(88,cx));
+
+  computer.style.left=cx+"%";
+
+ 

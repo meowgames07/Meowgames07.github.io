@@ -1,4 +1,204 @@
-<title>Archery World Tour</title>
-<h1>Archery World Tour</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Archery World</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#101827;
+  color:white;
+  font-family:Arial,sans-serif;
+  text-align:center;
+}
+
+h1{
+  margin:18px 0 5px;
+}
+
+#score{
+  font-size:20px;
+  margin:10px;
+}
+
+#game{
+  position:relative;
+  width:92vw;
+  max-width:700px;
+  height:500px;
+  margin:15px auto;
+  overflow:hidden;
+  border:5px solid #555;
+  border-radius:18px;
+  background:linear-gradient(#76c7f0 0%,#dff7ff 65%,#55a630 65%);
+  touch-action:none;
+}
+
+#bow{
+  position:absolute;
+  left:8%;
+  top:45%;
+  font-size:55px;
+}
+
+#arrow{
+  position:absolute;
+  left:15%;
+  top:48%;
+  font-size:35px;
+  transform:rotate(0deg);
+}
+
+#target{
+  position:absolute;
+  right:12%;
+  top:35%;
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle,
+    #111 0 12%,
+    white 12% 25%,
+    #e53935 25% 42%,
+    white 42% 60%,
+    #e53935 60% 100%);
+  border:4px solid #333;
+}
+
+button{
+  padding:13px 25px;
+  margin:5px;
+  border:0;
+  border-radius:10px;
+  background:#22c55e;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+}
+
+#message{
+  min-height:28px;
+  font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🏹 Archery World</h1>
+
+<div id="score">Score: 0</div>
+
+<div id="game">
+
+  <div id="bow">🏹</div>
+  <div id="arrow">➜</div>
+  <div id="target"></div>
+
+</div>
+
+<button onclick="shoot()">🎯 Shoot</button>
+<button onclick="newGame()">🔄 New Game</button>
+
+<div id="message">
+Aim and shoot!
+</div>
+
+<script>
+
+const arrow=document.getElementById("arrow");
+const target=document.getElementById("target");
+const message=document.getElementById("message");
+const scoreText=document.getElementById("score");
+
+let score=0;
+let shooting=false;
+
+function shoot(){
+
+  if(shooting)return;
+
+  shooting=true;
+
+  let progress=0;
+
+  const timer=setInterval(()=>{
+
+    progress+=0.035;
+
+    arrow.style.left=(15+progress*70)+"%";
+
+    if(progress>=1){
+
+      clearInterval(timer);
+
+      let accuracy=Math.random();
+
+      if(accuracy<0.25){
+
+        score+=50;
+
+        message.textContent=
+          "🎯 Bullseye! +50";
+
+      }else if(accuracy<0.65){
+
+        score+=25;
+
+        message.textContent=
+          "🏹 Great shot! +25";
+
+      }else if(accuracy<0.9){
+
+        score+=10;
+
+        message.textContent=
+          "👍 Hit the target! +10";
+
+      }else{
+
+        message.textContent=
+          "❌ Missed!";
+
+      }
+
+      scoreText.textContent=
+        "Score: "+score;
+
+      setTimeout(resetArrow,600);
+    }
+
+  },25);
+}
+
+function resetArrow(){
+
+  shooting=false;
+
+  arrow.style.left="15%";
+}
+
+function newGame(){
+
+  score=0;
+
+  scoreText.textContent=
+    "Score: 0";
+
+  message.textContent=
+    "Aim and shoot!";
+
+  resetArrow();
+}
+
+newGame();
+
+</script>
+
+</body>
+</html>

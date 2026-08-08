@@ -1,4 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0,
+      maximum-scale=1.0,user-scalable=no">
+
 <title>Bloxorz</title>
-<h1>Bloxorz</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+
+<style>
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+body{
+  margin:0;
+  background:#101827;
+  color:white;
+  font-family:Arial,sans-serif;
+  text-align:center;
+  overflow:hidden;
+}
+
+h1{
+  margin:18px 0 5px;
+  font-size:30px;
+}
+
+#info{
+  margin:8px;
+  font-size:18px;
+}
+
+#board{
+  width:360px;
+  max-width:92vw;
+  height:360px;
+  margin:15px auto;
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  grid-template-rows:repeat(8,1fr);
+  gap:3px;
+  background:#0b1220;
+  padding:5px;
+  border-radius:12px;
+}
+
+.cell{
+  background:#263449;
+  border-radius:5px;
+}
+
+.wall{
+  background:#101827;
+}
+
+.goal{
+  background:#16a34a;
+  box-shadow:inset 0 0 0 3px #86efac;
+}
+
+.block{
+  background:#f59e0b;
+  border:3px solid #92400e;
+  border-radius:7px;
+  box-shadow:0 5px 0 #78350f;
+}
+
+#controls{
+  width:260px;
+  margin:12px auto;
+  display:grid;
+  grid-template-columns:80px 80px 80px;
+  grid-template-rows:55px 55px;
+  gap:8px;
+  justify-content:center;
+}
+
+button{
+  border:0;
+  border-radius:12px;
+  background:#2563eb;
+  color:white;
+  font-size:28px;
+  font-weight:bold;
+}
+
+button:active{
+  transform:scale(.94);
+  background:#1d4ed8;
+}
+
+#reset{
+  font-size:16px;
+  padding:12px 25px;
+  margin-top:5px;
+  background:#16a34a;
+}
+
+#msg{
+  height:25px;
+  font-weight:bold;
+  font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🧱 Bloxorz</h1>
+
+<div id="info">
+  Level: <span id="level">1</span>
+  &nbsp; | &nbsp;
+  Moves: <span id="moves">0</span>
+</div>
+
+<div id="msg"></div>
+
+<div id="board"></div>
+
+<div id="controls">
+  <button onclick="move('up')">⬆️</button>
+  <button onclick="move('left')">⬅️</button>
+  <button onclick="move('down')">⬇️</button>
+  <button onclick="move('right')">➡️</button>
+</div>
+
+<button id="reset" onclick="resetGame()">🔄 Restart</button>
+
+<script>
+
+const size = 8;
+
+const levels = [
+
+[
+"########",
+"#......#",
+"#......#",
+"#..G...#",
+"#......#",
+"#......#",
+"#......#",
+"########"
+],
+
+[
+"########",
+"#......#",
+"#.####.#",
+"#......#",
+"#..G...#",
+"#......#",
+"#......#",
+"########"
+],
+
+[
+"########",
+"#......#",
+"#.####.#",
+"#......#",
+"#.G....#",
+"#......#",
+"#......#",
+"########"
+]
+
+];
+
+let level = 0;
+let moves = 0;
+
+/*
+  x,y = first block position
+  vertical = true means block is standing
+  horizontal = false means block is lying
+*/
+
+let x = 2;
+let y = 2;
+let vertical = true;
+
+const board = document.getElementById("board");
+const movesText = document.getElementById("moves");
+const levelText = document.getElementById("level");
+const msg = document.getElementById("msg");
+
+function resetGame(){
+
+  x = 2;
+  y = 2;
+  vertical = true

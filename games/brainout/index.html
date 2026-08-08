@@ -1,4 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Brain Out</title>
-<h1>Brain Out</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#111827;
+  color:white;
+  font-family:Arial,sans-serif;
+  text-align:center;
+}
+
+h1{
+  margin:25px 0 10px;
+}
+
+#game{
+  width:92%;
+  max-width:500px;
+  margin:25px auto;
+  padding:25px;
+  background:#1f2937;
+  border-radius:18px;
+}
+
+#question{
+  font-size:24px;
+  font-weight:bold;
+  margin:20px 0;
+}
+
+.options{
+  display:grid;
+  gap:14px;
+}
+
+button{
+  padding:16px;
+  border:0;
+  border-radius:12px;
+  background:#2563eb;
+  color:white;
+  font-size:19px;
+  font-weight:bold;
+}
+
+button:active{
+  transform:scale(.97);
+}
+
+#score{
+  font-size:20px;
+  margin:15px;
+}
+
+#message{
+  min-height:30px;
+  margin:15px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🧠 Brain Out</h1>
+
+<div id="score">Score: 0</div>
+
+<div id="game">
+
+  <div id="question"></div>
+
+  <div class="options" id="options"></div>
+
+  <div id="message"></div>
+
+</div>
+
+<button onclick="restart()">🔄 New Game</button>
+
+<script>
+
+const questions=[
+  {
+    q:"What is 2 + 2?",
+    a:["3","4","5","6"],
+    correct:1
+  },
+  {
+    q:"Which one is bigger?",
+    a:["🐜 Ant","🐘 Elephant","🐭 Mouse","🐱 Cat"],
+    correct:1
+  },
+  {
+    q:"How many days are in a week?",
+    a:["5","6","7","8"],
+    correct:2
+  },
+  {
+    q:"Which animal says Meow?",
+    a:["🐶 Dog","🐱 Cat","🐮 Cow","🐴 Horse"],
+    correct:1
+  },
+  {
+    q:"What comes after 9?",
+    a:["8","10","11","7"],
+    correct:1
+  },
+  {
+    q:"Which is a fruit?",
+    a:["🥕 Carrot","🍎 Apple","🥔 Potato","🧅 Onion"],
+    correct:1
+  },
+  {
+    q:"How many legs does a spider have?",
+    a:["4","6","8","10"],
+    correct:2
+  }
+];
+
+let current=0;
+let score=0;
+
+const question=document.getElementById("question");
+const options=document.getElementById("options");
+const scoreText=document.getElementById("score");
+const message=document.getElementById("message");
+
+function showQuestion(){
+
+  if(current>=questions.length){
+
+    question.textContent="🎉 Game Complete!";
+    options.innerHTML="";
+    message.textContent=
+      "Your final score: "+score;
+
+    return;
+  }
+
+  const q=questions[current];
+
+  question.textContent=q.q;
+
+  options.innerHTML="";
+
+  message.textContent="";
+
+  q.a.forEach((answer,index)=>{
+
+    const btn=document.createElement("button");
+
+    btn.textContent=answer;
+
+    btn.onclick=()=>checkAnswer(index);
+
+    options.appendChild(btn);
+  });
+}
+
+function checkAnswer(index){
+
+  const q=questions[current];
+
+  if(index===q.correct){
+
+    score+=10;
+
+    message.textContent="✅ Correct!";
+  }else{
+
+    message.textContent="❌ Wrong answer!";
+  }
+
+  scoreText.textContent=
+    "Score: "+score;
+
+  current++;
+
+  setTimeout(showQuestion,700);
+}
+
+function restart(){
+
+  current=0;
+  score=0;
+
+  scoreText.textContent="Score: 0";
+
+  showQuestion();
+}
+
+showQuestion();
+
+</script>
+
+</body>
+</html>

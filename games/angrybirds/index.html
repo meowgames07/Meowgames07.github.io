@@ -1,4 +1,201 @@
-<title>Angry Birds</title>
-<h1>Angry Birds</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bird Launcher</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#111827;
+  color:white;
+  font-family:Arial,sans-serif;
+  text-align:center;
+}
+
+h1{margin:18px 0 5px}
+
+#score{
+  font-size:20px;
+  margin:10px;
+}
+
+#game{
+  position:relative;
+  width:92vw;
+  max-width:700px;
+  height:500px;
+  margin:15px auto;
+  overflow:hidden;
+  border:5px solid #555;
+  border-radius:18px;
+  background:linear-gradient(#65c7f7 0%,#dff6ff 70%,#6ab04c 70%);
+  touch-action:none;
+}
+
+#bird{
+  position:absolute;
+  width:42px;
+  height:42px;
+  background:#ef4444;
+  border-radius:50%;
+  left:12%;
+  bottom:22%;
+  font-size:28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  user-select:none;
+}
+
+.target{
+  position:absolute;
+  width:45px;
+  height:45px;
+  background:#84cc16;
+  border-radius:8px;
+  right:15%;
+  bottom:22%;
+  font-size:30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+#message{
+  min-height:28px;
+  font-size:18px;
+}
+
+button{
+  padding:13px 25px;
+  margin:5px;
+  border:0;
+  border-radius:10px;
+  background:#22c55e;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🐦 Bird Launcher</h1>
+
+<div id="score">Score: 0</div>
+
+<div id="game">
+
+  <div id="bird">🐦</div>
+  <div id="target" class="target">🐷</div>
+
+</div>
+
+<button onclick="launch()">🚀 Launch</button>
+<button onclick="newGame()">🔄 New Game</button>
+
+<div id="message">
+Press Launch!
+</div>
+
+<script>
+
+const bird=document.getElementById("bird");
+const target=document.getElementById("target");
+const message=document.getElementById("message");
+const scoreText=document.getElementById("score");
+
+let score=0;
+let launched=false;
+let x=12;
+let y=22;
+
+function launch(){
+
+  if(launched)return;
+
+  launched=true;
+
+  let startX=12;
+  let startY=22;
+
+  let progress=0;
+
+  const timer=setInterval(()=>{
+
+    progress+=0.025;
+
+    x=startX+(65*progress);
+    y=startY+(30*Math.sin(progress*Math.PI));
+
+    bird.style.left=x+"%";
+    bird.style.bottom=y+"%";
+
+    if(progress>=1){
+
+      clearInterval(timer);
+
+      let hit=Math.random()<0.7;
+
+      if(hit){
+
+        score+=10;
+
+        scoreText.textContent=
+          "Score: "+score;
+
+        message.textContent=
+          "🎯 Great hit! Pig defeated!";
+
+        target.style.display="none";
+
+      }else{
+
+        message.textContent=
+          "😅 Missed! Try again.";
+
+      }
+
+      setTimeout(resetBird,800);
+    }
+
+  },30);
+}
+
+function resetBird(){
+
+  launched=false;
+
+  x=12;
+  y=22;
+
+  bird.style.left=x+"%";
+  bird.style.bottom=y+"%";
+}
+
+function newGame(){
+
+  score=0;
+
+  scoreText.textContent=
+    "Score: 0";
+
+  target.style.display="flex";
+
+  message.textContent=
+    "Press Launch!";
+
+  resetBird();
+}
+
+newGame();
+
+</script>
+
+</body>
+</html>

@@ -1,4 +1,232 @@
-<title>2048</title>
-<h1>2048</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sky Runner</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    background:#101827;
+    color:white;
+    font-family:Arial,sans-serif;
+    text-align:center;
+}
+h1{margin:15px 0 5px}
+#score{font-size:20px;margin:8px}
+
+#game{
+    position:relative;
+    width:95%;
+    max-width:500px;
+    height:600px;
+    margin:auto;
+    overflow:hidden;
+    background:linear-gradient(#4facfe,#dff6ff);
+    border:4px solid white;
+    border-radius:15px;
+}
+
+#player{
+    position:absolute;
+    bottom:30px;
+    left:50%;
+    transform:translateX(-50%);
+    width:55px;
+    height:55px;
+    background:#ffcc00;
+    border-radius:50%;
+    border:4px solid #222;
+}
+
+.enemy{
+    position:absolute;
+    width:45px;
+    height:45px;
+    background:#ff3b30;
+    border-radius:10px;
+    border:3px solid #222;
+}
+
+.coin{
+    position:absolute;
+    width:28px;
+    height:28px;
+    background:#ffd700;
+    border-radius:50%;
+    border:3px solid #b8860b;
+}
+
+#start{
+    padding:12px 25px;
+    border:0;
+    border-radius:10px;
+    background:#20c765;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.controls{
+    margin:15px auto;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+
+.controls button{
+    width:100px;
+    height:55px;
+    font-size:25px;
+    border:0;
+    border-radius:12px;
+    background:#273449;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🚀 Sky Runner</h1>
+<div id="score">Score: 0</div>
+
+<button id="start">START GAME</button>
+
+<div id="game">
+    <div id="player"></div>
+</div>
+
+<div class="controls">
+    <button onclick="moveLeft()">⬅️</button>
+    <button onclick="moveRight()">➡️</button>
+</div>
+
+<script>
+const game=document.getElementById("game");
+const player=document.getElementById("player");
+const scoreText=document.getElementById("score");
+
+let playerX=50;
+let score=0;
+let playing=false;
+let objects=[];
+
+function movePlayer(){
+    playerX=Math.max(7,Math.min(93,playerX));
+    player.style.left=playerX+"%";
+}
+
+function moveLeft(){
+    if(playing){
+        playerX-=10;
+        movePlayer();
+    }
+}
+
+function moveRight(){
+    if(playing){
+        playerX+=10;
+        movePlayer();
+    }
+}
+
+document.addEventListener("keydown",e=>{
+    if(e.key==="ArrowLeft") moveLeft();
+    if(e.key==="ArrowRight") moveRight();
+});
+
+document.getElementById("start").onclick=startGame;
+
+function startGame(){
+    objects.forEach(o=>o.remove());
+    objects=[];
+
+    score=0;
+    playerX=50;
+    playing=true;
+
+    scoreText.textContent="Score: 0";
+    document.getElementById("start").style.display="none";
+
+    spawn();
+    gameLoop();
+}
+
+function spawn(){
+    if(!playing)return;
+
+    const obj=document.createElement("div");
+
+    if(Math.random()<0.65){
+        obj.className="enemy";
+    }else{
+        obj.className="coin";
+    }
+
+    obj.style.left=(5+Math.random()*90)+"%";
+    obj.style.top="-60px";
+
+    game.appendChild(obj);
+
+    objects.push({
+        el:obj,
+        y:-60,
+        coin:obj.classList.contains("coin")
+    });
+
+    setTimeout(spawn,700);
+}
+
+function gameLoop(){
+    if(!playing)return;
+
+    objects.forEach((o,i)=>{
+        o.y+=5;
+        o.el.style.top=o.y+"px";
+
+        const a=o.el.getBoundingClientRect();
+        const b=player.getBoundingClientRect();
+
+        if(
+            a.left<b.right &&
+            a.right>b.left &&
+            a.top<b.bottom &&
+            a.bottom>b.top
+        ){
+            if(o.coin){
+                score+=10;
+                scoreText.textContent="Score: "+score;
+                o.el.remove();
+                objects.splice(i,1);
+            }else{
+                gameOver();
+            }
+        }
+
+        if(o.y>620){
+            o.el.remove();
+            objects.splice(i,1);
+        }
+    });
+
+    requestAnimationFrame(gameLoop);
+}
+
+function gameOver(){
+    playing=false;
+
+    objects.forEach(o=>o.el.remove());
+    objects=[];
+
+    document.getElementById("start").style.display="inline-block";
+    document.getElementById("start").textContent="PLAY AGAIN";
+
+    alert("Game Over! Your Score: "+score);
+}
+</script>
+
+</body>
+</html>

@@ -1,4 +1,255 @@
-<title>Checkers</title>
-<h1>Checkers</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cars Race</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#111827;
+  color:white;
+  font-family:Arial,sans-serif;
+  text-align:center;
+}
+
+h1{margin:15px 0 5px}
+
+#score{
+  font-size:20px;
+  margin:8px;
+}
+
+#game{
+  position:relative;
+  width:92vw;
+  max-width:400px;
+  height:560px;
+  margin:12px auto;
+  overflow:hidden;
+  border:5px solid #374151;
+  border-radius:16px;
+  background:#333;
+}
+
+.road{
+  position:absolute;
+  left:12%;
+  width:76%;
+  height:100%;
+  background:#292929;
+}
+
+.line{
+  position:absolute;
+  width:7px;
+  height:70px;
+  background:white;
+  left:49%;
+}
+
+.car{
+  position:absolute;
+  width:48px;
+  height:78px;
+  border-radius:12px;
+  font-size:32px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+#player{
+  bottom:30px;
+  left:43%;
+  background:#2563eb;
+}
+
+.enemy{
+  top:-90px;
+  background:#dc2626;
+}
+
+button{
+  border:0;
+  border-radius:12px;
+  padding:13px 22px;
+  margin:4px;
+  background:#16a34a;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+}
+
+#message{
+  min-height:25px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🏎️ Cars Race</h1>
+
+<div id="score">Score: 0</div>
+
+<div id="game">
+
+  <div class="road"></div>
+
+  <div class="line" style="top:0"></div>
+  <div class="line" style="top:140px"></div>
+  <div class="line" style="top:280px"></div>
+  <div class="line" style="top:420px"></div>
+
+  <div id="player" class="car">🏎️</div>
+
+</div>
+
+<div>
+  <button onclick="move(-1)">⬅️</button>
+  <button onclick="move(1)">➡️</button>
+  <button onclick="restart()">🔄</button>
+</div>
+
+<div id="message">Avoid the cars!</div>
+
+<script>
+
+const game=document.getElementById("game");
+const player=document.getElementById("player");
+const scoreText=document.getElementById("score");
+const message=document.getElementById("message");
+
+let playerX=43;
+let score=0;
+let speed=5;
+let playing=true;
+let enemies=[];
+
+function move(dir){
+
+  if(!playing)return;
+
+  playerX+=dir*8;
+
+  if(playerX<15)playerX=15;
+  if(playerX>70)playerX=70;
+
+  player.style.left=playerX+"%";
+}
+
+function createEnemy(){
+
+  if(!playing)return;
+
+  const enemy=document.createElement("div");
+
+  enemy.className="car enemy";
+  enemy.textContent="🚗";
+
+  const lanes=[20,38,56];
+
+  enemy.style.left=
+    lanes[Math.floor(Math.random()*lanes.length)]+"%";
+
+  enemy.style.top="-90px";
+
+  game.appendChild(enemy);
+
+  enemies.push(enemy);
+}
+
+function gameLoop(){
+
+  if(!playing)return;
+
+  enemies.forEach((enemy,index)=>{
+
+    let top=parseFloat(enemy.style.top);
+
+    top+=speed;
+
+    enemy.style.top=top+"px";
+
+    if(top>game.clientHeight){
+
+      enemy.remove();
+      enemies.splice(index,1);
+
+      score++;
+
+      scoreText.textContent=
+        "Score: "+score;
+    }
+
+    if(checkCollision(player,enemy)){
+
+      endGame();
+    }
+  });
+
+  requestAnimationFrame(gameLoop);
+}
+
+function checkCollision(a,b){
+
+  const A=a.getBoundingClientRect();
+  const B=b.getBoundingClientRect();
+
+  return !(
+    A.right<B.left ||
+    A.left>B.right ||
+    A.bottom<B.top ||
+    A.top>B.bottom
+  );
+}
+
+function endGame(){
+
+  playing=false;
+
+  message.textContent=
+    "💥 Crash! Final Score: "+score;
+
+  player.textContent="💥";
+}
+
+function restart(){
+
+  enemies.forEach(e=>e.remove());
+  enemies=[];
+
+  playerX=43;
+  score=0;
+  speed=5;
+  playing=true;
+
+  player.style.left="43%";
+  player.textContent="🏎️";
+
+  scoreText.textContent="Score: 0";
+  message.textContent="Avoid the cars!";
+
+  gameLoop();
+}
+
+document.addEventListener("keydown",e=>{
+
+  if(e.key==="ArrowLeft")move(-1);
+  if(e.key==="ArrowRight")move(1);
+
+});
+
+setInterval(createEnemy,900);
+
+restart();
+
+</script>
+
+</body>
+</html>

@@ -1,4 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Candy Crush</title>
-<h1>Candy Crush</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#111827;
+  color:white;
+  font-family:Arial,sans-serif;
+  text-align:center;
+}
+
+h1{margin:18px 0 5px}
+
+#info{
+  font-size:20px;
+  margin:10px;
+}
+
+#board{
+  width:360px;
+  max-width:94vw;
+  aspect-ratio:1;
+  margin:15px auto;
+  padding:5px;
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  gap:4px;
+  background:#374151;
+  border-radius:14px;
+}
+
+.candy{
+  border-radius:12px;
+  cursor:pointer;
+  transition:.15s;
+  box-shadow:inset 0 2px 4px #ffffff66;
+}
+
+.candy:active{
+  transform:scale(.9);
+}
+
+.red{background:#ef4444}
+.blue{background:#3b82f6}
+.green{background:#22c55e}
+.yellow{background:#eab308}
+.purple{background:#a855f7}
+.orange{background:#f97316}
+
+.selected{
+  outline:4px solid white;
+  transform:scale(.9);
+}
+
+button{
+  border:0;
+  border-radius:12px;
+  padding:13px 25px;
+  background:#16a34a;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+}
+
+#message{
+  min-height:28px;
+  margin:10px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🍬 Candy Crush</h1>
+
+<div id="info">
+  Score: <span id="score">0</span>
+</div>
+
+<div id="board"></div>
+
+<button onclick="newGame()">🔄 New Game</button>
+
+<div id="message">
+  Match 3 candies!
+</div>
+
+<script>
+
+const SIZE=8;
+
+const colors=[
+  "red",
+  "blue",
+  "green",
+  "yellow",
+  "purple",
+  "orange"
+];
+
+let board=[];
+let selected=null;
+let score=0;
+
+const boardEl=
+document.getElementById("board");
+
+const scoreEl=
+document.getElementById("score");
+
+const message=
+document.getElementById("message");
+
+function randomColor(){
+  return colors[
+    Math.floor(Math.random()*colors.length)
+  ];
+}
+
+function createBoard(){
+
+  board=[];
+
+  for(let r=0;r<SIZE;r++){
+
+    board[r]=[];
+
+    for(let c=0;c<SIZE;c++){
+
+      let color;
+
+      do{
+        color=randomColor();
+      }
+      while(
+        c>=2 &&
+        board[r][c-1]===color &&
+        board[r][c-2]===color
+      );
+
+      board[r][c]=color;
+    }
+  }
+}
+
+function draw(){
+
+  boardEl.innerHTML="";
+
+  for(let r=0;r<SIZE;r++){
+
+    for(let c=0;c<SIZE;c++){
+
+      const candy=
+      document.createElement("div");
+
+      candy.className=
+        "candy "+board[r][c];
+
+      if(
+        selected &&
+        selected.r===r &&
+        selected.c===c
+      ){
+        candy.classList.add("selected");
+      }
+
+      candy.onclick=()=>{
+        selectCandy(r,c);
+      };
+
+      boardEl.appendChild(candy);
+    }
+  }
+
+  scoreEl.textContent=score;
+}
+
+function selectCandy(r,c){
+
+  if(!selected){
+
+    selected={r,c};
+
+    draw();
+
+    message.textContent=
+      "अब पास वाली candy चुनें।";
+
+    return;
+  }
+
+  const r1=selected.r;
+  const c1=selected.c;
+
+  const adjacent=
+    Math.abs(r-r1)+Math.abs(c-c1)===1;
+
+  if(!adjacent){
+
+    selected={r,c};
+
+    draw();
+
+    return;
+  }
+
+  swap(r1,c1,r,c);
+
+  selected=null;
+
+  const matches=findMatches();
+
+  if(matches.size===0){
+
+    swap(r1,c1,r,c);
+
+    message.textContent=
+      "❌ यहाँ match नहीं बना।";
+
+  }else{
+
+    removeMatches(matches);
+
+    message.textContent=
+      "🍬 Great match!";
+
+    setTimeout(cascade,250);
+  }
+
+  draw();
+}
+
+function swap(r1,c1,r2,c2){
+
+  const temp=board[r1][c1];
+
+  board[r1][c1]=board[r2][c2];
+
+  board[r2][c2]=temp;
+}
+
+function findMatches(){
+
+  const matches=new Set();
+
+  // Horizontal
+
+  for(let r=0;r<SIZE;r++){
+
+    let start=0;
+
+    while(start<SIZE){
+
+      let end=start+1;
+
+      while(
+        end<SIZE &&
+        board[r][end]===board[r][start]
+      ){
+        end++;
+      }
+
+      if(end-start>=3){
+
+        for(let c=start;c<end;c++){
+          matches.add(r+","+c);
+        }
+      }
+
+      start=end;
+    }
+  }
+
+  // Vertical
+
+  for(let c=0;c<SIZE;c++){
+
+    let start=0;
+
+    while(start<SIZE){
+
+      let end=start+1;
+
+      while(
+        end<SIZE &&
+        board[end][c]===board[start][c]
+      ){
+        end++;
+      }
+
+      if(end-start>=3){
+
+        for(let r=start;r<end;r++){
+          matches.add(r+","+c);
+        }
+      }
+
+      start=end;
+    }
+  }
+
+  return matches;
+}
+
+function removeMatches(matches){
+
+  score+=matches.size*10;
+
+  matches.forEach(key=>{
+
+    const [r,c]=key.split(",").map(Number);
+
+    board[r][c]=null;
+  });
+}
+
+function cascade(){
+
+  for(let c=0;c<SIZE;c++){
+
+    let write=SIZE-1;
+
+    for(let r=SIZE-1;r>=0;r--){
+
+      if(board[r][c]!==null){
+
+        board[write][c]=board[r][c];
+
+        write--;
+      }
+    }
+
+    while(write>=0){
+
+      board[write][c]=randomColor();
+
+      write--;
+    }
+  }
+
+  const matches=findMatches();
+
+  if(matches.size>0){
+
+    removeMatches(matches);
+
+    setTimeout(cascade,220);
+  }
+
+  draw();
+}
+
+function newGame(){
+
+  score=0;
+
+  selected=null;
+
+  createBoard();
+
+  message.textContent=
+    "Match 3 candies!";
+
+  draw();
+}
+
+newGame();
+
+</script>
+
+</body>
+</html>

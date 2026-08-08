@@ -1,4 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Brain Test</title>
-<h1>Brain Test</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#111827;
+  color:white;
+  font-family:Arial,sans-serif;
+  text-align:center;
+}
+
+h1{
+  margin:25px 0 8px;
+  font-size:32px;
+}
+
+#score{
+  font-size:20px;
+  margin:10px;
+}
+
+#game{
+  width:92%;
+  max-width:520px;
+  margin:20px auto;
+  padding:25px 18px;
+  background:#1f2937;
+  border-radius:20px;
+  box-shadow:0 8px 25px #0005;
+}
+
+#question{
+  font-size:24px;
+  font-weight:bold;
+  min-height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:20px;
+}
+
+.options{
+  display:grid;
+  gap:12px;
+}
+
+.option{
+  width:100%;
+  padding:16px;
+  border:0;
+  border-radius:12px;
+  background:#2563eb;
+  color:white;
+  font-size:19px;
+  font-weight:bold;
+}
+
+.option:active{
+  transform:scale(.97);
+}
+
+#message{
+  min-height:30px;
+  margin:18px 0 5px;
+  font-weight:bold;
+  font-size:18px;
+}
+
+#next,#restart{
+  border:0;
+  border-radius:12px;
+  padding:13px 25px;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+}
+
+#next{
+  background:#16a34a;
+  display:none;
+}
+
+#restart{
+  background:#7c3aed;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🧠 Brain Test</h1>
+
+<div id="score">Score: 0</div>
+
+<div id="game">
+
+  <div id="question"></div>
+
+  <div class="options" id="options"></div>
+
+  <div id="message"></div>
+
+  <button id="next" onclick="nextQuestion()">
+    Next ➡️
+  </button>
+
+</div>
+
+<button id="restart" onclick="restartGame()">
+  🔄 Restart Game
+</button>
+
+<script>
+
+const questions=[
+
+{
+ q:"What comes next? 2, 4, 6, 8, ?",
+ a:["9","10","11","12"],
+ correct:1
+},
+
+{
+ q:"Which animal can fly?",
+ a:["🐶 Dog","🐱 Cat","🦅 Eagle","🐄 Cow"],
+ correct:2
+},
+
+{
+ q:"How many months have 28 days?",
+ a:["1","2","6","12"],
+ correct:3
+},
+
+{
+ q:"What is 5 × 5?",
+ a:["20","25","30","35"],
+ correct:1
+},
+
+{
+ q:"Which one does NOT belong?",
+ a:["🍎 Apple","🍌 Banana","🥕 Carrot","🍊 Orange"],
+ correct:2
+},
+
+{
+ q:"What comes after Monday?",
+ a:["Sunday","Tuesday","Friday","Saturday"],
+ correct:1
+},
+
+{
+ q:"Which number is the largest?",
+ a:["7","17","27","9"],
+ correct:2
+},
+
+{
+ q:"How many sides does a triangle have?",
+ a:["2","3","4","5"],
+ correct:1
+}
+
+];
+
+let current=0;
+let score=0;
+let answered=false;
+
+const question=
+document.getElementById("question");
+
+const options=
+document.getElementById("options");
+
+const message=
+document.getElementById("message");
+
+const scoreText=
+document.getElementById("score");
+
+const nextButton=
+document.getElementById("next");
+
+function showQuestion(){
+
+  answered=false;
+
+  nextButton.style.display="none";
+
+  message.textContent="";
+
+  if(current>=questions.length){
+
+    question.textContent="🎉 Test Complete!";
+
+    options.innerHTML="";
+
+    message.textContent=
+      "Your final score: "+score+
+      " / "+(questions.length*10);
+
+    return;
+  }
+
+  const q=questions[current];
+
+  question.textContent=q.q;
+
+  options.innerHTML="";
+
+  q.a.forEach((answer,index)=>{
+
+    const button=
+      document.createElement("button");
+
+    button.className="option";
+
+    button.textContent=answer;
+
+    button.onclick=()=>{
+      checkAnswer(index,button);
+    };
+
+    options.appendChild(button);
+  });
+}
+
+function checkAnswer(index,button){
+
+  if(answered)return;
+
+  answered=true;
+
+  const q=questions[current];
+
+  if(index===q.correct){
+
+    score+=10;
+
+    message.textContent="✅ Correct! +10";
+
+  }else{
+
+    message.textContent=
+      "❌ Wrong!";
+
+  }
+
+  scoreText.textContent=
+    "Score: "+score;
+
+  document
+    .querySelectorAll(".option")
+    .forEach(b=>b.disabled=true);
+
+  nextButton.style.display="inline-block";
+}
+
+function nextQuestion(){
+
+  current++;
+
+  showQuestion();
+}
+
+function restartGame(){
+
+  current=0;
+  score=0;
+
+  scoreText.textContent="Score: 0";
+
+  showQuestion();
+}
+
+showQuestion();
+
+</script>
+
+</body>
+</html>

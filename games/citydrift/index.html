@@ -1,4 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>City Drift</title>
-<h1>City Drift</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#111827;color:white;text-align:center;font-family:Arial}
+#game{position:relative;width:min(94vw,400px);height:560px;margin:auto;overflow:hidden;background:#374151}
+.road{position:absolute;left:20%;width:60%;height:100%;background:#1f2937}
+#car{position:absolute;bottom:40px;left:50%;font-size:48px;transform:translateX(-50%)}
+.block{position:absolute;font-size:42px}
+button{padding:13px 28px;margin:8px;border:0;border-radius:10px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>🏎️ City Drift</h1>
+<div>Score: <b id="score">0</b></div>
+<div id="game"><div class="road"></div><div id="car">🏎️</div></div>
+<button onclick="move(-1)">⬅️</button>
+<button onclick="move(1)">➡️</button>
+<button onclick="location.reload()">🔄</button>
+
+<script>
+let x=50,score=0,live=true;
+const car=document.getElementById("car"),game=document.getElementById("game");
+
+function move(d){
+ if(!live)return;
+ x+=d*9;x=Math.max(27,Math.min(73,x));
+ car.style.left=x+"%";
+}
+
+function spawn(){
+ if(!live)return;
+ let o=document.createElement("div");
+ o.className="block";o.textContent="🚧";
+ o.style.left=(25+Math.random()*50)+"%";
+ o.style.top="-50px";game.appendChild(o);
+ let y=-50;
+ let t=setInterval(()=>{
+  if(!live){clearInterval(t);o.remove();return}
+  y+=6;o.style.top=y+"px";
+  let a=car.getBoundingClientRect(),b=o.getBoundingClientRect();
+  if(!(a.right<b.left||a.left>b.right||a.bottom<b.top||a.top>b.bottom)){
+   live=false;alert("Drift Over! Score: "+score);clearInterval(t);
+  }
+  if(y>570){
+   score++;document.getElementById("score").textContent=score;
+   o.remove();clearInterval(t);
+  }
+ },30);
+}
+setInterval(spawn,800);
+document.onkeydown=e=>{if(e.key==="ArrowLeft")move(-1);if(e.key==="ArrowRight")move(1)};
+</script>
+</body>
+</html>

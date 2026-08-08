@@ -1,4 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Basketball King</title>
-<h1>Basketball King</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#111827;
+  color:white;
+  font-family:Arial,sans-serif;
+  text-align:center;
+}
+
+h1{
+  margin:18px 0 5px;
+}
+
+#score{
+  font-size:20px;
+  margin:10px;
+}
+
+#game{
+  position:relative;
+  width:92vw;
+  max-width:650px;
+  height:520px;
+  margin:15px auto;
+  overflow:hidden;
+  border:5px solid #555;
+  border-radius:18px;
+  background:linear-gradient(#79c8f0 0%,#dff6ff 65%,#b86b32 65%);
+  touch-action:none;
+}
+
+#ball{
+  position:absolute;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#f97316;
+  border:3px solid #8b4513;
+  left:15%;
+  bottom:12%;
+  font-size:28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+#hoop{
+  position:absolute;
+  right:12%;
+  top:25%;
+  width:100px;
+  height:70px;
+}
+
+.backboard{
+  position:absolute;
+  right:0;
+  top:0;
+  width:65px;
+  height:55px;
+  background:white;
+  border:5px solid #555;
+}
+
+.rim{
+  position:absolute;
+  right:8px;
+  bottom:0;
+  width:75px;
+  height:15px;
+  border:6px solid #ef4444;
+  border-radius:50%;
+}
+
+.net{
+  position:absolute;
+  right:17px;
+  bottom:-32px;
+  width:58px;
+  height:38px;
+  border-left:3px solid white;
+  border-right:3px solid white;
+  border-bottom:3px solid white;
+}
+
+button{
+  padding:14px 28px;
+  margin:5px;
+  border:0;
+  border-radius:10px;
+  background:#22c55e;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+}
+
+#message{
+  min-height:28px;
+  font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🏀 Basketball King</h1>
+
+<div id="score">Score: 0</div>
+
+<div id="game">
+
+  <div id="hoop">
+    <div class="backboard"></div>
+    <div class="rim"></div>
+    <div class="net"></div>
+  </div>
+
+  <div id="ball">🏀</div>
+
+</div>
+
+<button onclick="shoot()">🏀 Shoot</button>
+<button onclick="newGame()">🔄 New Game</button>
+
+<div id="message">
+Tap Shoot to throw the ball!
+</div>
+
+<script>
+
+const ball=document.getElementById("ball");
+const message=document.getElementById("message");
+const scoreText=document.getElementById("score");
+
+let score=0;
+let shooting=false;
+
+function shoot(){
+
+  if(shooting)return;
+
+  shooting=true;
+
+  let progress=0;
+
+  const timer=setInterval(()=>{
+
+    progress+=0.035;
+
+    let x=15+(progress*68);
+
+    let arc=Math.sin(progress*Math.PI)*45;
+
+    let y=12+(progress*55)+arc;
+
+    ball.style.left=x+"%";
+    ball.style.bottom=y+"%";
+
+    if(progress>=1){
+
+      clearInterval(timer);
+
+      if(Math.random()<0.7){
+
+        score+=10;
+
+        message.textContent=
+          "🎯 Basket! +10 points!";
+
+      }else{
+
+        message.textContent=
+          "😅 Missed! Try again.";
+
+      }
+
+      scoreText.textContent=
+        "Score: "+score;
+
+      setTimeout(resetBall,700);
+    }
+
+  },30);
+}
+
+function resetBall(){
+
+  shooting=false;
+
+  ball.style.left="15%";
+  ball.style.bottom="12%";
+}
+
+function newGame(){
+
+  score=0;
+
+  scoreText.textContent=
+    "Score: 0";
+
+  message.textContent=
+    "Tap Shoot to throw the ball!";
+
+  resetBall();
+}
+
+newGame();
+
+</script>
+
+</body>
+</html>

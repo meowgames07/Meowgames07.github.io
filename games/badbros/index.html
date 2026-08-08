@@ -1,4 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Bad Bros</title>
-<h1>Bad Bros</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#111827;
+  color:white;
+  font-family:Arial,sans-serif;
+  text-align:center;
+}
+
+h1{
+  margin:18px 0 5px;
+}
+
+#score{
+  font-size:20px;
+  margin:10px;
+}
+
+#game{
+  position:relative;
+  width:92vw;
+  max-width:650px;
+  height:500px;
+  margin:15px auto;
+  overflow:hidden;
+  border:5px solid #555;
+  border-radius:18px;
+  background:linear-gradient(#87ceeb 0%,#dff6ff 70%,#4d9b35 70%);
+  touch-action:none;
+}
+
+.player,.enemy{
+  position:absolute;
+  width:48px;
+  height:58px;
+  border-radius:18px 18px 12px 12px;
+  font-size:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.player{
+  background:#2563eb;
+  left:15%;
+  bottom:18%;
+}
+
+.enemy{
+  background:#dc2626;
+  right:15%;
+  bottom:18%;
+}
+
+.coin{
+  position:absolute;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:#ffd700;
+  border:3px solid #b8860b;
+  font-size:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+button{
+  padding:13px 25px;
+  margin:5px;
+  border:0;
+  border-radius:10px;
+  background:#22c55e;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+}
+
+#message{
+  min-height:28px;
+  font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>👊 Bad Bros</h1>
+
+<div id="score">Score: 0</div>
+
+<div id="game">
+
+  <div id="player" class="player">🥊</div>
+  <div id="enemy" class="enemy">👊</div>
+  <div id="coin" class="coin">🪙</div>
+
+</div>
+
+<button onclick="attack()">🥊 Attack</button>
+<button onclick="collect()">🪙 Collect</button>
+<button onclick="newGame()">🔄 New Game</button>
+
+<div id="message">
+Defeat the Bad Bro!
+</div>
+
+<script>
+
+const player=document.getElementById("player");
+const enemy=document.getElementById("enemy");
+const coin=document.getElementById("coin");
+
+const scoreText=document.getElementById("score");
+const message=document.getElementById("message");
+
+let score=0;
+let enemyHealth=3;
+let playing=true;
+
+function randomCoin(){
+
+  coin.style.left=
+    (20+Math.random()*60)+"%";
+
+  coin.style.top=
+    (20+Math.random()*55)+"%";
+
+  coin.style.display="flex";
+}
+
+function attack(){
+
+  if(!playing)return;
+
+  if(enemyHealth>0){
+
+    enemyHealth--;
+
+    if(enemyHealth===0){
+
+      score+=50;
+
+      enemy.style.display="none";
+
+      message.textContent=
+        "🎉 Bad Bro defeated! +50";
+
+    }else{
+
+      score+=10;
+
+      message.textContent=
+        "🥊 Hit! Enemy HP: "+enemyHealth;
+
+    }
+
+    scoreText.textContent=
+      "Score: "+score;
+  }
+}
+
+function collect(){
+
+  if(!playing)return;
+
+  if(coin.style.display!=="none"){
+
+    score+=5;
+
+    coin.style.display="none";
+
+    scoreText.textContent=
+      "Score: "+score;
+
+    message.textContent=
+      "🪙 Coin collected! +5";
+
+    setTimeout(randomCoin,700);
+  }
+}
+
+function newGame(){
+
+  score=0;
+  enemyHealth=3;
+  playing=true;
+
+  enemy.style.display="flex";
+
+  scoreText.textContent=
+    "Score: 0";
+
+  message.textContent=
+    "Defeat the Bad Bro!";
+
+  randomCoin();
+}
+
+newGame();
+
+</script>
+
+</body>
+</html>

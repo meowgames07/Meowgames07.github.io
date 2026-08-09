@@ -2,15 +2,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>motox3m</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Moto X3M</title>
+<style>
+body{margin:0;background:#1b1b1b;color:white;text-align:center;font-family:Arial}
+#track{height:450px;width:94vw;max-width:500px;margin:auto;background:#78909c;position:relative}
+#bike{position:absolute;bottom:40px;left:20px;font-size:50px}
+button{padding:15px 25px;margin:10px;font-size:18px}
+</style>
 </head>
 <body>
-
-<h1>motox3m</h1>
-
-<p>Game Coming Soon...</p>
-
-<a href="../../index.html">⬅ Back to Home</a>
-
+<h1>🏍️ Moto X3M</h1>
+<div id="track"><div id="bike">🏍️</div></div>
+<button onclick="jump()">⬆️ JUMP</button>
+<button onclick="race()">🏁 RACE</button>
+<h2>Level: <span id="l">1</span></h2>
+<script>
+let l=1;
+function race(){l++;document.getElementById("l").textContent=l}
+function jump(){document.getElementById("bike").style.bottom="180px";setTimeout(()=>document.getElementById("bike").style.bottom="40px",500)}
+</script>
 </body>
 </html>

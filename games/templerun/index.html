@@ -1,7 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Temple Run</title>
-
-<h1>Temple Run</h1>
-
-<p>Game Coming Soon...</p>
-
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{background:#111;color:white;text-align:center;font-family:Arial}
+.game{width:300px;height:500px;background:#996633;margin:auto;position:relative;overflow:hidden}
+.player{position:absolute;bottom:30px;left:125px;font-size:45px}
+.coin{position:absolute;font-size:30px;cursor:pointer}
+</style>
+</head>
+<body>
+<h1>🏃 Temple Run</h1>
+<div class="game">
+<div class="player">🏃</div>
+<div class="coin" id="coin" onclick="collect()">🪙</div>
+</div>
+<h2>Score: <span id="score">0</span></h2>
+<script>
+let s=0;
+function collect(){
+s++;score.textContent=s;
+coin.style.left=Math.random()*260+"px";
+coin.style.top=Math.random()*450+"px";
+}
+</script>
+</body>
+</html>

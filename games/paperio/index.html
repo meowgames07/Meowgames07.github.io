@@ -1,4 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Paper.io</title>
-<h1>Paper.io</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#111;color:white;text-align:center;font-family:Arial}
+#field{width:94vw;max-width:500px;height:500px;margin:auto;background:#2196f3;position:relative;overflow:hidden}
+#player{position:absolute;width:35px;height:35px;background:#ffeb3b;left:30px;top:30px}
+button{padding:15px 30px;margin:15px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>📄 Paper.io</h1>
+<h2>Area: <span id="a">0</span></h2>
+<div id="field"><div id="player"></div></div>
+<button onclick="expand()">➕ EXPAND</button>
+<script>
+let a=0;
+function expand(){a+=10;document.getElementById("a").textContent=a}
+</script>
+</body>
+</html>

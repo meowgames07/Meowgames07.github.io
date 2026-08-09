@@ -1,4 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sky Riders</title>
-<h1>Sky Riders</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#1565c0;color:white;text-align:center;font-family:Arial}
+#game{width:94vw;max-width:500px;height:500px;margin:auto;background:#64b5f6;position:relative}
+#bike{position:absolute;left:30px;top:220px;font-size:50px}
+button{padding:15px 30px;margin:15px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>🏍️ Sky Riders</h1>
+<h2>Distance: <span id="d">0</span></h2>
+<div id="game"><div id="bike">🏍️</div></div>
+<button onclick="ride()">RIDE ➡️</button>
+<script>
+let x=30,d=0;
+function ride(){
+x+=45;d+=10;
+if(x>400)x=30;
+document.getElementById("bike").style.left=x+"px";
+document.getElementById("d").textContent=d;
+}
+</script>
+</body>
+</html>

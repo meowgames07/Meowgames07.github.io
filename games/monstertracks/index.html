@@ -1,4 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Monster Tracks</title>
-<h1>Monster Tracks</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#111;color:white;text-align:center;font-family:Arial}
+#road{width:94vw;max-width:500px;height:550px;margin:auto;background:#444;position:relative;overflow:hidden}
+.car{position:absolute;width:55px;height:80px;background:#f44336;border-radius:10px;bottom:30px}
+.enemy{position:absolute;width:55px;height:80px;background:#ffeb3b;top:-90px;border-radius:10px}
+button{padding:15px 35px;margin:10px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>🚙 Monster Tracks</h1>
+<h2>Score: <span id="s">0</span></h2>
+<div id="road"><div class="car" id="car"></div></div>
+<button onclick="left()">⬅️</button><button onclick="right()">➡️</button>
+<script>
+let c=document.getElementById("car"),x=45,s=0;
+function left(){x=Math.max(5,x-10);c.style.left=x+"%";score()}
+function right(){x=Math.min(85,x+10);c.style.left=x+"%";score()}
+function score(){s++;document.getElementById("s").textContent=s}
+</script>
+</body>
+</html>

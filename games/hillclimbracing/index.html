@@ -1,7 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hill Climb Racing</title>
-
-<h1>Hill Climb Racing</h1>
-
-<p>Game Coming Soon...</p>
-
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#75b8e7;color:white;text-align:center;font-family:Arial}
+#game{width:95%;max-width:500px;height:500px;margin:auto;background:#78b84a;position:relative;overflow:hidden}
+#car{position:absolute;bottom:80px;left:40%;font-size:55px}
+button{padding:15px 35px;font-size:20px;margin:10px}
+</style>
+</head>
+<body>
+<h1>🚙 Hill Climb Racing</h1>
+<h2>Distance: <span id="score">0</span></h2>
+<div id="game"><div id="car">🚙</div></div>
+<button onclick="drive()">🚀 GAS</button>
+<script>
+let score=0;
+function drive(){
+ score+=10;
+ document.getElementById("score").innerText=score;
+ let car=document.getElementById("car");
+ car.style.bottom=70+Math.random()*80+"px";
+}
+</script>
+</body>
+</html>

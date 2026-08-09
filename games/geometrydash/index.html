@@ -1,7 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Geometry Dash</title>
+<style>
+body{margin:0;background:#111;color:white;text-align:center;font-family:Arial}
+#game{width:95%;max-width:500px;height:450px;margin:auto;background:#263238;position:relative;overflow:hidden}
+#player{position:absolute;bottom:40px;left:60px;font-size:45px}
+#block{position:absolute;bottom:40px;right:0;font-size:50px}
+button{padding:15px 45px;font-size:20px;margin:10px}
+</style>
+</head>
+<body>
+<h1>🔷 Geometry Dash</h1>
+<h2>Score: <span id="score">0</span></h2>
+<div id="game">
+<div id="player">🔷</div>
+<div id="block">🔺</div>
+</div>
+<button onclick="jump()">⬆️ JUMP</button>
 
-<h1>Geometry Dash</h1>
+<script>
+let p=document.getElementById("player"),b=document.getElementById("block");
+let jumping=false,score=0,x=500;
 
-<p>Game Coming Soon...</p>
+function jump(){
+ if(jumping)return;
+ jumping=true;
+ p.style.bottom="180px";
+ setTimeout(()=>{
+  p.style.bottom="40px";
+  jumping=false;
+ },500);
+}
 
-<a href="../../index.html">⬅ Back to Home</a>
+setInterval(()=>{
+ x-=7;b.style.right=(500-x)+"px";
+ if(x<-60){
+  x=500;score++;
+  document.getElementById("score").innerText=score;
+ }
+},40);
+</script>
+</body>
+</html>

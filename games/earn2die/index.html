@@ -1,4 +1,40 @@
-<title>Earn To Die</title>
-<h1>Earn To Die</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Earn2Die</title>
+<style>
+body{margin:0;background:#222;color:white;text-align:center;font-family:Arial}
+#game{width:95%;max-width:500px;height:500px;margin:auto;background:#c88b45;position:relative;overflow:hidden;border:4px solid #555}
+#car{position:absolute;bottom:35px;left:40px;font-size:55px}
+#enemy{position:absolute;bottom:35px;right:20px;font-size:45px}
+button{padding:15px 30px;font-size:20px;margin:10px}
+</style>
+</head>
+<body>
+<h1>🚗 Earn2Die</h1>
+<h2>Score: <span id="score">0</span></h2>
+<div id="game">
+<div id="car">🚙</div>
+<div id="enemy">🧟</div>
+</div>
+<button onclick="drive()">🚀 DRIVE</button>
+
+<script>
+let car=document.getElementById("car");
+let enemy=document.getElementById("enemy");
+let score=0,x=40;
+
+function drive(){
+ x+=25;
+ if(x>430){
+  x=40;
+  score++;
+  document.getElementById("score").innerText=score;
+  enemy.style.right=Math.random()*200+"px";
+ }
+ car.style.left=x+"px";
+}
+</script>
+</body>
+</html>

@@ -1,7 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Stickman Hook</title>
-
-<h1>Stickman Hook</h1>
-
-<p>Game Coming Soon...</p>
-
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#111;color:white;text-align:center;font-family:Arial}
+#game{height:550px;max-width:500px;margin:auto;background:#172033;position:relative;overflow:hidden}
+#man{position:absolute;left:40px;bottom:80px;font-size:50px}
+.hook{position:absolute;top:100px;right:70px;font-size:40px}
+button{padding:14px 25px;margin:10px;border:0;border-radius:10px}
+</style>
+</head>
+<body>
+<h2>Stickman Hook</h2>
+<div id="game">
+<div id="man">🕴️</div>
+<div class="hook">⭕</div>
+</div>
+<button onclick="swing()">SWING</button>
+<button onclick="location.reload()">RESTART</button>
+<h3 id="score">Score: 0</h3>
+<script>
+let score=0;
+function swing(){
+score++;
+document.getElementById("score").textContent="Score: "+score;
+document.getElementById("man").style.left=(40+score*25)%400+"px";
+}
+</script>
+</body>
+</html>

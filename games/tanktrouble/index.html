@@ -1,4 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tank Trouble</title>
-<h1>Tank Trouble</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{background:#111;color:white;text-align:center;font-family:Arial}
+.game{width:320px;height:450px;background:#555;margin:auto;position:relative}
+.tank{position:absolute;font-size:45px;left:130px;bottom:20px}
+button{padding:15px 25px;font-size:18px;margin:10px}
+</style>
+</head>
+<body>
+<h1>🚜 Tank Trouble</h1>
+<div class="game"><div class="tank" id="tank">🚜</div></div>
+<button onclick="move(-20)">⬅️</button>
+<button onclick="fire()">💥 FIRE</button>
+<button onclick="move(20)">➡️</button>
+<h2 id="msg"></h2>
+<script>
+function move(x){
+let p=parseInt(tank.style.left||130)+x;
+tank.style.left=Math.max(0,Math.min(270,p))+"px";
+}
+function fire(){msg.textContent="💥 BOOM!";}
+</script>
+</body>
+</html>

@@ -1,7 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Drive Mad</title>
+<style>
+body{margin:0;background:#111827;color:white;text-align:center;font-family:Arial}
+#game{width:90%;max-width:400px;height:500px;margin:auto;background:#55a7d9;position:relative;overflow:hidden}
+#car{position:absolute;bottom:50px;left:40%;font-size:45px}
+button{padding:15px 30px;margin:10px;font-size:20px}
+</style>
+</head>
+<body>
 
-<h1>Drive Mad</h1>
+<h1>🚙 Drive Mad</h1>
+<h2>Level: <span id="level">1</span></h2>
 
-<p>Game Coming Soon...</p>
+<div id="game">
+<div id="car">🚙</div>
+</div>
 
-<a href="../../index.html">⬅ Back to Home</a>
+<button onclick="gas()">⬆️ GAS</button>
+<button onclick="brake()">⬇️ BRAKE</button>
+
+<script>
+let level=1;
+let car=document.getElementById("car");
+
+function gas(){
+ level++;
+ document.getElementById("level").innerText=level;
+ car.style.transform="rotate("+level*5+"deg)";
+}
+
+function brake(){
+ if(level>1) level--;
+ document.getElementById("level").innerText=level;
+ car.style.transform="rotate(0deg)";
+}
+</script>
+
+</body>
+</html>

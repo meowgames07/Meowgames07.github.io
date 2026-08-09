@@ -1,4 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Penalty Shooters</title>
-<h1>Penalty Shooters</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#168a3a;color:white;text-align:center;font-family:Arial}
+#goal{width:94vw;max-width:500px;height:350px;margin:auto;background:#eee;border:8px solid #222;position:relative}
+#ball{position:absolute;bottom:20px;left:45%;font-size:40px}
+button{padding:15px 30px;margin:15px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>⚽ Penalty Shooters</h1>
+<h2>Goals: <span id="s">0</span></h2>
+<div id="goal"><div id="ball">⚽</div></div>
+<button onclick="shoot()">SHOOT ⚽</button>
+<script>
+let s=0;
+function shoot(){
+s++;
+document.getElementById("s").textContent=s;
+alert("GOAL! ⚽");
+}
+</script>
+</body>
+</html>

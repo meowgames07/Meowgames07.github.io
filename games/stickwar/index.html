@@ -1,4 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Stick War</title>
-<h1>Stick War</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#111;color:white;text-align:center;font-family:Arial}
+#game{height:500px;max-width:500px;margin:auto;background:#263238;position:relative}
+.army{font-size:55px;padding-top:80px}
+button{padding:14px 25px;margin:10px;border:0;border-radius:10px}
+</style>
+</head>
+<body>
+<h2>Stick War</h2>
+<div id="game">
+<div class="army">🏹 🗡️ 🛡️</div>
+<h2 id="result">Enemy HP: 10</h2>
+<button onclick="attack()">ATTACK ⚔️</button>
+<button onclick="location.reload()">RESTART</button>
+</div>
+<script>
+let hp=10;
+function attack(){
+hp--;
+document.getElementById("result").textContent=
+hp>0?"Enemy HP: "+hp:"🏆 VICTORY!";
+}
+</script>
+</body>
+</html>

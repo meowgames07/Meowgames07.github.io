@@ -2,15 +2,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Drift Boss</title>
+<style>
+body{margin:0;background:#111;color:white;text-align:center;font-family:Arial}
+#game{width:90%;max-width:400px;height:550px;margin:auto;background:#555;position:relative;overflow:hidden}
+#car{position:absolute;bottom:30px;left:45%;font-size:45px}
+button{padding:18px 45px;margin:15px;font-size:20px}
+</style>
 </head>
 <body>
 
-<h1>Drift Boss</h1>
+<h1>🏎️ Drift Boss</h1>
+<h2>Score: <span id="score">0</span></h2>
 
-<p>Game Coming Soon...</p>
+<div id="game">
+<div id="car">🏎️</div>
+</div>
 
-<a href="../../index.html">⬅ Back to Home</a>
+<button onclick="drift()">DRIFT ↔️</button>
+
+<script>
+let score=0;
+let x=45;
+
+function drift(){
+ x=x==45?60:45;
+ document.getElementById("car").style.left=x+"%";
+ score++;
+ document.getElementById("score").innerText=score;
+}
+</script>
 
 </body>
 </html>

@@ -1,4 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Real Fishing</title>
-<h1>Real Fishing</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#0288d1;color:white;text-align:center;font-family:Arial}
+#lake{width:94vw;max-width:500px;height:500px;margin:auto;background:#039be5;position:relative}
+#fish{position:absolute;left:40%;top:220px;font-size:50px}
+button{padding:15px 30px;margin:15px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>🎣 Real Fishing</h1>
+<h2>Fish: <span id="s">0</span></h2>
+<div id="lake"><div id="fish">🐟</div></div>
+<button onclick="catchFish()">🎣 CATCH</button>
+<script>
+let s=0;
+function catchFish(){
+s++;
+document.getElementById("s").textContent=s;
+document.getElementById("fish").style.left=Math.random()*80+"%";
+}
+</script>
+</body>
+</html>

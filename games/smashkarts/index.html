@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Smash Karts</title>
-
-<h1>Smash Karts</h1>
-
-<p>Game Coming Soon...</p>
-
-<a href="../../index.html">⬅ Back to Home</a>
-
-
+<style>
+body{margin:0;background:#263238;color:white;text-align:center;font-family:Arial}
+#game{width:94vw;max-width:500px;height:500px;margin:auto;background:#4caf50;position:relative}
+#car{position:absolute;bottom:40px;left:40%;font-size:50px}
+button{padding:15px 30px;margin:15px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>🏎️ Smash Karts</h1>
+<h2>Hits: <span id="h">0</span></h2>
+<div id="game"><div id="car">🏎️</div></div>
+<button onclick="smash()">SMASH 💥</button>
+<script>
+let h=0;
+function smash(){
+h++;
+document.getElementById("h").textContent=h;
+document.getElementById("car").style.left=Math.random()*80+"%";
+}
+</script>
 </body>
 </html>

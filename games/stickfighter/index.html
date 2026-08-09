@@ -1,4 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Stick Fighter</title>
-<h1>Stick Fighter</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#111;color:white;text-align:center;font-family:Arial}
+#game{width:95%;max-width:500px;height:550px;margin:auto;background:#222;position:relative;overflow:hidden}
+.player{position:absolute;bottom:60px;left:80px;font-size:60px}
+.enemy{position:absolute;bottom:60px;right:80px;font-size:60px}
+button{padding:14px 25px;margin:8px;border:0;border-radius:10px}
+</style>
+</head>
+<body>
+<h2>Stick Fighter</h2>
+<div id="game">
+<div class="player">🤺</div>
+<div class="enemy">🥷</div>
+</div>
+<button onclick="attack()">ATTACK</button>
+<button onclick="location.reload()">RESTART</button>
+<h3 id="msg">Fight!</h3>
+<script>
+let hp=3;
+function attack(){
+hp--;
+document.getElementById("msg").textContent=
+hp>0?"⚔️ Hit! Enemy HP: "+hp:"🏆 You Win!";
+}
+</script>
+</body>
+</html>

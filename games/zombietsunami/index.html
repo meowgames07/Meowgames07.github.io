@@ -1,4 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Zombie Tsunami</title>
-<h1>Zombie Tsunami</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#111;color:white;text-align:center;font-family:Arial}
+.game{width:320px;height:450px;background:#555;margin:auto;position:relative;overflow:hidden}
+.zombie{position:absolute;bottom:30px;left:130px;font-size:45px;cursor:pointer}
+</style>
+</head>
+<body>
+<h1>🧟 Zombie Tsunami</h1>
+<div class="game">
+<div class="zombie" id="zombie" onclick="collect()">🧟</div>
+</div>
+<h2>Zombie Count: <span id="score">1</span></h2>
+<script>
+let s=1;
+function collect(){
+s++;
+score.textContent=s;
+zombie.style.left=Math.random()*270+"px";
+zombie.style.top=Math.random()*380+"px";
+}
+</script>
+</body>
+</html>

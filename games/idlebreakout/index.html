@@ -1,4 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Idle Breakout</title>
-<h1>Idle Breakout</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#111;color:white;text-align:center;font-family:Arial}
+#game{width:95%;max-width:500px;height:500px;margin:auto;background:#202124;display:grid;grid-template-columns:repeat(5,1fr);gap:5px;padding:5px;box-sizing:border-box}
+.block{background:#e91e63;height:55px;cursor:pointer}
+button{padding:15px 35px;font-size:20px;margin:10px}
+</style>
+</head>
+<body>
+<h1>🧱 Idle Breakout</h1>
+<h2>Score: <span id="score">0</span></h2>
+<div id="game"></div>
+<script>
+let score=0,game=document.getElementById("game");
+for(let i=0;i<25;i++){
+ let b=document.createElement("div");
+ b.className="block";
+ b.onclick=()=>{
+  if(b.style.visibility!="hidden"){
+   b.style.visibility="hidden";
+   score+=10;
+   document.getElementById("score").innerText=score;
+  }
+ };
+ game.appendChild(b);
+}
+</script>
+</body>
+</html>

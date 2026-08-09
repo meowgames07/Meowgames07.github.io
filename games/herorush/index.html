@@ -1,4 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hero Rush</title>
-<h1>Hero Rush</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#172033;color:white;text-align:center;font-family:Arial}
+#game{width:95%;max-width:500px;height:500px;margin:auto;background:#263b5c;position:relative;overflow:hidden}
+#hero{position:absolute;bottom:30px;left:40%;font-size:50px}
+#enemy{position:absolute;top:50px;left:40%;font-size:45px}
+button{padding:15px 35px;font-size:20px;margin:10px}
+</style>
+</head>
+<body>
+<h1>🦸 Hero Rush</h1>
+<h2>Score: <span id="score">0</span></h2>
+<div id="game">
+<div id="hero">🦸</div>
+<div id="enemy">👾</div>
+</div>
+<button onclick="attack()">⚡ ATTACK</button>
+<script>
+let score=0;
+function attack(){
+ score++;
+ document.getElementById("score").innerText=score;
+ document.getElementById("enemy").style.left=Math.random()*80+"%";
+ document.getElementById("enemy").style.top=Math.random()*350+"px";
+}
+</script>
+</body>
+</html>

@@ -1,4 +1,25 @@
-<title>Pac-Man</title>
-<h1>Pac-Man</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pacman</title>
+<style>
+body{margin:0;background:#000;color:#ffeb3b;text-align:center;font-family:Arial}
+#maze{width:330px;height:430px;margin:20px auto;border:5px solid #263cff;position:relative}
+#pac{position:absolute;left:20px;top:20px;font-size:35px}
+.dot{position:absolute;color:white;font-size:25px}
+button{padding:15px 25px;margin:5px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>🟡 Pacman</h1>
+<h2>Score: <span id="s">0</span></h2>
+<div id="maze"><div id="pac">🟡</div><div class="dot" style="left:150px;top:100px">•</div></div>
+<button onclick="move()">➡️ MOVE</button>
+<script>
+let x=20,s=0,p=document.getElementById("pac");
+function move(){x+=30;p.style.left=x+"px";s+=10;document.getElementById("s").textContent=s}
+</script>
+</body>
+</html>

@@ -1,4 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Stick Merge</title>
-<h1>Stick Merge</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#111;color:white;text-align:center;font-family:Arial}
+#game{height:500px;max-width:500px;margin:auto;background:#202020;padding-top:30px}
+.card{display:inline-block;background:#444;padding:30px;margin:10px;border-radius:15px;font-size:45px}
+button{padding:14px 25px;border:0;border-radius:10px}
+</style>
+</head>
+<body>
+<h2>Stick Merge</h2>
+<div id="game">
+<div class="card" onclick="merge()">🥢</div>
+<div class="card" onclick="merge()">🥢</div>
+<h2 id="level">Level 1</h2>
+<button onclick="merge()">MERGE</button>
+</div>
+<script>
+let level=1;
+function merge(){
+level++;
+document.getElementById("level").textContent="Level "+level;
+}
+</script>
+</body>
+</html>

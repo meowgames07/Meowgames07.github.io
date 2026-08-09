@@ -1,4 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Flappy Bird</title>
-<h1>Flappy Bird</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#70c5ce;text-align:center;font-family:Arial}
+#game{width:95%;max-width:500px;height:550px;margin:auto;background:#70c5ce;position:relative;overflow:hidden}
+#bird{position:absolute;font-size:40px;left:80px;top:250px}
+.pipe{position:absolute;width:55px;background:#228b22}
+button{padding:15px 40px;font-size:20px;margin:10px}
+</style>
+</head>
+<body>
+<h1>🐦 Flappy Bird</h1>
+<h2>Score: <span id="score">0</span></h2>
+<div id="game"><div id="bird">🐦</div></div>
+<button onclick="flap()">🪽 FLAP</button>
+
+<script>
+let bird=document.getElementById("bird"),y=250,vel=0,score=0,game=document.getElementById("game");
+let pipe=document.createElement("div");
+pipe.className="pipe";game.appendChild(pipe);
+let x=500,gap=180,top=100;
+
+function flap(){vel=-7}
+setInterval(()=>{
+ vel+=0.4;y+=vel;
+ bird.style.top=y+"px";
+ x-=4;pipe.style.left=x+"px";pipe.style.top=top+"px";pipe.style.height=(top)+"px";
+ if(x<-60){
+  x=500;top=50+Math.random()*250;score++;
+  document.getElementById("score").innerText=score;
+ }
+ if(y<0||y>510){y=250;vel=0;score=0}
+},30);
+</script>
+</body>
+</html>

@@ -1,4 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Golf Battle</title>
-<h1>Golf Battle</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#16833b;color:white;text-align:center;font-family:Arial}
+#game{width:95%;max-width:500px;height:550px;margin:auto;background:#4caf50;position:relative}
+#ball{position:absolute;font-size:35px;bottom:80px;left:45%}
+#hole{position:absolute;font-size:45px;top:80px;left:45%}
+button{padding:15px 45px;font-size:20px;margin:10px}
+</style>
+</head>
+<body>
+<h1>⛳ Golf Battle</h1>
+<h2>Shots: <span id="score">0</span></h2>
+<div id="game">
+<div id="ball">⚪</div>
+<div id="hole">🕳️</div>
+</div>
+<button onclick="hit()">🏌️ HIT</button>
+
+<script>
+let ball=document.getElementById("ball"),score=0;
+function hit(){
+ score++;
+ document.getElementById("score").innerText=score;
+ ball.style.bottom="430px";
+ setTimeout(()=>{
+  ball.style.bottom="80px";
+  if(score>=3){
+   alert("Hole Complete! 🎉");
+   score=0;
+   document.getElementById("score").innerText=score;
+  }
+ },500);
+}
+</script>
+</body>
+</html>

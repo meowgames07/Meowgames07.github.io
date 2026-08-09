@@ -1,7 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tiny Fishing</title>
-
-<h1>Tiny Fishing</h1>
-
-<p>Game Coming Soon...</p>
-
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{background:#111;color:white;text-align:center;font-family:Arial}
+.game{width:320px;height:450px;background:#168bd0;margin:auto;position:relative;overflow:hidden}
+.fish{position:absolute;font-size:35px;cursor:pointer}
+</style>
+</head>
+<body>
+<h1>🎣 Tiny Fishing</h1>
+<div class="game"><div class="fish" id="fish" onclick="catchFish()">🐟</div></div>
+<h2>Fish: <span id="score">0</span></h2>
+<script>
+let s=0;
+function catchFish(){
+s++;score.textContent=s;
+fish.style.left=Math.random()*280+"px";
+fish.style.top=Math.random()*400+"px";
+}
+</script>
+</body>
+</html>

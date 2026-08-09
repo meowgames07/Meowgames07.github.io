@@ -1,4 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mini Golf</title>
-<h1>Mini Golf</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#102a13;color:white;text-align:center;font-family:Arial}
+#course{width:94vw;max-width:500px;height:500px;margin:auto;background:#35a853;border:5px solid #222;position:relative;border-radius:20px}
+#ball{width:25px;height:25px;background:white;border-radius:50%;position:absolute;left:30px;bottom:30px}
+#hole{width:40px;height:40px;background:#111;border-radius:50%;position:absolute;right:30px;top:30px}
+button{padding:15px 30px;font-size:20px;margin:15px}
+</style>
+</head>
+<body>
+<h1>⛳ Mini Golf</h1>
+<div id="course"><div id="ball"></div><div id="hole"></div></div>
+<button onclick="hit()">🏌️ HIT</button>
+<script>
+let ball=document.getElementById("ball"),x=30,y=30;
+function hit(){x+=50;y+=50;ball.style.left=x+"px";ball.style.bottom=y+"px";
+if(x>400)alert("Hole Complete! 🏆")}
+</script>
+</body>
+</html>

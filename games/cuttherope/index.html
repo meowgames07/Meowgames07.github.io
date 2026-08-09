@@ -1,4 +1,25 @@
-<title>Cut The Rope</title>
-<h1>Cut The Rope</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cutthrope</title>
+<style>
+body{margin:0;background:#101827;color:white;text-align:center;font-family:Arial}
+#game{width:94%;max-width:450px;height:550px;margin:auto;background:#d7b06a;border-radius:20px;position:relative}
+.rope{position:absolute;left:50%;top:60px;height:300px;border-left:6px solid #7b4a20}
+.candy{position:absolute;top:350px;left:43%;font-size:55px}
+button{padding:18px 35px;margin:15px;border:0;border-radius:15px;background:#20c968;color:white;font-size:20px}
+</style>
+</head>
+<body>
+<h1>✂️ Cut the Rope</h1>
+<h2>Score: <span id="score">0</span></h2>
+<div id="game"><div class="rope" id="rope"></div><div class="candy">🍬</div></div>
+<button onclick="cut()">✂️ CUT ROPE</button>
+<script>
+let score=0;
+function cut(){document.getElementById('rope').style.display='none';score+=10;document.getElementById('score').textContent=score;setTimeout(()=>{document.getElementById('rope').style.display='block'},1000)}
+</script>
+</body>
+</html>

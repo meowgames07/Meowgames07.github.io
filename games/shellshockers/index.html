@@ -1,4 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Shell Shockers</title>
-<h1>Shell Shockers</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#222;color:white;text-align:center;font-family:Arial}
+#game{width:94vw;max-width:500px;height:500px;margin:auto;background:#555;position:relative}
+#egg{position:absolute;bottom:40px;left:40%;font-size:55px}
+button{padding:15px 30px;margin:15px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>🥚 Shell Shockers</h1>
+<h2>Score: <span id="s">0</span></h2>
+<div id="game"><div id="egg">🥚</div></div>
+<button onclick="shoot()">SHOOT 🔫</button>
+<script>
+let s=0;
+function shoot(){
+s++;
+document.getElementById("s").textContent=s;
+document.getElementById("egg").style.left=Math.random()*80+"%";
+}
+</script>
+</body>
+</html>

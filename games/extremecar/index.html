@@ -1,4 +1,44 @@
-<title>Extreme Car Driving</title>
-<h1>Extreme Car Driving</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Extreme Car</title>
+<style>
+body{margin:0;background:#111;color:white;text-align:center;font-family:Arial}
+#game{width:95%;max-width:500px;height:550px;margin:auto;background:#555;position:relative;overflow:hidden}
+#car{position:absolute;bottom:30px;left:45%;font-size:55px}
+#obs{position:absolute;top:-60px;font-size:45px;left:30%}
+button{padding:15px 35px;font-size:20px;margin:10px}
+</style>
+</head>
+<body>
+<h1>🏎️ Extreme Car</h1>
+<h2>Score: <span id="score">0</span></h2>
+<div id="game">
+<div id="car">🏎️</div>
+<div id="obs">🪨</div>
+</div>
+<button onclick="left()">⬅️</button>
+<button onclick="right()">➡️</button>
+
+<script>
+let car=document.getElementById("car");
+let obs=document.getElementById("obs");
+let x=45,score=0,y=-60;
+
+function left(){x-=10;if(x<0)x=0;car.style.left=x+"%"}
+function right(){x+=10;if(x>88)x=88;car.style.left=x+"%"}
+
+setInterval(()=>{
+ y+=7;
+ obs.style.top=y+"px";
+ if(y>550){
+  y=-60;
+  obs.style.left=Math.random()*85+"%";
+  score++;
+  document.getElementById("score").innerText=score;
+ }
+},80);
+</script>
+</body>
+</html>

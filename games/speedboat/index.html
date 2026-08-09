@@ -1,4 +1,28 @@
-<title>Speed Boat Racing</title>
-<h1>Speed Boat Racing</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Speedboat</title>
+<style>
+body{margin:0;background:#0288d1;color:white;text-align:center;font-family:Arial}
+#game{width:94vw;max-width:500px;height:500px;margin:auto;background:#03a9f4;position:relative}
+#boat{position:absolute;bottom:40px;left:30px;font-size:50px}
+button{padding:15px 30px;margin:15px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>🚤 Speedboat</h1>
+<h2>Distance: <span id="d">0</span></h2>
+<div id="game"><div id="boat">🚤</div></div>
+<button onclick="go()">GO ➡️</button>
+<script>
+let x=30,d=0;
+function go(){
+x+=40;d+=10;
+if(x>400)x=30;
+document.getElementById("boat").style.left=x+"px";
+document.getElementById("d").textContent=d;
+}
+</script>
+</body>
+</html>

@@ -1,4 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Red Ball 4</title>
-<h1>Red Ball 4</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#87ceeb;color:white;text-align:center;font-family:Arial}
+#world{width:94vw;max-width:500px;height:500px;margin:auto;background:#7cb342;position:relative}
+#ball{position:absolute;bottom:40px;left:30px;font-size:50px}
+button{padding:15px 30px;margin:15px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>🔴 Red Ball 4</h1>
+<div id="world"><div id="ball">🔴</div></div>
+<button onclick="roll()">➡️ ROLL</button>
+<script>
+let x=30;
+function roll(){
+x+=50;
+document.getElementById("ball").style.left=x+"px";
+if(x>400)alert("Level Complete! 🏆");
+}
+</script>
+</body>
+</html>

@@ -1,4 +1,24 @@
-<title>Cricket World Cup</title>
-<h1>Cricket World Cup</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cricket</title>
+<style>
+body{margin:0;background:#10251b;color:white;text-align:center;font-family:Arial}
+#pitch{width:94%;max-width:500px;height:500px;margin:auto;background:#3b9b4b;border-radius:20px;position:relative}
+.ball{font-size:50px;position:absolute;left:45%;top:40%}
+button{padding:18px 35px;margin:15px;background:#20c968;color:white;border:0;border-radius:15px;font-size:22px}
+</style>
+</head>
+<body>
+<h1>🏏 Cricket</h1>
+<h2>Runs: <span id="runs">0</span> | Balls: <span id="balls">0</span></h2>
+<div id="pitch"><div class="ball">⚾</div></div>
+<button onclick="hit()">🏏 HIT</button>
+<script>
+let runs=0,balls=0;
+function hit(){balls++;let r=[0,1,2,4,6][Math.floor(Math.random()*5)];runs+=r;document.getElementById('runs').textContent=runs;document.getElementById('balls').textContent=balls;if(balls>=12){alert('Innings Over! Score: '+runs);runs=0;balls=0;document.getElementById('runs').textContent=0;document.getElementById('balls').textContent=0}}
+</script>
+</body>
+</html>

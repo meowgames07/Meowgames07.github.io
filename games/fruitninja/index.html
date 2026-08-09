@@ -1,4 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Fruit Ninja</title>
-<h1>Fruit Ninja</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#151515;color:white;text-align:center;font-family:Arial}
+#game{width:95%;max-width:500px;height:550px;margin:auto;background:#222;position:relative;overflow:hidden}
+.fruit{position:absolute;font-size:45px;cursor:pointer}
+button{padding:15px 40px;font-size:20px;margin:10px}
+</style>
+</head>
+<body>
+<h1>🍉 Fruit Ninja</h1>
+<h2>Score: <span id="score">0</span></h2>
+<div id="game"></div>
+<button onclick="addFruit()">🍉 SLICE</button>
+
+<script>
+let game=document.getElementById("game"),score=0;
+function addFruit(){
+ let f=document.createElement("div");
+ f.className="fruit";
+ f.innerText=["🍎","🍉","🍊","🍌","🍓"][Math.floor(Math.random()*5)];
+ f.style.left=Math.random()*85+"%";
+ f.style.top=Math.random()*80+"%";
+ f.onclick=()=>{
+  score++;
+  document.getElementById("score").innerText=score;
+  f.remove();
+ };
+ game.appendChild(f);
+ setTimeout(()=>f.remove(),2000);
+}
+</script>
+</body>
+</html>

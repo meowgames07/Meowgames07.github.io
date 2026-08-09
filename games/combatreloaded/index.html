@@ -1,4 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Combat Reloaded</title>
-<h1>Combat Reloaded</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#101827;color:white;text-align:center;font-family:Arial}
+#game{position:relative;width:94%;max-width:500px;height:550px;margin:20px auto;background:#26354a;border:4px solid #4b6078;border-radius:18px;overflow:hidden}
+.player{position:absolute;bottom:25px;left:45%;font-size:45px}
+.enemy{position:absolute;font-size:42px}
+button{padding:14px 25px;margin:8px;border:0;border-radius:12px;background:#20c968;color:white;font-size:18px}
+</style>
+</head>
+<body>
+<h1>🔫 Combat Reloaded</h1>
+<h2>Score: <span id="score">0</span></h2>
+<div id="game"><div class="player">🪖</div></div>
+<button onclick="move(-35)">⬅️</button>
+<button onclick="shoot()">🔫 FIRE</button>
+<button onclick="move(35)">➡️</button>
+<script>
+let p=document.querySelector('.player'),g=document.getElementById('game'),score=0,x=45;
+function move(n){x=Math.max(5,Math.min(85,x+n/5));p.style.left=x+'%'}
+function shoot(){
+let b=document.createElement('div');b.textContent='💥';b.style.cssText='position:absolute;bottom:70px;left:'+x+'%;font-size:25px';g.appendChild(b);
+setTimeout(()=>{b.remove();score+=10;document.getElementById('score').textContent=score},300)
+}
+function enemy(){let e=document.createElement('div');e.className='enemy';e.textContent='👾';e.style.left=Math.random()*85+'%';e.style.top='0';g.appendChild(e);let y=0,t=setInterval(()=>{y+=4;e.style.top=y+'px';if(y>520){clearInterval(t);e.remove()}},50)}
+setInterval(enemy,1200);
+</script>
+</body>
+</html>

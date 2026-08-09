@@ -1,4 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Merge Master</title>
-<h1>Merge Master</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#101820;color:white;text-align:center;font-family:Arial}
+#board{width:330px;height:420px;margin:20px auto;background:#263238;border-radius:15px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:10px}
+.cell{background:#455a64;border-radius:10px;font-size:35px;display:flex;align-items:center;justify-content:center}
+button{padding:15px 30px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>🔀 Merge Master</h1>
+<h2>Score: <span id="s">0</span></h2>
+<div id="board"></div>
+<button onclick="add()">MERGE</button>
+<script>
+let b=document.getElementById("board"),s=0;
+for(let i=0;i<9;i++){let c=document.createElement("div");c.className="cell";c.textContent="2";b.appendChild(c)}
+function add(){s+=2;document.getElementById("s").textContent=s}
+</script>
+</body>
+</html>

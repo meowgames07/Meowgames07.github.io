@@ -1,4 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Snail Bob</title>
-<h1>Snail Bob</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#81c784;color:white;text-align:center;font-family:Arial}
+#game{width:94vw;max-width:500px;height:500px;margin:auto;background:#c8e6c9;position:relative}
+#snail{position:absolute;bottom:50px;left:30px;font-size:50px}
+button{padding:15px 30px;margin:15px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>🐌 Snail Bob</h1>
+<h2>Distance: <span id="d">0</span></h2>
+<div id="game"><div id="snail">🐌</div></div>
+<button onclick="walk()">WALK ➡️</button>
+<script>
+let x=30,d=0;
+function walk(){
+x+=35;d++;
+if(x>400)x=30;
+document.getElementById("snail").style.left=x+"px";
+document.getElementById("d").textContent=d;
+}
+</script>
+</body>
+</html>

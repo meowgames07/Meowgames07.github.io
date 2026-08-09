@@ -1,4 +1,41 @@
-<title>Fire Balls 3D</title>
-<h1>Fire Balls 3D</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fireballs</title>
+<style>
+body{margin:0;background:#111;color:white;text-align:center;font-family:Arial}
+#game{width:95%;max-width:500px;height:550px;margin:auto;background:#222;position:relative;overflow:hidden;border:3px solid #777}
+#ball{position:absolute;bottom:20px;left:45%;font-size:45px}
+#target{position:absolute;top:20px;left:45%;font-size:45px}
+button{padding:15px 35px;font-size:20px;margin:10px}
+</style>
+</head>
+<body>
+<h1>🔥 Fireballs</h1>
+<h2>Score: <span id="score">0</span></h2>
+<div id="game">
+<div id="ball">🔥</div>
+<div id="target">🎯</div>
+</div>
+<button onclick="shoot()">🔥 SHOOT</button>
+
+<script>
+let ball=document.getElementById("ball");
+let target=document.getElementById("target");
+let score=0,y=480;
+
+function shoot(){
+ y-=30;
+ ball.style.bottom=(550-y)+"px";
+ if(y<50){
+  score++;
+  document.getElementById("score").innerText=score;
+  y=480;
+  target.style.left=Math.random()*80+"%";
+  ball.style.bottom="20px";
+ }
+}
+</script>
+</body>
+</html>

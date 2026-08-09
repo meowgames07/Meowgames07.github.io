@@ -1,4 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sudoku</title>
-<h1>Sudoku</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{background:#111;color:white;text-align:center;font-family:Arial}
+.grid{display:grid;grid-template-columns:repeat(3,60px);width:180px;margin:30px auto}
+input{width:58px;height:58px;text-align:center;font-size:25px;box-sizing:border-box}
+button{padding:12px 25px;font-size:18px}
+</style>
+</head>
+<body>
+<h1>🧩 Sudoku</h1>
+<div class="grid" id="grid"></div>
+<button onclick="check()">Check</button>
+<p id="msg"></p>
+<script>
+for(let i=0;i<9;i++){
+let x=document.createElement("input");
+x.maxLength=1;
+x.inputMode="numeric";
+grid.appendChild(x);
+}
+function check(){msg.textContent="🎉 Good try! Keep playing."}
+</script>
+</body>
+</html>

@@ -1,4 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Gun Mayhem</title>
-<h1>Gun Mayhem</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#202124;color:white;text-align:center;font-family:Arial}
+#game{width:95%;max-width:500px;height:500px;margin:auto;background:#405060;position:relative;overflow:hidden}
+#p{position:absolute;bottom:30px;left:40%;font-size:45px}
+#target{position:absolute;top:80px;left:40%;font-size:45px}
+button{padding:15px 35px;font-size:20px;margin:8px}
+</style>
+</head>
+<body>
+<h1>🎯 Gun Mayhem</h1>
+<h2>Score: <span id="score">0</span></h2>
+<div id="game">
+<div id="p">🤖</div>
+<div id="target">🎯</div>
+</div>
+<button onclick="hit()">🎯 HIT</button>
+<script>
+let score=0;
+function hit(){
+ score++;
+ document.getElementById("score").innerText=score;
+ document.getElementById("target").style.left=Math.random()*80+"%";
+ document.getElementById("target").style.top=Math.random()*350+"px";
+}
+</script>
+</body>
+</html>

@@ -1,4 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tunnel Rush</title>
-<h1>Tunnel Rush</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{background:#111;color:white;text-align:center;font-family:Arial}
+.game{width:300px;height:500px;margin:auto;background:linear-gradient(90deg,#222,#700,#222);position:relative}
+.ball{position:absolute;font-size:40px;left:130px;top:220px;cursor:pointer}
+</style>
+</head>
+<body>
+<h1>🌀 Tunnel Rush</h1>
+<div class="game"><div class="ball" id="ball" onclick="move()">🔵</div></div>
+<h2>Score: <span id="score">0</span></h2>
+<script>
+let s=0;
+function move(){
+s++;score.textContent=s;
+ball.style.left=Math.random()*260+"px";
+ball.style.top=Math.random()*450+"px";
+}
+</script>
+</body>
+</html>

@@ -1,4 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Plants vs Zombies</title>
-<h1>Plants vs Zombies</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#75b843;color:white;text-align:center;font-family:Arial}
+#field{width:94vw;max-width:500px;height:500px;margin:auto;background:#4caf50;position:relative;overflow:hidden}
+.plant{position:absolute;left:30px;top:200px;font-size:50px}
+.zombie{position:absolute;right:20px;top:200px;font-size:50px}
+button{padding:15px 30px;margin:15px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>🌻 Plants vs Zombies 🧟</h1>
+<h2>Score: <span id="s">0</span></h2>
+<div id="field">
+<div class="plant">🌻</div>
+<div class="zombie" id="z">🧟</div>
+</div>
+<button onclick="attack()">🌱 ATTACK</button>
+<script>
+let s=0,z=document.getElementById("z");
+function attack(){
+s++;
+document.getElementById("s").textContent=s;
+z.style.right=(20+s*10)+"px";
+if(s>=10)alert("Level Complete! 🏆");
+}
+</script>
+</body>
+</html>

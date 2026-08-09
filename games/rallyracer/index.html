@@ -1,4 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Rally Racer</title>
-<h1>Rally Racer</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#222;color:white;text-align:center;font-family:Arial}
+#road{width:94vw;max-width:500px;height:500px;margin:auto;background:#555;position:relative}
+#car{position:absolute;bottom:30px;left:45%;font-size:50px}
+button{padding:15px 30px;margin:10px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>🏎️ Rally Racer</h1>
+<h2>Distance: <span id="d">0</span></h2>
+<div id="road"><div id="car">🏎️</div></div>
+<button onclick="race()">🏁 RACE</button>
+<script>
+let d=0;
+function race(){
+d+=100;
+document.getElementById("d").textContent=d;
+}
+</script>
+</body>
+</html>

@@ -1,7 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Football Masters</title>
+<style>
+body{margin:0;background:#16823b;color:white;text-align:center;font-family:Arial}
+#game{width:95%;max-width:500px;height:550px;margin:auto;background:#299447;position:relative;border:4px solid white}
+#ball{position:absolute;font-size:45px;bottom:60px;left:45%}
+#goal{position:absolute;top:30px;left:35%;font-size:100px}
+button{padding:15px 35px;font-size:20px;margin:10px}
+</style>
+</head>
+<body>
+<h1>⚽ Football Masters</h1>
+<h2>Goals: <span id="score">0</span></h2>
+<div id="game">
+<div id="goal">🥅</div>
+<div id="ball">⚽</div>
+</div>
+<button onclick="kick()">⚽ KICK</button>
 
-<h1>Football Masters</h1>
-
-<p>Game Coming Soon...</p>
-
-<a href="../../index.html">⬅ Back to Home</a>
+<script>
+let ball=document.getElementById("ball"),score=0;
+function kick(){
+ ball.style.bottom="430px";
+ setTimeout(()=>{
+  score++;
+  document.getElementById("score").innerText=score;
+  ball.style.bottom="60px";
+ },400);
+}
+</script>
+</body>
+</html>

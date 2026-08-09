@@ -1,7 +1,25 @@
-<title>Rooftop Snipers</title>
-
-<h1>Rooftop Snipers</h1>
-
-<p>Game Coming Soon...</p>
-
-<a href="../../index.html">⬅ Back to Home</a>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rooftop Duel</title>
+<style>
+body{margin:0;background:#202124;color:white;text-align:center;font-family:Arial}
+#roof{width:94vw;max-width:500px;height:500px;margin:auto;background:#37474f;position:relative}
+#p{position:absolute;bottom:80px;left:40px;font-size:45px}
+#target{position:absolute;bottom:80px;right:40px;font-size:45px}
+button{padding:15px 30px;margin:15px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>🎯 Rooftop Duel</h1>
+<div id="roof"><div id="p">🧍</div><div id="target">🎯</div></div>
+<button onclick="hit()">🎯 HIT TARGET</button>
+<script>
+function hit(){
+document.getElementById("target").textContent="💥";
+setTimeout(()=>alert("Hit! 🏆"),300);
+}
+</script>
+</body>
+</html>

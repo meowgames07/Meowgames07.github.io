@@ -1,7 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Crossy Road</title>
-
-<h1>Crossy Road</h1>
-
-<p>Game Coming Soon...</p>
-
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#101827;color:white;text-align:center;font-family:Arial}
+#game{width:94%;max-width:430px;height:560px;margin:auto;background:#4b9b45;position:relative;overflow:hidden}
+.road{position:absolute;left:0;width:100%;height:100px;background:#333}
+.car{position:absolute;font-size:40px}
+.player{position:absolute;bottom:10px;left:45%;font-size:40px}
+button{padding:15px 25px;margin:8px;border:0;border-radius:12px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>🐔 Crossy Road</h1>
+<h2>Score: <span id="score">0</span></h2>
+<div id="game">
+<div class="road" style="top:100px"></div><div class="road" style="top:300px"></div>
+<div class="player" id="p">🐔</div>
+</div>
+<button onclick="up()">⬆️</button>
+<script>
+let p=document.getElementById('p'),score=0,bottom=10;
+function up(){bottom+=45;p.style.bottom=bottom+'px';score++;document.getElementById('score').textContent=score;if(bottom>500){alert('You Win!');bottom=10;score=0;p.style.bottom='10px'}}
+setInterval(()=>{let c=document.createElement('div');c.className='car';c.textContent='🚗';c.style.left='-50px';c.style.top=Math.random()>0.5?'120px':'320px';document.getElementById('game').appendChild(c);let x=-50,t=setInterval(()=>{x+=5;c.style.left=x+'px';if(x>450){clearInterval(t);c.remove()}},40)},1000);
+</script>
+</body>
+</html>

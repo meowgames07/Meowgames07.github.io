@@ -1,4 +1,28 @@
-<title>Ludo King</title>
-<h1>Ludo King</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ludo</title>
+<style>
+body{margin:0;background:#222;color:white;text-align:center;font-family:Arial}
+#board{width:330px;height:330px;margin:30px auto;background:#eee;display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.cell{display:flex;align-items:center;justify-content:center;font-size:35px}
+button{padding:15px 35px;font-size:22px;margin:10px}
+</style>
+</head>
+<body>
+<h1>🎲 Ludo</h1>
+<h2>Dice: <span id="dice">-</span></h2>
+<div id="board">
+<div class="cell">🔴</div><div class="cell">⬜</div><div class="cell">🟢</div>
+<div class="cell">⬜</div><div class="cell">⭐</div><div class="cell">⬜</div>
+<div class="cell">🔵</div><div class="cell">⬜</div><div class="cell">🟡</div>
+</div>
+<button onclick="roll()">🎲 ROLL DICE</button>
+<script>
+function roll(){
+ document.getElementById("dice").innerText=Math.floor(Math.random()*6)+1;
+}
+</script>
+</body>
+</html>

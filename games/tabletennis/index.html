@@ -1,4 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Table Tennis</title>
-<h1>Table Tennis</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{background:#111;color:white;text-align:center;font-family:Arial}
+.game{width:320px;height:420px;background:#16833a;margin:auto;position:relative;border:4px solid white}
+.ball{position:absolute;font-size:30px;cursor:pointer}
+</style>
+</head>
+<body>
+<h1>🏓 Table Tennis</h1>
+<div class="game"><div class="ball" id="ball" onclick="hit()">⚪</div></div>
+<h2>Hits: <span id="score">0</span></h2>
+<script>
+let s=0;
+function hit(){
+s++;score.textContent=s;
+ball.style.left=Math.random()*280+"px";
+ball.style.top=Math.random()*380+"px";
+}
+</script>
+</body>
+</html>

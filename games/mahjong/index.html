@@ -1,4 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mahjong</title>
-<h1>Mahjong</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#14532d;color:white;text-align:center;font-family:Arial}
+#board{width:340px;margin:25px auto;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.tile{height:70px;background:#eee;color:#222;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:30px;cursor:pointer}
+</style>
+</head>
+<body>
+<h1>🀄 Mahjong</h1>
+<h2>Matched: <span id="score">0</span></h2>
+<div id="board"></div>
+<script>
+let icons=["🍒","🍋","⭐","🔔","🍒","🍋","⭐","🔔","🍎","🍇","🍎","🍇"];
+let board=document.getElementById("board"),first=null;
+icons.sort(()=>Math.random()-.5);
+icons.forEach(icon=>{
+ let t=document.createElement("div");
+ t.className="tile";
+ t.innerText="❓";
+ t.onclick=()=>{
+  if(t.innerText!="❓")return;
+  t.innerText=icon;
+  if(!first)first=t;
+  else{
+   if(first.innerText==t.innerText){
+    document.getElementById("score").innerText++;
+    first=null;
+   }else{
+    let a=first;
+    setTimeout(()=>{a.innerText="❓";t.innerText="❓"},500);
+    first=null;
+   }
+  }
+ };
+ board.appendChild(t);
+});
+</script>
+</body>
+</html>

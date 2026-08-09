@@ -1,4 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Soccer Stars</title>
-<h1>Soccer Stars</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#168a3a;color:white;text-align:center;font-family:Arial}
+#game{width:94vw;max-width:500px;height:500px;margin:auto;background:#35a853;position:relative}
+#ball{position:absolute;left:45%;top:45%;font-size:45px}
+button{padding:15px 30px;margin:15px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>⚽ Soccer Stars</h1>
+<h2>Goals: <span id="g">0</span></h2>
+<div id="game"><div id="ball">⚽</div></div>
+<button onclick="shoot()">SHOOT ⚽</button>
+<script>
+let g=0;
+function shoot(){
+g++;
+document.getElementById("g").textContent=g;
+document.getElementById("ball").style.left=Math.random()*80+"%";
+document.getElementById("ball").style.top=Math.random()*80+"%";
+}
+</script>
+</body>
+</html>

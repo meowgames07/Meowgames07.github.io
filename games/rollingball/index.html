@@ -1,4 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Rolling Ball</title>
-<h1>Rolling Ball</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#111;color:white;text-align:center;font-family:Arial}
+#track{width:94vw;max-width:500px;height:450px;margin:auto;background:#333;position:relative}
+#ball{position:absolute;bottom:30px;left:20px;font-size:45px}
+button{padding:15px 30px;margin:15px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>⚪ Rolling Ball</h1>
+<h2>Score: <span id="s">0</span></h2>
+<div id="track"><div id="ball">⚪</div></div>
+<button onclick="roll()">ROLL ➡️</button>
+<script>
+let x=20,s=0;
+function roll(){
+x+=40;s++;
+document.getElementById("ball").style.left=x+"px";
+document.getElementById("s").textContent=s;
+if(x>400){x=20}
+}
+</script>
+</body>
+</html>

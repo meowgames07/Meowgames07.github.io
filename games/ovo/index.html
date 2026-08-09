@@ -1,7 +1,25 @@
-<title>OvO</title>
-
-<h1>OvO</h1>
-
-<p>Game Coming Soon...</p>
-
-<a href="../../index.html">⬅ Back to Home</a>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OVO</title>
+<style>
+body{margin:0;background:#151515;color:white;text-align:center;font-family:Arial}
+#level{width:94vw;max-width:500px;height:500px;margin:auto;background:#eee;position:relative}
+#p{position:absolute;bottom:30px;left:30px;width:40px;height:40px;background:#111;border-radius:50%}
+button{padding:15px 30px;margin:10px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>⚫ OVO</h1>
+<div id="level"><div id="p"></div></div>
+<button onclick="move()">➡️ MOVE</button>
+<button onclick="jump()">⬆️ JUMP</button>
+<script>
+let p=document.getElementById("p"),x=30;
+function move(){x+=40;p.style.left=x+"px"}
+function jump(){p.style.bottom="200px";setTimeout(()=>p.style.bottom="30px",500)}
+</script>
+</body>
+</html>

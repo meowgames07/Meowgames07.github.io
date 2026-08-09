@@ -1,7 +1,60 @@
-<title>Fireboy & Watergirl</title>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fireboy Watergirl</title>
+<style>
+body{margin:0;background:#18233a;color:white;text-align:center;font-family:Arial}
+#game{width:95%;max-width:500px;height:550px;margin:auto;background:#294b35;position:relative;overflow:hidden}
+#fire{position:absolute;bottom:40px;left:80px;font-size:50px}
+#water{position:absolute;bottom:40px;left:300px;font-size:50px}
+#gem{position:absolute;top:100px;left:45%;font-size:40px}
+button{padding:14px 25px;margin:8px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>🔥💧 Fireboy & Watergirl</h1>
+<h2>Gems: <span id="score">0</span></h2>
 
-<h1>Fireboy & Watergirl</h1>
+<div id="game">
+<div id="fire">🔥</div>
+<div id="water">💧</div>
+<div id="gem">💎</div>
+</div>
 
-<p>Game Coming Soon...</p>
+<button onclick="moveFire(-1)">🔥⬅️</button>
+<button onclick="moveFire(1)">🔥➡️</button>
+<button onclick="moveWater(-1)">💧⬅️</button>
+<button onclick="moveWater(1)">💧➡️</button>
 
-<a href="../../index.html">⬅ Back to Home</a>
+<script>
+let f=80,w=300,score=0;
+let fire=document.getElementById("fire");
+let water=document.getElementById("water");
+let gem=document.getElementById("gem");
+
+function moveFire(d){
+ f+=d*20;
+ if(f<0)f=0;if(f>440)f=440;
+ fire.style.left=f+"px";
+ check();
+}
+
+function moveWater(d){
+ w+=d*20;
+ if(w<0)w=0;if(w>440)w=440;
+ water.style.left=w+"px";
+ check();
+}
+
+function check(){
+ let g=parseInt(gem.style.left);
+ if(Math.abs(f-g)<35 || Math.abs(w-g)<35){
+  score++;
+  document.getElementById("score").innerText=score;
+  gem.style.left=Math.random()*85+"%";
+ }
+}
+</script>
+</body>
+</html>

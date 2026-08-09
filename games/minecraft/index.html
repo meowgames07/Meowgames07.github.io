@@ -1,7 +1,26 @@
-<title>Minecraft Classic</title>
-
-<h1>Minecraft Classic</h1>
-
-<p>Game Coming Soon...</p>
-
-<a href="../../index.html">⬅ Back to Home</a>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Block World</title>
+<style>
+body{margin:0;background:#87ceeb;text-align:center;font-family:Arial}
+#world{width:94vw;max-width:500px;height:500px;margin:auto;background:linear-gradient(#87ceeb 60%,#55a630 60%);position:relative;overflow:hidden}
+.block{position:absolute;width:55px;height:55px;background:#795548;border:3px solid #4e342e}
+button{padding:15px;margin:10px;font-size:18px}
+</style>
+</head>
+<body>
+<h1>⛏️ Block World</h1>
+<div id="world"></div>
+<button onclick="mine()">⛏️ Mine Block</button>
+<button onclick="build()">🧱 Build</button>
+<script>
+let w=document.getElementById("world");
+function mine(){let b=w.querySelector(".block");if(b)b.remove()}
+function build(){let b=document.createElement("div");b.className="block";b.style.left=Math.random()*80+"%";b.style.top=300+Math.random()*150+"px";w.appendChild(b)}
+for(let i=0;i<5;i++)build();
+</script>
+</body>
+</html>

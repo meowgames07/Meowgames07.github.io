@@ -1,4 +1,35 @@
-<title>Wood Block Puzzle</title>
-<h1>Wood Block Puzzle</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wood Block</title>
+<style>
+body{margin:0;background:#111;color:white;text-align:center;font-family:Arial}
+.grid{width:300px;height:300px;margin:30px auto;display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.cell{background:#8b5a2b;border-radius:8px;cursor:pointer}
+.cell.active{background:#f1c40f}
+button{padding:12px 25px;font-size:18px}
+</style>
+</head>
+<body>
+<h1>🪵 Wood Block</h1>
+<div class="grid" id="grid"></div>
+<h2>Score: <span id="score">0</span></h2>
+<script>
+let s=0;
+for(let i=0;i<9;i++){
+let c=document.createElement("div");
+c.className="cell";
+c.onclick=()=>{
+if(!c.classList.contains("active")){
+c.classList.add("active");
+s++;
+score.textContent=s;
+}
+};
+grid.appendChild(c);
+}
+</script>
+</body>
+</html>

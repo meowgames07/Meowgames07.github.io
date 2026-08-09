@@ -1,4 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Park Master</title>
-<h1>Park Master</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#111;color:white;text-align:center;font-family:Arial}
+#game{width:94vw;max-width:500px;height:500px;margin:auto;background:#555;position:relative}
+#car{position:absolute;left:30px;top:220px;font-size:45px}
+#spot{position:absolute;right:30px;top:200px;font-size:60px}
+button{padding:15px 30px;margin:15px;font-size:20px}
+</style>
+</head>
+<body>
+<h1>🚗 Park Master</h1>
+<div id="game"><div id="car">🚗</div><div id="spot">🅿️</div></div>
+<button onclick="park()">PARK</button>
+<script>
+let car=document.getElementById("car");
+function park(){
+car.style.left="390px";
+car.style.top="200px";
+setTimeout(()=>alert("Parking Complete! 🏆"),400);
+}
+</script>
+</body>
+</html>

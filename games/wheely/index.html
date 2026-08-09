@@ -1,4 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Wheely</title>
-<h1>Wheely</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#111;color:white;text-align:center;font-family:Arial}
+.game{width:320px;height:450px;background:#87ceeb;margin:auto;position:relative;border-bottom:40px solid #555}
+.car{position:absolute;bottom:40px;left:30px;font-size:50px}
+button{padding:12px 25px;font-size:18px;margin:15px}
+</style>
+</head>
+<body>
+<h1>🚗 Wheely</h1>
+<div class="game">
+<div class="car" id="car">🚗</div>
+</div>
+<button onclick="drive()">➡️ DRIVE</button>
+<h2 id="msg">Ready!</h2>
+<script>
+let x=30;
+function drive(){
+x+=30;
+car.style.left=x+"px";
+msg.textContent=x>=240?"🏁 Level Complete!":"🚗 Wheely is moving!";
+}
+</script>
+</body>
+</html>

@@ -1,4 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hexa Puzzle</title>
-<h1>Hexa Puzzle</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#151515;color:white;text-align:center;font-family:Arial}
+#board{width:330px;margin:30px auto;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cell{height:90px;background:#3949ab;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:35px;cursor:pointer}
+</style>
+</head>
+<body>
+<h1>🔷 Hexa Puzzle</h1>
+<h2>Score: <span id="score">0</span></h2>
+<div id="board"></div>
+<script>
+let score=0,board=document.getElementById("board");
+for(let i=0;i<9;i++){
+ let c=document.createElement("div");
+ c.className="cell";
+ c.innerText="⬡";
+ c.onclick=()=>{
+  score++;
+  document.getElementById("score").innerText=score;
+  c.style.background="#00a884";
+ };
+ board.appendChild(c);
+}
+</script>
+</body>
+</html>

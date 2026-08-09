@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Game Hub</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#0f1117;
+  color:white;
+}
+
+header{
+  background:#171a22;
+  padding:25px 15px;
+  text-align:center;
+  border-bottom:1px solid #292d38;
+}
+
+header h1{
+  margin:0;
+  font-size:32px;
+}
+
+header p{
+  color:#aaa;
+  margin:8px 0 20px;
+}
+
+#search{
+  width:100%;
+  max-width:500px;
+  padding:14px 18px;
+  border:none;
+  outline:none;
+  border-radius:12px;
+  background:#252a35;
+  color:white;
+  font-size:16px;
+}
+
+.container{
+  width:95%;
+  max-width:1200px;
+  margin:25px auto;
+}
+
+.games{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:16px;
+}
+
+.card{
+  background:#191d26;
+  border:1px solid #292e3a;
+  border-radius:15px;
+  padding:20px;
+  text-align:center;
+  transition:.2s;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  background:#202530;
+}
+
+.icon{
+  font-size:45px;
+  margin-bottom:12px;
+}
+
+.card h2{
+  font-size:18px;
+  margin:8px 0 15px;
+}
+
+.play{
+  display:block;
+  text-decoration:none;
+  background:#2878ff;
+  color:white;
+  padding:11px;
+  border-radius:9px;
+  font-weight:bold;
+}
+
+.play:hover{
+  background:#1765e8;
+}
+
+#noResult{
+  display:none;
+  text-align:center;
+  color:#aaa;
+  padding:40px;
+  font-size:18px;
+}
+
+footer{
+  text-align:center;
+  color:#777;
+  padding:30px 10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🎮 GAME HUB</h1>
+
+<p>Choose a game and start playing!</p>
+
+<input
+  type="text"
+  id="search"
+  placeholder="🔎 Search games..."
+  onkeyup="searchGames()"
+>
+
+</header>
+
+
+<div class="container">
+
+<div class="games" id="games">
+
+
+<div class="card">
+<div class="icon">🎨</div>
+<h2>Color On</h2>
+<a class="play" href="coloron/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🔫</div>
+<h2>Combat Reloaded</h2>
+<a class="play" href="combatreloaded/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🏎️</div>
+<h2>Crazy Cars</h2>
+<a class="play" href="crazycars/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🏏</div>
+<h2>Cricket</h2>
+<a class="play" href="cricket/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🚦</div>
+<h2>Crossy Road</h2>
+<a class="play" href="crossyroad/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🔫</div>
+<h2>Cutterope</h2>
+<a class="play" href="cutterope/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🏎️</div>
+<h2>Drift Boss</h2>
+<a class="play" href="driftboss/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🚗</div>
+<h2>Drive Mad</h2>
+<a class="play" href="drivemad/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🦆</div>
+<h2>Duck Life</h2>
+<a class="play" href="ducklife/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🚗</div>
+<h2>Earn2Die</h2>
+<a class="play" href="earn2die/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🏎️</div>
+<h2>Extreme Car</h2>
+<a class="play" href="extremecar/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🔥</div>
+<h2>Fireballs</h2>
+<a class="play" href="fireballs/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🔥💧</div>
+<h2>Fireboy Watergirl</h2>
+<a class="play" href="fireboywatergirl/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🐦</div>
+<h2>Flappy Bird</h2>
+<a class="play" href="flappybird/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">⚽</div>
+<h2>Football Masters</h2>
+<a class="play" href="footballmasters/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🍉</div>
+<h2>Fruit Ninja</h2>
+<a class="play" href="fruitninja/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🟨</div>
+<h2>Geometry Dash</h2>
+<a class="play" href="geometrydash/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">⛳</div>
+<h2>Golf Battle</h2>
+<a class="play" href="golfbattle/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🔫</div>
+<h2>Gun Mayhem</h2>
+<a class="play" href="gunmayhem/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">⚽</div>
+<h2>Head Soccer</h2>
+<a class="play" href="headsoccer/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🌀</div>
+<h2>Helix Jump</h2>
+<a class="play" href="helixjump/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🏃</div>
+<h2>Hero Rush</h2>
+<a class="play" href="herorush/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🔷</div>
+<h2>Hexa Puzzle</h2>
+<a class="play" href="hexapuzzle/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🚙</div>
+<h2>Hill Climb Racing</h2>
+<a class="play" href="hillclimbracing/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🧱</div>
+<h2>Idle Breakout</h2>
+<a class="play" href="idlebreakout/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🎲</div>
+<h2>Ludo</h2>
+<a class="play" href="ludo/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🀄</div>
+<h2>Mahjong</h2>
+<a class="play" href="mahjong/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🎯</div>
+<h2>Masked Forces</h2>
+<a class="play" href="maskedforces/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🔢</div>
+<h2>Merge Master</h2>
+<a class="play" href="mergemaster/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">⛏️</div>
+<h2>Minecraft</h2>
+<a class="play" href="minecraft/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">⛳</div>
+<h2>Mini Golf</h2>
+<a class="play" href="minigolf/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🚙</div>
+<h2>Monster Tracks</h2>
+<a class="play" href="monstertracks/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🏍️</div>
+<h2>Moto Fury</h2>
+<a class="play" href="motofury/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🏍️</div>
+<h2>Moto X3M</h2>
+<a class="play" href="motox3m/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🟥</div>
+<h2>OVO</h2>
+<a class="play" href="ovo/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🟡</div>
+<h2>Pacman</h2>
+<a class="play" href="pacman/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🟦</div>
+<h2>Paper.io</h2>
+<a class="play" href="paperio/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🅿️</div>
+<h2>Park Master</h2>
+<a class="play" href="parkmaster/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">⚽</div>
+<h2>Penalty Shooters</h2>
+<a class="play" href="penaltyshooters/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🌻</div>
+<h2>Plants vs Zombies</h2>
+<a class="play" href="plantsvszombies/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🛶</div>
+<h2>Raft Wars</h2>
+<a class="play" href="raftwars/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🏎️</div>
+<h2>Rally Racer</h2>
+<a class="play" href="rallyracer/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🎣</div>
+<h2>Real Fishing</h2>
+<a class="play" href="realfishing/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🔴</div>
+<h2>Red Ball 4</h2>
+<a class="play" href="redball4/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">⚽</div>
+<h2>Rolling Ball</h2>
+<a class="play" href="rollingball/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🎯</div>
+<h2>Rooftop Snipers</h2>
+<a class="play" href="rooftopsnipers/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🏃</div>
+<h2>Run 3</h2>
+<a class="play" href="run3/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🥚</div>
+<h2>Shell Shockers</h2>
+<a class="play" href="shellshockers/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🦘</div>
+<h2>Sky Jump</h2>
+<a class="play" href="skyjump/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🏎️</div>
+<h2>Sky Riders</h2>
+<a class="play" href="skyriders/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🐍</div>
+<h2>Slither.io</h2>
+<a class="play" href="slitherio/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🏂</div>
+<h2>Slope</h2>
+<a class="play" href="slope/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🚗</div>
+<h2>Smash Karts</h2>
+<a class="play" href="smashkarts/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🐌</div>
+<h2>Snail Bob</h2>
+<a class="play" href="snailbob/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">⚽</div>
+<h2>Soccer Stars</h2>
+<a class="play" href="soccerstars/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🚤</div>
+<h2>Speedboat</h2>
+<a class="play" href="speedboat/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🏀</div>
+<h2>Stack Ball</h2>
+<a class="play" href="stackball/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🥊</div>
+<h2>Stick Fighter</h2>
+<a class="play" href="stickfighter/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🪝</div>
+<h2>Stickman Hook</h2>
+<a class="play" href="stickmanhook/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🤖</div>
+<h2>Stick Merge</h2>
+<a class="play" href="stickmerge/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">⚔️</div>
+<h2>Stick War</h2>
+<a class="play" href="stickwar/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🏀</div>
+<h2>Street Basketball</h2>
+<a class="play" href="streetbasketball/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🚇</div>
+<h2>Subway Clash</h2>
+<a class="play" href="subwayclash/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🏃</div>
+<h2>Subway Surfers</h2>
+<a class="play" href="subwaysurfers/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🔢</div>
+<h2>Sudoku</h2>
+<a class="play" href="sudoku/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🏓</div>
+<h2>Table Tennis</h2>
+<a class="play" href="tabletennis/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🛡️</div>
+<h2>Tank Trouble</h2>
+<a class="play" href="tanktrouble/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🏃</div>
+<h2>Temple Run</h2>
+<a class="play" href="templerun/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🎾</div>
+<h2>Tennis Open</h2>
+<a class="play" href="tennisopen/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🎣</div>
+<h2>Tiny Fishing</h2>
+<a class="play" href="tinyfishing/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🚗</div>
+<h2>Traffic Tour</h2>
+<a class="play" href="traffictour/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🚇</div>
+<h2>Tunnel Rush</h2>
+<a class="play" href="tunnelrush/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🏎️</div>
+<h2>Turbo Racing</h2>
+<a class="play" href="turboracing/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🧩</div>
+<h2>Unblock Me</h2>
+<a class="play" href="unblockme/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🏃</div>
+<h2>Vex 8</h2>
+<a class="play" href="vex8/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🚗</div>
+<h2>Wheely</h2>
+<a class="play" href="wheely/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🪵</div>
+<h2>Wood Block</h2>
+<a class="play" href="woodblock/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🧟</div>
+<h2>Zombie Derby</h2>
+<a class="play" href="zombiederby/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🧟</div>
+<h2>Zombie Tsunami</h2>
+<a class="play" href="zombiestsunami/index.html">PLAY</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🧩</div>
+<h2>Block Puzzle</h2>
+<a class="play" href="blockpuzzle.html">PLAY</a>
+</div>
+
+
+</div>
+
+<div id="noResult">
+No game found 😕
+</div>
+
+</div>
+
+
+<footer>
+🎮 Game Hub — Have Fun!
+</footer>
+
+
+<script>
+
+function searchGames(){
+
+  let input=document
+    .getElementById("search")
+    .value
+    .toLowerCase();
+
+  let cards=document.querySelectorAll(".card");
+
+  let found=0;
+
+  cards.forEach(function(card){
+
+    let name=card
+      .querySelector("h2")
+      .textContent
+      .toLowerCase();
+
+    if(name.includes(input)){
+      card.style.display="block";
+      found++;
+    }else{
+      card.style.display="none";
+    }
+
+  });
+
+  document.getElementById("noResult").style.display=
+    found===0 ? "block" : "none";
+}
+
+</script>
+
+</body>
+</html>

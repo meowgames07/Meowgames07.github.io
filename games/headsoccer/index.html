@@ -1,4 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Head Soccer</title>
-<h1>Head Soccer</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#16833b;color:white;text-align:center;font-family:Arial}
+#game{width:95%;max-width:500px;height:500px;margin:auto;background:#39a852;position:relative}
+#player{position:absolute;bottom:40px;left:40%;font-size:60px}
+#ball{position:absolute;top:80px;left:45%;font-size:40px}
+button{padding:15px 35px;font-size:20px;margin:10px}
+</style>
+</head>
+<body>
+<h1>⚽ Head Soccer</h1>
+<h2>Goals: <span id="score">0</span></h2>
+<div id="game">
+<div id="player">😀</div>
+<div id="ball">⚽</div>
+</div>
+<button onclick="kick()">KICK ⚽</button>
+<script>
+let score=0;
+function kick(){
+ score++;
+ document.getElementById("score").innerText=score;
+ document.getElementById("ball").style.left=Math.random()*85+"%";
+ document.getElementById("ball").style.top=Math.random()*300+"px";
+}
+</script>
+</body>
+</html>

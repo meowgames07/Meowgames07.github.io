@@ -1,4 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Subway Clash</title>
-<h1>Subway Clash</h1>
-<p>Game Coming Soon...</p>
-<a href="../../index.html">⬅ Back to Home</a>
+<style>
+body{margin:0;background:#111;color:white;text-align:center;font-family:Arial}
+.game{width:300px;height:500px;background:#333;margin:auto;position:relative;overflow:hidden;border:4px solid #555}
+.player{position:absolute;bottom:20px;left:125px;font-size:45px}
+.coin{position:absolute;top:0;font-size:35px;cursor:pointer}
+button{padding:12px 25px;font-size:18px;margin:15px}
+</style>
+</head>
+<body>
+<h1>🚇 Subway Clash</h1>
+<p>Coin collect karo!</p>
+<div class="game">
+<div class="player">🏃</div>
+<div class="coin" id="coin" onclick="collect()">🪙</div>
+</div>
+<h2>Score: <span id="score">0</span></h2>
+<script>
+let s=0;
+function collect(){
+s++;
+document.getElementById("score").textContent=s;
+let c=document.getElementById("coin");
+c.style.left=Math.random()*260+"px";
+c.style.top=Math.random()*450+"px";
+}
+</script>
+</body>
+</html>

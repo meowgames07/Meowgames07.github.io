@@ -627,5 +627,39 @@ search.addEventListener('input', filterGames);
 category.addEventListener('change', filterGames);
 filterGames();
 </script>
+<script>
+const search = document.getElementById("search");
+const category = document.getElementById("category");
+const cards = document.querySelectorAll(".card");
+const count = document.getElementById("count");
+
+function filterGames() {
+  const text = search.value.toLowerCase();
+  const cat = category.value;
+  let visible = 0;
+
+  cards.forEach(card => {
+    const name = card.dataset.name.toLowerCase();
+    const gameCategory = card.dataset.category;
+
+    const matchSearch = name.includes(text);
+    const matchCategory = cat === "all" || gameCategory === cat;
+
+    if (matchSearch && matchCategory) {
+      card.style.display = "";
+      visible++;
+    } else {
+      card.style.display = "none";
+    }
+  });
+
+  count.textContent = visible + " games found";
+}
+
+search.addEventListener("input", filterGames);
+category.addEventListener("change", filterGames);
+
+filterGames();
+</script>
 </body>
 </html>

@@ -609,6 +609,43 @@ const noResult = document.getElementById('noResult');
 function filterGames() {
   const q = search.value.trim().toLowerCase();
   
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const search = document.getElementById("search");
+  const category = document.getElementById("category");
+  const cards = document.querySelectorAll(".card");
+  const count = document.getElementById("count");
+
+  function filterGames() {
+    const text = search.value.toLowerCase().trim();
+    const selected = category.value;
+    let found = 0;
+
+    cards.forEach(function(card) {
+      const name = (card.dataset.name || "").toLowerCase();
+      const cat = card.dataset.category || "";
+
+      const searchMatch = name.includes(text);
+      const categoryMatch =
+        selected === "all" || cat === selected;
+
+      if (searchMatch && categoryMatch) {
+        card.style.display = "";
+        found++;
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    count.textContent = found + " games found";
+  }
+
+  search.addEventListener("input", filterGames);
+  category.addEventListener("change", filterGames);
+
+  filterGames();
+});
 </script>
 </body>
 </html>

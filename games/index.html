@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meow Games &#127918;</title>
+<title>Meow Games 🎮</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:#0f1117;color:#fff}
@@ -24,564 +24,646 @@ h1{margin:0;font-size:32px} header p{color:#aaa;margin:8px 0 18px}
 #noResult{display:none;text-align:center;color:#aaa;padding:45px;font-size:18px}
 footer{text-align:center;color:#777;padding:30px 10px}
 
-.featured{margin-bottom:28px}
-.section-title{margin-bottom:14px}
-.section-title h2,.popular h2{margin:0 0 5px;font-size:24px}
-.section-title p,.popular p{margin:0 0 14px;color:#999}
+.featured{margin:0 0 28px}
+.section-title h2{margin:0 0 5px;font-size:24px}
+.section-title p{margin:0 0 14px;color:#999}
 .featured-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
-.featured-card{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;background:linear-gradient(135deg,#202738,#191d26);border:1px solid #30384a;border-radius:15px;padding:14px;transition:.2s}
-.featured-card:hover{transform:translateY(-3px);border-color:#2878ff}
-.featured-icon{font-size:35px;min-width:42px;text-align:center}
-.featured-card strong{display:block;font-size:16px}
-.featured-card span{display:block;color:#9fb2d8;font-size:12px;margin-top:4px}
-.featured-card b{margin-left:auto;font-size:11px;color:#62a0ff;white-space:nowrap}
-.popular{margin:28px 0 14px}
+.featured-card{display:flex;align-items:center;gap:10px;padding:14px;text-decoration:none;color:#fff;background:#191d26;border:1px solid #303645;border-radius:15px;transition:.2s}
+.featured-card:hover{transform:translateY(-3px);background:#202530;border-color:#2878ff}
+.featured-card span{font-size:34px}
+.featured-card strong{font-size:16px}
+.featured-card small{color:#9fb2d8;font-size:12px}
+.featured-card b{margin-left:auto;color:#62a0ff;font-size:11px}
 </style>
 </head>
 <body>
-
 <header>
-  <h1>&#127918; MEOW GAMES</h1>
-  <p>Choose a game and start playing!</p>
-  <div class="controls">
-    <input id="search" type="search" placeholder="&#128270; Search games..." autocomplete="off">
-    <select id="category">
-      <option value="all">All Categories</option>
-      <option value="Arcade">Arcade</option>
-      <option value="Adventure">Adventure</option>
-      <option value="Puzzle">Puzzle</option>
-      <option value="Racing">Racing</option>
-      <option value="Sports">Sports</option>
-      <option value="Board">Board</option>
-      <option value="Strategy">Strategy</option>
-    </select>
-  </div>
+<h1>🎮 MEOW GAMES</h1>
+<p>Choose a game and start playing!</p>
+<div class="controls">
+<input id="search" type="search" placeholder="🔎 Search games..." autocomplete="off">
+<select id="category">
+<option value="all">All Categories</option>
+<option value="Arcade">Arcade</option>
+<option value="Adventure">Adventure</option>
+<option value="Puzzle">Puzzle</option>
+<option value="Racing">Racing</option>
+<option value="Sports">Sports</option>
+<option value="Board">Board</option>
+<option value="Strategy">Strategy</option>
+</select>
+</div>
 </header>
 
 <main class="container">
-  <div class="count" id="count"></div>
-  
+<div class="count" id="count"></div>
+
 <section class="featured">
   <div class="section-title">
     <h2>⭐ Featured Games</h2>
-    <p>Jump into some of our top picks!</p>
+    <p>Top picks from Meow Games</p>
   </div>
   <div class="featured-grid">
-    <a class="featured-card" href="2048/index.html"><div class="featured-icon">🧩</div><div><strong>2048</strong><span>Puzzle</span></div><b>PLAY →</b></a>
-    <a class="featured-card" href="chess/index.html"><div class="featured-icon">♟️</div><div><strong>Chess</strong><span>Board</span></div><b>PLAY →</b></a>
-    <a class="featured-card" href="driftboss/index.html"><div class="featured-icon">🏎️</div><div><strong>Drift Boss</strong><span>Racing</span></div><b>PLAY →</b></a>
-    <a class="featured-card" href="basketballstars/index.html"><div class="featured-icon">🏀</div><div><strong>Basketball Stars</strong><span>Sports</span></div><b>PLAY →</b></a>
+    <a class="featured-card" href="2048/index.html"><span>🧩</span><strong>2048</strong><small>Puzzle</small><b>PLAY →</b></a>
+    <a class="featured-card" href="chess/index.html"><span>♟️</span><strong>Chess</strong><small>Board</small><b>PLAY →</b></a>
+    <a class="featured-card" href="driftboss/index.html"><span>🏎️</span><strong>Drift Boss</strong><small>Racing</small><b>PLAY →</b></a>
+    <a class="featured-card" href="basketballstars/index.html"><span>🏀</span><strong>Basketball Stars</strong><small>Sports</small><b>PLAY →</b></a>
   </div>
 </section>
-<section class="popular">
-  <h2>🔥 Popular Games</h2>
-  <p>More games to play and explore.</p>
-</section>
 <section class="games" id="games">
-        <article class="card" data-category="Puzzle" data-name="2048">
-          <div class="icon">&#129513;</div>
-          <h2>2048</h2>
-          <span class="category">Puzzle</span>
-          <a class="play" href="2048/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Sports" data-name="8 ball pool">
-          <div class="icon">&#127921;</div>
-          <h2>8 Ball Pool</h2>
-          <span class="category">Sports</span>
-          <a class="play" href="8ballpool/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Sports" data-name="air hockey">
-          <div class="icon">&#127954;</div>
-          <h2>Air Hockey</h2>
-          <span class="category">Sports</span>
-          <a class="play" href="airhockey/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="among us">
-          <div class="icon">&#128126;</div>
-          <h2>Among Us</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="amongus/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="angry birds">
-          <div class="icon">&#128038;</div>
-          <h2>Angry Birds</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="angrybirds/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Sports" data-name="archery world">
-          <div class="icon">&#127993;</div>
-          <h2>Archery World</h2>
-          <span class="category">Sports</span>
-          <a class="play" href="archeryworld/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Sports" data-name="basketball king">
-          <div class="icon">&#127936;</div>
-          <h2>Basketball King</h2>
-          <span class="category">Sports</span>
-          <a class="play" href="basketballking/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Sports" data-name="basketball stars">
-          <div class="icon">&#127936;</div>
-          <h2>Basketball Stars</h2>
-          <span class="category">Sports</span>
-          <a class="play" href="basketballstars/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Sports" data-name="basket random">
-          <div class="icon">&#127936;</div>
-          <h2>Basket Random</h2>
-          <span class="category">Sports</span>
-          <a class="play" href="basketrandom/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Puzzle" data-name="block blast">
-          <div class="icon">&#129521;</div>
-          <h2>Block Blast</h2>
-          <span class="category">Puzzle</span>
-          <a class="play" href="blockblast/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Puzzle" data-name="bloxorz">
-          <div class="icon">&#128311;</div>
-          <h2>Bloxorz</h2>
-          <span class="category">Puzzle</span>
-          <a class="play" href="bloxorz/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Adventure" data-name="bob the robber">
-          <div class="icon">&#128373;&#65039;</div>
-          <h2>Bob the Robber</h2>
-          <span class="category">Adventure</span>
-          <a class="play" href="bobtherobber/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Sports" data-name="boxing random">
-          <div class="icon">&#129354;</div>
-          <h2>Boxing Random</h2>
-          <span class="category">Sports</span>
-          <a class="play" href="boxingrandom/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Puzzle" data-name="brain out">
-          <div class="icon">&#129504;</div>
-          <h2>Brain Out</h2>
-          <span class="category">Puzzle</span>
-          <a class="play" href="brainout/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Puzzle" data-name="brain test">
-          <div class="icon">&#129504;</div>
-          <h2>Brain Test</h2>
-          <span class="category">Puzzle</span>
-          <a class="play" href="braintest/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Puzzle" data-name="bubble shooter">
-          <div class="icon">&#129767;</div>
-          <h2>Bubble Shooter</h2>
-          <span class="category">Puzzle</span>
-          <a class="play" href="bubbleshooter/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Puzzle" data-name="candy crush">
-          <div class="icon">&#127852;</div>
-          <h2>Candy Crush</h2>
-          <span class="category">Puzzle</span>
-          <a class="play" href="candycrush/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Board" data-name="checkers">
-          <div class="icon">&#9899;</div>
-          <h2>Checkers</h2>
-          <span class="category">Board</span>
-          <a class="play" href="checkers/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Board" data-name="chess">
-          <div class="icon">&#9823;&#65039;</div>
-          <h2>Chess</h2>
-          <span class="category">Board</span>
-          <a class="play" href="chess/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Board" data-name="chess master">
-          <div class="icon">&#9823;&#65039;</div>
-          <h2>Chess Master</h2>
-          <span class="category">Board</span>
-          <a class="play" href="chessmaster/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Racing" data-name="city bike">
-          <div class="icon">&#128690;</div>
-          <h2>City Bike</h2>
-          <span class="category">Racing</span>
-          <a class="play" href="citybike/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Racing" data-name="city drift">
-          <div class="icon">&#128663;</div>
-          <h2>City Drift</h2>
-          <span class="category">Racing</span>
-          <a class="play" href="citydrift/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Strategy" data-name="clash of vikings">
-          <div class="icon">&#128737;&#65039;</div>
-          <h2>Clash of Vikings</h2>
-          <span class="category">Strategy</span>
-          <a class="play" href="clashofvikings/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Puzzle" data-name="color on">
-          <div class="icon">&#127912;</div>
-          <h2>Color On</h2>
-          <span class="category">Puzzle</span>
-          <a class="play" href="coloron/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Racing" data-name="crazy cars">
-          <div class="icon">&#127950;&#65039;</div>
-          <h2>Crazy Cars</h2>
-          <span class="category">Racing</span>
-          <a class="play" href="crazycars/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Sports" data-name="cricket">
-          <div class="icon">&#127951;</div>
-          <h2>Cricket</h2>
-          <span class="category">Sports</span>
-          <a class="play" href="cricket/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="crossy road">
-          <div class="icon">&#128678;</div>
-          <h2>Crossy Road</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="crossyroad/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Puzzle" data-name="cut the rope">
-          <div class="icon">&#9986;&#65039;</div>
-          <h2>Cut the Rope</h2>
-          <span class="category">Puzzle</span>
-          <a class="play" href="cutterope/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Racing" data-name="drift boss">
-          <div class="icon">&#127950;&#65039;</div>
-          <h2>Drift Boss</h2>
-          <span class="category">Racing</span>
-          <a class="play" href="driftboss/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Racing" data-name="drive mad">
-          <div class="icon">&#128663;</div>
-          <h2>Drive Mad</h2>
-          <span class="category">Racing</span>
-          <a class="play" href="drivemad/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Adventure" data-name="duck life">
-          <div class="icon">&#129414;</div>
-          <h2>Duck Life</h2>
-          <span class="category">Adventure</span>
-          <a class="play" href="ducklife/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Racing" data-name="earn2die">
-          <div class="icon">&#128663;</div>
-          <h2>Earn2Die</h2>
-          <span class="category">Racing</span>
-          <a class="play" href="earn2die/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Racing" data-name="extreme car">
-          <div class="icon">&#127950;&#65039;</div>
-          <h2>Extreme Car</h2>
-          <span class="category">Racing</span>
-          <a class="play" href="extremecar/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="fireballs">
-          <div class="icon">&#128293;</div>
-          <h2>Fireballs</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="fireballs/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Adventure" data-name="fireboy watergirl">
-          <div class="icon">&#128293;&#128167;</div>
-          <h2>Fireboy Watergirl</h2>
-          <span class="category">Adventure</span>
-          <a class="play" href="fireboywatergirl/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="flappy bird">
-          <div class="icon">&#128038;</div>
-          <h2>Flappy Bird</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="flappybird/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Sports" data-name="football masters">
-          <div class="icon">&#9917;</div>
-          <h2>Football Masters</h2>
-          <span class="category">Sports</span>
-          <a class="play" href="footballmasters/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="fruit ninja">
-          <div class="icon">&#127817;</div>
-          <h2>Fruit Ninja</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="fruitninja/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="geometry dash">
-          <div class="icon">&#129000;</div>
-          <h2>Geometry Dash</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="geometrydash/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Sports" data-name="golf battle">
-          <div class="icon">&#9971;</div>
-          <h2>Golf Battle</h2>
-          <span class="category">Sports</span>
-          <a class="play" href="golfbattle/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Sports" data-name="head soccer">
-          <div class="icon">&#9917;</div>
-          <h2>Head Soccer</h2>
-          <span class="category">Sports</span>
-          <a class="play" href="headsoccer/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="helix jump">
-          <div class="icon">&#127744;</div>
-          <h2>Helix Jump</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="helixjump/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Adventure" data-name="hero rush">
-          <div class="icon">&#127939;</div>
-          <h2>Hero Rush</h2>
-          <span class="category">Adventure</span>
-          <a class="play" href="herorush/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Puzzle" data-name="hexa puzzle">
-          <div class="icon">&#128311;</div>
-          <h2>Hexa Puzzle</h2>
-          <span class="category">Puzzle</span>
-          <a class="play" href="hexapuzzle/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Racing" data-name="hill climb racing">
-          <div class="icon">&#128665;</div>
-          <h2>Hill Climb Racing</h2>
-          <span class="category">Racing</span>
-          <a class="play" href="hillclimbracing/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="idle breakout">
-          <div class="icon">&#129521;</div>
-          <h2>Idle Breakout</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="idlebreakout/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Board" data-name="ludo">
-          <div class="icon">&#127922;</div>
-          <h2>Ludo</h2>
-          <span class="category">Board</span>
-          <a class="play" href="ludo/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Board" data-name="mahjong">
-          <div class="icon">&#126980;</div>
-          <h2>Mahjong</h2>
-          <span class="category">Board</span>
-          <a class="play" href="mahjong/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Puzzle" data-name="merge master">
-          <div class="icon">&#128290;</div>
-          <h2>Merge Master</h2>
-          <span class="category">Puzzle</span>
-          <a class="play" href="mergemaster/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Adventure" data-name="minecraft">
-          <div class="icon">&#9935;&#65039;</div>
-          <h2>Minecraft</h2>
-          <span class="category">Adventure</span>
-          <a class="play" href="minecraft/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Sports" data-name="mini golf">
-          <div class="icon">&#9971;</div>
-          <h2>Mini Golf</h2>
-          <span class="category">Sports</span>
-          <a class="play" href="minigolf/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Racing" data-name="monster tracks">
-          <div class="icon">&#128665;</div>
-          <h2>Monster Tracks</h2>
-          <span class="category">Racing</span>
-          <a class="play" href="monstertracks/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Racing" data-name="moto fury">
-          <div class="icon">&#127949;&#65039;</div>
-          <h2>Moto Fury</h2>
-          <span class="category">Racing</span>
-          <a class="play" href="motofury/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Racing" data-name="moto x3m">
-          <div class="icon">&#127949;&#65039;</div>
-          <h2>Moto X3M</h2>
-          <span class="category">Racing</span>
-          <a class="play" href="motox3m/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="ovo">
-          <div class="icon">&#128997;</div>
-          <h2>OVO</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="ovo/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="pacman">
-          <div class="icon">&#128993;</div>
-          <h2>Pacman</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="pacman/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="paper.io">
-          <div class="icon">&#128998;</div>
-          <h2>Paper.io</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="paperio/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Puzzle" data-name="park master">
-          <div class="icon">&#127359;&#65039;</div>
-          <h2>Park Master</h2>
-          <span class="category">Puzzle</span>
-          <a class="play" href="parkmaster/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Sports" data-name="penalty shooters">
-          <div class="icon">&#9917;</div>
-          <h2>Penalty Shooters</h2>
-          <span class="category">Sports</span>
-          <a class="play" href="penaltyshooters/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Racing" data-name="rally racer">
-          <div class="icon">&#127950;&#65039;</div>
-          <h2>Rally Racer</h2>
-          <span class="category">Racing</span>
-          <a class="play" href="rallyracer/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Sports" data-name="real fishing">
-          <div class="icon">&#127907;</div>
-          <h2>Real Fishing</h2>
-          <span class="category">Sports</span>
-          <a class="play" href="realfishing/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Adventure" data-name="red ball 4">
-          <div class="icon">&#128308;</div>
-          <h2>Red Ball 4</h2>
-          <span class="category">Adventure</span>
-          <a class="play" href="redball4/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="rolling ball">
-          <div class="icon">&#9917;</div>
-          <h2>Rolling Ball</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="rollingball/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Adventure" data-name="run 3">
-          <div class="icon">&#127939;</div>
-          <h2>Run 3</h2>
-          <span class="category">Adventure</span>
-          <a class="play" href="run3/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="sky jump">
-          <div class="icon">&#129432;</div>
-          <h2>Sky Jump</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="skyjump/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Racing" data-name="sky riders">
-          <div class="icon">&#127950;&#65039;</div>
-          <h2>Sky Riders</h2>
-          <span class="category">Racing</span>
-          <a class="play" href="skyriders/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="slither.io">
-          <div class="icon">&#128013;</div>
-          <h2>Slither.io</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="slitherio/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="slope">
-          <div class="icon">&#127938;</div>
-          <h2>Slope</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="slope/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Racing" data-name="smash karts">
-          <div class="icon">&#128663;</div>
-          <h2>Smash Karts</h2>
-          <span class="category">Racing</span>
-          <a class="play" href="smashkarts/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Adventure" data-name="snail bob">
-          <div class="icon">&#128012;</div>
-          <h2>Snail Bob</h2>
-          <span class="category">Adventure</span>
-          <a class="play" href="snailbob/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Sports" data-name="soccer stars">
-          <div class="icon">&#9917;</div>
-          <h2>Soccer Stars</h2>
-          <span class="category">Sports</span>
-          <a class="play" href="soccerstars/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Racing" data-name="speedboat">
-          <div class="icon">&#128676;</div>
-          <h2>Speedboat</h2>
-          <span class="category">Racing</span>
-          <a class="play" href="speedboat/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="stack ball">
-          <div class="icon">&#127936;</div>
-          <h2>Stack Ball</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="stackball/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="stickman hook">
-          <div class="icon">&#129693;</div>
-          <h2>Stickman Hook</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="stickmanhook/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Sports" data-name="street basketball">
-          <div class="icon">&#127936;</div>
-          <h2>Street Basketball</h2>
-          <span class="category">Sports</span>
-          <a class="play" href="streetbasketball/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Arcade" data-name="subway clash">
-          <div class="icon">&#128647;</div>
-          <h2>Subway Clash</h2>
-          <span class="category">Arcade</span>
-          <a class="play" href="subwayclash/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Adventure" data-name="subway surfers">
-          <div class="icon">&#127939;</div>
-          <h2>Subway Surfers</h2>
-          <span class="category">Adventure</span>
-          <a class="play" href="subwaysurfers/index.html">&#9654; PLAY</a>
-        </article>
-        <article class="card" data-category="Puzzle" data-name="sudoku">
-          <div class="icon">&#128290;</div>
-          <h2>Sudoku</h2>
-          <span class="category">Puzzle</span>
-          <a class="play" href="sudoku/index.html">&#9654; PLAY</a>
-        </article>
-  </section>
-  <div id="noResult">&#128575; No games found.</div>
+<article class="card" data-category="Puzzle" data-name="2048">
+  <div class="icon">🧩</div>
+  <h2>2048</h2>
+  <span class="category">Puzzle</span>
+  <a class="play" href="2048/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="8 ball pool">
+  <div class="icon">🎱</div>
+  <h2>8 Ball Pool</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="8ballpool/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="air hockey">
+  <div class="icon">🏒</div>
+  <h2>Air Hockey</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="airhockey/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="among us">
+  <div class="icon">👾</div>
+  <h2>Among Us</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="amongus/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="angry birds">
+  <div class="icon">🐦</div>
+  <h2>Angry Birds</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="angrybirds/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="archery world">
+  <div class="icon">🏹</div>
+  <h2>Archery World</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="archeryworld/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="basketball king">
+  <div class="icon">🏀</div>
+  <h2>Basketball King</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="basketballking/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="basketball stars">
+  <div class="icon">🏀</div>
+  <h2>Basketball Stars</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="basketballstars/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="basket random">
+  <div class="icon">🏀</div>
+  <h2>Basket Random</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="basketrandom/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Puzzle" data-name="block blast">
+  <div class="icon">🧱</div>
+  <h2>Block Blast</h2>
+  <span class="category">Puzzle</span>
+  <a class="play" href="blockblast/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Puzzle" data-name="bloxorz">
+  <div class="icon">🔷</div>
+  <h2>Bloxorz</h2>
+  <span class="category">Puzzle</span>
+  <a class="play" href="bloxorz/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Adventure" data-name="bob the robber">
+  <div class="icon">🕵️</div>
+  <h2>Bob the Robber</h2>
+  <span class="category">Adventure</span>
+  <a class="play" href="bobtherobber/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="boxing random">
+  <div class="icon">🥊</div>
+  <h2>Boxing Random</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="boxingrandom/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Puzzle" data-name="brain out">
+  <div class="icon">🧠</div>
+  <h2>Brain Out</h2>
+  <span class="category">Puzzle</span>
+  <a class="play" href="brainout/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Puzzle" data-name="brain test">
+  <div class="icon">🧠</div>
+  <h2>Brain Test</h2>
+  <span class="category">Puzzle</span>
+  <a class="play" href="braintest/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Puzzle" data-name="bubble shooter">
+  <div class="icon">🫧</div>
+  <h2>Bubble Shooter</h2>
+  <span class="category">Puzzle</span>
+  <a class="play" href="bubbleshooter/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Puzzle" data-name="candy crush">
+  <div class="icon">🍬</div>
+  <h2>Candy Crush</h2>
+  <span class="category">Puzzle</span>
+  <a class="play" href="candycrush/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Board" data-name="checkers">
+  <div class="icon">⚫</div>
+  <h2>Checkers</h2>
+  <span class="category">Board</span>
+  <a class="play" href="checkers/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Board" data-name="chess">
+  <div class="icon">♟️</div>
+  <h2>Chess</h2>
+  <span class="category">Board</span>
+  <a class="play" href="chess/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Board" data-name="chess master">
+  <div class="icon">♟️</div>
+  <h2>Chess Master</h2>
+  <span class="category">Board</span>
+  <a class="play" href="chessmaster/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Racing" data-name="city bike">
+  <div class="icon">🚲</div>
+  <h2>City Bike</h2>
+  <span class="category">Racing</span>
+  <a class="play" href="citybike/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Racing" data-name="city drift">
+  <div class="icon">🚗</div>
+  <h2>City Drift</h2>
+  <span class="category">Racing</span>
+  <a class="play" href="citydrift/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Strategy" data-name="clash of vikings">
+  <div class="icon">🛡️</div>
+  <h2>Clash of Vikings</h2>
+  <span class="category">Strategy</span>
+  <a class="play" href="clashofvikings/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Puzzle" data-name="color on">
+  <div class="icon">🎨</div>
+  <h2>Color On</h2>
+  <span class="category">Puzzle</span>
+  <a class="play" href="coloron/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Racing" data-name="crazy cars">
+  <div class="icon">🏎️</div>
+  <h2>Crazy Cars</h2>
+  <span class="category">Racing</span>
+  <a class="play" href="crazycars/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="cricket">
+  <div class="icon">🏏</div>
+  <h2>Cricket</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="cricket/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="crossy road">
+  <div class="icon">🚦</div>
+  <h2>Crossy Road</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="crossyroad/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Puzzle" data-name="cut the rope">
+  <div class="icon">✂️</div>
+  <h2>Cut the Rope</h2>
+  <span class="category">Puzzle</span>
+  <a class="play" href="cutterope/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Racing" data-name="drift boss">
+  <div class="icon">🏎️</div>
+  <h2>Drift Boss</h2>
+  <span class="category">Racing</span>
+  <a class="play" href="driftboss/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Racing" data-name="drive mad">
+  <div class="icon">🚗</div>
+  <h2>Drive Mad</h2>
+  <span class="category">Racing</span>
+  <a class="play" href="drivemad/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Adventure" data-name="duck life">
+  <div class="icon">🦆</div>
+  <h2>Duck Life</h2>
+  <span class="category">Adventure</span>
+  <a class="play" href="ducklife/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Racing" data-name="earn2die">
+  <div class="icon">🚗</div>
+  <h2>Earn2Die</h2>
+  <span class="category">Racing</span>
+  <a class="play" href="earn2die/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Racing" data-name="extreme car">
+  <div class="icon">🏎️</div>
+  <h2>Extreme Car</h2>
+  <span class="category">Racing</span>
+  <a class="play" href="extremecar/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="fireballs">
+  <div class="icon">🔥</div>
+  <h2>Fireballs</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="fireballs/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Adventure" data-name="fireboy watergirl">
+  <div class="icon">🔥💧</div>
+  <h2>Fireboy Watergirl</h2>
+  <span class="category">Adventure</span>
+  <a class="play" href="fireboywatergirl/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="flappy bird">
+  <div class="icon">🐦</div>
+  <h2>Flappy Bird</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="flappybird/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="football masters">
+  <div class="icon">⚽</div>
+  <h2>Football Masters</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="footballmasters/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="fruit ninja">
+  <div class="icon">🍉</div>
+  <h2>Fruit Ninja</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="fruitninja/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="geometry dash">
+  <div class="icon">🟨</div>
+  <h2>Geometry Dash</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="geometrydash/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="golf battle">
+  <div class="icon">⛳</div>
+  <h2>Golf Battle</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="golfbattle/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="head soccer">
+  <div class="icon">⚽</div>
+  <h2>Head Soccer</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="headsoccer/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="helix jump">
+  <div class="icon">🌀</div>
+  <h2>Helix Jump</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="helixjump/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Adventure" data-name="hero rush">
+  <div class="icon">🏃</div>
+  <h2>Hero Rush</h2>
+  <span class="category">Adventure</span>
+  <a class="play" href="herorush/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Puzzle" data-name="hexa puzzle">
+  <div class="icon">🔷</div>
+  <h2>Hexa Puzzle</h2>
+  <span class="category">Puzzle</span>
+  <a class="play" href="hexapuzzle/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Racing" data-name="hill climb racing">
+  <div class="icon">🚙</div>
+  <h2>Hill Climb Racing</h2>
+  <span class="category">Racing</span>
+  <a class="play" href="hillclimbracing/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="idle breakout">
+  <div class="icon">🧱</div>
+  <h2>Idle Breakout</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="idlebreakout/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Board" data-name="ludo">
+  <div class="icon">🎲</div>
+  <h2>Ludo</h2>
+  <span class="category">Board</span>
+  <a class="play" href="ludo/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Board" data-name="mahjong">
+  <div class="icon">🀄</div>
+  <h2>Mahjong</h2>
+  <span class="category">Board</span>
+  <a class="play" href="mahjong/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Puzzle" data-name="merge master">
+  <div class="icon">🔢</div>
+  <h2>Merge Master</h2>
+  <span class="category">Puzzle</span>
+  <a class="play" href="mergemaster/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Adventure" data-name="minecraft">
+  <div class="icon">⛏️</div>
+  <h2>Minecraft</h2>
+  <span class="category">Adventure</span>
+  <a class="play" href="minecraft/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="mini golf">
+  <div class="icon">⛳</div>
+  <h2>Mini Golf</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="minigolf/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Racing" data-name="monster tracks">
+  <div class="icon">🚙</div>
+  <h2>Monster Tracks</h2>
+  <span class="category">Racing</span>
+  <a class="play" href="monstertracks/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Racing" data-name="moto fury">
+  <div class="icon">🏍️</div>
+  <h2>Moto Fury</h2>
+  <span class="category">Racing</span>
+  <a class="play" href="motofury/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Racing" data-name="moto x3m">
+  <div class="icon">🏍️</div>
+  <h2>Moto X3M</h2>
+  <span class="category">Racing</span>
+  <a class="play" href="motox3m/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="ovo">
+  <div class="icon">🟥</div>
+  <h2>OVO</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="ovo/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="pacman">
+  <div class="icon">🟡</div>
+  <h2>Pacman</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="pacman/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="paper.io">
+  <div class="icon">🟦</div>
+  <h2>Paper.io</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="paperio/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Puzzle" data-name="park master">
+  <div class="icon">🅿️</div>
+  <h2>Park Master</h2>
+  <span class="category">Puzzle</span>
+  <a class="play" href="parkmaster/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="penalty shooters">
+  <div class="icon">⚽</div>
+  <h2>Penalty Shooters</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="penaltyshooters/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Racing" data-name="rally racer">
+  <div class="icon">🏎️</div>
+  <h2>Rally Racer</h2>
+  <span class="category">Racing</span>
+  <a class="play" href="rallyracer/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="real fishing">
+  <div class="icon">🎣</div>
+  <h2>Real Fishing</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="realfishing/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Adventure" data-name="red ball 4">
+  <div class="icon">🔴</div>
+  <h2>Red Ball 4</h2>
+  <span class="category">Adventure</span>
+  <a class="play" href="redball4/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="rolling ball">
+  <div class="icon">⚽</div>
+  <h2>Rolling Ball</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="rollingball/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Adventure" data-name="run 3">
+  <div class="icon">🏃</div>
+  <h2>Run 3</h2>
+  <span class="category">Adventure</span>
+  <a class="play" href="run3/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="sky jump">
+  <div class="icon">🦘</div>
+  <h2>Sky Jump</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="skyjump/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Racing" data-name="sky riders">
+  <div class="icon">🏎️</div>
+  <h2>Sky Riders</h2>
+  <span class="category">Racing</span>
+  <a class="play" href="skyriders/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="slither.io">
+  <div class="icon">🐍</div>
+  <h2>Slither.io</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="slitherio/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="slope">
+  <div class="icon">🏂</div>
+  <h2>Slope</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="slope/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Racing" data-name="smash karts">
+  <div class="icon">🚗</div>
+  <h2>Smash Karts</h2>
+  <span class="category">Racing</span>
+  <a class="play" href="smashkarts/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Adventure" data-name="snail bob">
+  <div class="icon">🐌</div>
+  <h2>Snail Bob</h2>
+  <span class="category">Adventure</span>
+  <a class="play" href="snailbob/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="soccer stars">
+  <div class="icon">⚽</div>
+  <h2>Soccer Stars</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="soccerstars/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Racing" data-name="speedboat">
+  <div class="icon">🚤</div>
+  <h2>Speedboat</h2>
+  <span class="category">Racing</span>
+  <a class="play" href="speedboat/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="stack ball">
+  <div class="icon">🏀</div>
+  <h2>Stack Ball</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="stackball/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="stickman hook">
+  <div class="icon">🪝</div>
+  <h2>Stickman Hook</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="stickmanhook/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="street basketball">
+  <div class="icon">🏀</div>
+  <h2>Street Basketball</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="streetbasketball/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="subway clash">
+  <div class="icon">🚇</div>
+  <h2>Subway Clash</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="subwayclash/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Adventure" data-name="subway surfers">
+  <div class="icon">🏃</div>
+  <h2>Subway Surfers</h2>
+  <span class="category">Adventure</span>
+  <a class="play" href="subwaysurfers/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Puzzle" data-name="sudoku">
+  <div class="icon">🔢</div>
+  <h2>Sudoku</h2>
+  <span class="category">Puzzle</span>
+  <a class="play" href="sudoku/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="table tennis">
+  <div class="icon">🏓</div>
+  <h2>Table Tennis</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="tabletennis/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Adventure" data-name="temple run">
+  <div class="icon">🏃</div>
+  <h2>Temple Run</h2>
+  <span class="category">Adventure</span>
+  <a class="play" href="templerun/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="tennis open">
+  <div class="icon">🎾</div>
+  <h2>Tennis Open</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="tennisopen/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Sports" data-name="tiny fishing">
+  <div class="icon">🎣</div>
+  <h2>Tiny Fishing</h2>
+  <span class="category">Sports</span>
+  <a class="play" href="tinyfishing/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Racing" data-name="traffic tour">
+  <div class="icon">🚗</div>
+  <h2>Traffic Tour</h2>
+  <span class="category">Racing</span>
+  <a class="play" href="traffictour/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="tunnel rush">
+  <div class="icon">🚇</div>
+  <h2>Tunnel Rush</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="tunnelrush/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Racing" data-name="turbo racing">
+  <div class="icon">🏎️</div>
+  <h2>Turbo Racing</h2>
+  <span class="category">Racing</span>
+  <a class="play" href="turboracing/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Puzzle" data-name="unblock me">
+  <div class="icon">🧩</div>
+  <h2>Unblock Me</h2>
+  <span class="category">Puzzle</span>
+  <a class="play" href="unblockme/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Adventure" data-name="vex 8">
+  <div class="icon">🏃</div>
+  <h2>Vex 8</h2>
+  <span class="category">Adventure</span>
+  <a class="play" href="vex8/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Adventure" data-name="wheely">
+  <div class="icon">🚗</div>
+  <h2>Wheely</h2>
+  <span class="category">Adventure</span>
+  <a class="play" href="wheely/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Puzzle" data-name="wood block">
+  <div class="icon">🪵</div>
+  <h2>Wood Block</h2>
+  <span class="category">Puzzle</span>
+  <a class="play" href="woodblock/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Racing" data-name="zombie derby">
+  <div class="icon">🧟</div>
+  <h2>Zombie Derby</h2>
+  <span class="category">Racing</span>
+  <a class="play" href="zombiederby/index.html">▶ PLAY</a>
+</article>
+<article class="card" data-category="Arcade" data-name="zombie tsunami">
+  <div class="icon">🧟</div>
+  <h2>Zombie Tsunami</h2>
+  <span class="category">Arcade</span>
+  <a class="play" href="zombiestsunami/index.html">▶ PLAY</a>
+</article>
+</section>
+<div id="noResult">No game found 😕</div>
 </main>
 
-<footer>&#169; 2026 Meow Games &#127918;</footer>
+<footer>🎮 Meow Games — Have Fun!</footer>
 
 <script>
-const search = document.getElementById("search");
-const category = document.getElementById("category");
-const cards = [...document.querySelectorAll(".card")];
-const count = document.getElementById("count");
-const noResult = document.getElementById("noResult");
+const search = document.getElementById('search');
+const category = document.getElementById('category');
+const cards = [...document.querySelectorAll('.card')];
+const count = document.getElementById('count');
+const noResult = document.getElementById('noResult');
 
 function filterGames() {
-  const text = search.value.trim().toLowerCase();
-  const cat = category.value;
-  let found = 0;
+  const q = search.value.trim().toLowerCase();
+  
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const search = document.getElementById("search");
+  const category = document.getElementById("category");
+  const cards = Array.from(document.querySelectorAll(".card"));
+  const count = document.getElementById("count");
+  const noResult = document.getElementById("noResult");
 
-  cards.forEach(card => {
-    const name = (card.dataset.name || "").toLowerCase();
-    const gameCategory = card.dataset.category || "";
-    const matchSearch = name.includes(text);
-    const matchCategory = cat === "all" || gameCategory === cat;
-    const show = matchSearch && matchCategory;
+  function filterGames() {
+    const text = search.value.trim().toLowerCase();
+    const selected = category.value;
+    let found = 0;
 
-    card.style.display = show ? "" : "none";
-    if (show) found++;
-  });
+    cards.forEach(function (card) {
+      const name = (card.dataset.name || "").toLowerCase();
+      const gameCategory = card.dataset.category || "";
+      const searchMatch = text === "" || name.includes(text);
+      const categoryMatch = selected === "all" || gameCategory === selected;
+      const show = searchMatch && categoryMatch;
+      card.style.display = show ? "" : "none";
+      if (show) found++;
+    });
 
-  count.textContent = found + (found === 1 ? " game found" : " games found");
-  noResult.style.display = found ? "none" : "block";
-}
+    count.textContent = found + (found === 1 ? " game found" : " games found");
+    noResult.style.display = found === 0 ? "block" : "none";
+  }
 
-search.addEventListener("input", filterGames);
-category.addEventListener("change", filterGames);
-filterGames();
+  search.addEventListener("input", filterGames);
+  category.addEventListener("change", filterGames);
+  filterGames();
+});
 </script>
 </body>
 </html>

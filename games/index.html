@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Meow Games 🎮</title>
 <style>
 *{box-sizing:border-box}
@@ -15,9 +16,49 @@ h1{margin:0;font-size:32px} header p{color:#aaa;margin:8px 0 18px}
 .container{width:95%;max-width:1250px;margin:25px auto}
 .count{color:#aaa;margin-bottom:15px}
 .games{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
-.card{background:#191d26;border:1px solid #292e3a;border-radius:15px;padding:12px;text-align:center;transition:.2s;overflow:hidden}
+.card{background:#191d26;border:1px solid #292e3a;border-radius:15px;padding:18px;text-align:center;transition:.2s}
 .card:hover{transform:translateY(-4px);background:#202530}
-.icon[role="img"]{height:120px;border-radius:12px;margin-bottom:10px;display:flex;align-items:center;justify-content:center;font-size:58px;background:linear-gradient(135deg,#252a35,#11151e);border:1px solid #303645;box-shadow:inset 0 0 30px rgba(40,120,255,.08)} .card h2{font-size:18px;margin:7px 0 9px}
+/* PRO GAME THUMBNAILS — keeps Search, Category and Play links unchanged */
+.icon{
+  height:180px;
+  margin:-18px -18px 16px;
+  border-radius:14px 14px 10px 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  font-size:78px;
+  line-height:1;
+  background:
+    radial-gradient(circle at 20% 25%,rgba(255,255,255,.20),transparent 22%),
+    radial-gradient(circle at 82% 70%,rgba(40,120,255,.35),transparent 34%),
+    linear-gradient(135deg,#26334d,#101722 55%,#18294a);
+  border-bottom:1px solid #343d50;
+  box-shadow:inset 0 0 45px rgba(0,0,0,.35);
+  text-shadow:0 5px 18px rgba(0,0,0,.65);
+}
+.icon:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(120deg,transparent 35%,rgba(255,255,255,.08) 36%,transparent 37%),
+    linear-gradient(300deg,transparent 58%,rgba(255,255,255,.06) 59%,transparent 60%);
+  pointer-events:none;
+}
+.icon:after{
+  content:"GAME";
+  position:absolute;
+  left:12px;
+  bottom:9px;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:2px;
+  color:rgba(255,255,255,.65);
+  text-shadow:none;
+}
+.card h2{font-size:18px;margin:7px 0 9px}
 .category{display:inline-block;color:#9fb2d8;font-size:12px;margin-bottom:14px}
 .play{display:block;text-decoration:none;background:#2878ff;color:#fff;padding:11px;border-radius:9px;font-weight:bold}
 .play:hover{background:#1765e8}
@@ -34,14 +75,46 @@ footer{text-align:center;color:#777;padding:30px 10px}
 .featured-card strong{font-size:16px}
 .featured-card small{color:#9fb2d8;font-size:12px}
 .featured-card b{margin-left:auto;color:#62a0ff;font-size:11px}
+
+.card[data-category="Puzzle"] .icon{
+  background:radial-gradient(circle at 25% 25%,rgba(255,255,255,.22),transparent 23%),
+             linear-gradient(135deg,#49306e,#15192b 55%,#243b72);
+}
+.card[data-category="Sports"] .icon{
+  background:radial-gradient(circle at 75% 25%,rgba(255,255,255,.18),transparent 22%),
+             linear-gradient(135deg,#174d5c,#111c2a 55%,#164b36);
+}
+.card[data-category="Racing"] .icon{
+  background:radial-gradient(circle at 20% 30%,rgba(255,90,70,.25),transparent 25%),
+             linear-gradient(135deg,#5a2430,#171923 55%,#263b5f);
+}
+.card[data-category="Arcade"] .icon{
+  background:radial-gradient(circle at 70% 25%,rgba(255,0,180,.25),transparent 25%),
+             linear-gradient(135deg,#4a1d61,#141626 55%,#153e67);
+}
+.card[data-category="Adventure"] .icon{
+  background:radial-gradient(circle at 25% 25%,rgba(255,210,80,.22),transparent 24%),
+             linear-gradient(135deg,#4b4320,#171b20 55%,#244b35);
+}
+.card[data-category="Board"] .icon{
+  background:radial-gradient(circle at 75% 30%,rgba(255,255,255,.16),transparent 24%),
+             linear-gradient(135deg,#3c354d,#171923 55%,#283b4c);
+}
+.card[data-category="Strategy"] .icon{
+  background:radial-gradient(circle at 25% 30%,rgba(120,190,255,.22),transparent 24%),
+             linear-gradient(135deg,#203f62,#141923 55%,#382c55);
+}
+
 </style>
-</head>
+<style>
+.thumbnail{height:130px;border-radius:12px;margin:-4px -4px 12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#242b3a,#151922);border:1px solid #343b4c;overflow:hidden;position:relative}.thumbnail .thumb-emoji{font-size:64px;filter:drop-shadow(0 5px 8px rgba(0,0,0,.35))}.thumbnail .thumb-label{position:absolute;left:8px;right:8px;bottom:7px;background:rgba(0,0,0,.55);border-radius:7px;padding:4px 6px;font-size:11px;font-weight:bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.card{overflow:hidden}.card .icon{display:none}.play{cursor:pointer}.featured-card{overflow:hidden}.featured-card span{font-size:40px;min-width:46px;text-align:center}
+</style></head>
 <body>
 <header>
 <h1>🎮 MEOW GAMES</h1>
 <p>Choose a game and start playing!</p>
 <div class="controls">
-<input id="search" type="search" placeholder="🔎 Search games..." autocomplete="off">
+<input autocomplete="off" id="search" placeholder="🔎 Search games..." type="search"/>
 <select id="category">
 <option value="all">All Categories</option>
 <option value="Arcade">Arcade</option>
@@ -54,575 +127,571 @@ footer{text-align:center;color:#777;padding:30px 10px}
 </select>
 </div>
 </header>
-
 <main class="container">
 <div class="count" id="count"></div>
-
 <section class="featured">
-  <div class="section-title">
-    <h2>⭐ Featured Games</h2>
-    <p>Top picks from Meow Games</p>
-  </div>
-  <div class="featured-grid">
-    <a class="featured-card" href="2048/index.html"><span>🧩</span><strong>2048</strong><small>Puzzle</small><b>PLAY →</b></a>
-    <a class="featured-card" href="chess/index.html"><span>♟️</span><strong>Chess</strong><small>Board</small><b>PLAY →</b></a>
-    <a class="featured-card" href="driftboss/index.html"><span>🏎️</span><strong>Drift Boss</strong><small>Racing</small><b>PLAY →</b></a>
-    <a class="featured-card" href="basketballstars/index.html"><span>🏀</span><strong>Basketball Stars</strong><small>Sports</small><b>PLAY →</b></a>
-  </div>
+<div class="section-title">
+<h2>⭐ Featured Games</h2>
+<p>Top picks from Meow Games</p>
+</div>
+<div class="featured-grid">
+<a class="featured-card" href="2048/index.html"><span>🧩</span><strong>2048</strong><small>Puzzle</small><b>PLAY →</b></a>
+<a class="featured-card" href="chess/index.html"><span>♟️</span><strong>Chess</strong><small>Board</small><b>PLAY →</b></a>
+<a class="featured-card" href="driftboss/index.html"><span>🏎️</span><strong>Drift Boss</strong><small>Racing</small><b>PLAY →</b></a>
+<a class="featured-card" href="basketballstars/index.html"><span>🏀</span><strong>Basketball Stars</strong><small>Sports</small><b>PLAY →</b></a>
+</div>
 </section>
 <section class="games" id="games">
 <article class="card" data-category="Puzzle" data-name="2048">
-  <div class="icon" role="img" aria-label="Game thumbnail">🧩</div>
-  <h2>2048</h2>
-  <span class="category">Puzzle</span>
-  <a class="play" href="2048/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🧩</div><div class="thumb-label">2048</div></div>
+<h2>2048</h2>
+<span class="category">Puzzle</span>
+<a class="play" href="2048/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="8 ball pool">
-  <div class="icon" role="img" aria-label="Game thumbnail">🎱</div>
-  <h2>8 Ball Pool</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="8ballpool/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🎱</div><div class="thumb-label">8 Ball Pool</div></div>
+<h2>8 Ball Pool</h2>
+<span class="category">Sports</span>
+<a class="play" href="8ballpool/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="air hockey">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏒</div>
-  <h2>Air Hockey</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="airhockey/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏒</div><div class="thumb-label">Air Hockey</div></div>
+<h2>Air Hockey</h2>
+<span class="category">Sports</span>
+<a class="play" href="airhockey/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="among us">
-  <div class="icon" role="img" aria-label="Game thumbnail">👾</div>
-  <h2>Among Us</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="amongus/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">👾</div><div class="thumb-label">Among Us</div></div>
+<h2>Among Us</h2>
+<span class="category">Arcade</span>
+<a class="play" href="amongus/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="angry birds">
-  <div class="icon" role="img" aria-label="Game thumbnail">🐦</div>
-  <h2>Angry Birds</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="angrybirds/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🐦</div><div class="thumb-label">Angry Birds</div></div>
+<h2>Angry Birds</h2>
+<span class="category">Arcade</span>
+<a class="play" href="angrybirds/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="archery world">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏹</div>
-  <h2>Archery World</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="archeryworld/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏹</div><div class="thumb-label">Archery World</div></div>
+<h2>Archery World</h2>
+<span class="category">Sports</span>
+<a class="play" href="archeryworld/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="basketball king">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏀</div>
-  <h2>Basketball King</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="basketballking/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏀</div><div class="thumb-label">Basketball King</div></div>
+<h2>Basketball King</h2>
+<span class="category">Sports</span>
+<a class="play" href="basketballking/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="basketball stars">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏀</div>
-  <h2>Basketball Stars</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="basketballstars/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏀</div><div class="thumb-label">Basketball Stars</div></div>
+<h2>Basketball Stars</h2>
+<span class="category">Sports</span>
+<a class="play" href="basketballstars/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="basket random">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏀</div>
-  <h2>Basket Random</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="basketrandom/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏀</div><div class="thumb-label">Basket Random</div></div>
+<h2>Basket Random</h2>
+<span class="category">Sports</span>
+<a class="play" href="basketrandom/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Puzzle" data-name="block blast">
-  <div class="icon" role="img" aria-label="Game thumbnail">🧱</div>
-  <h2>Block Blast</h2>
-  <span class="category">Puzzle</span>
-  <a class="play" href="blockblast/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🧱</div><div class="thumb-label">Block Blast</div></div>
+<h2>Block Blast</h2>
+<span class="category">Puzzle</span>
+<a class="play" href="blockblast/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Puzzle" data-name="bloxorz">
-  <div class="icon" role="img" aria-label="Game thumbnail">🔷</div>
-  <h2>Bloxorz</h2>
-  <span class="category">Puzzle</span>
-  <a class="play" href="bloxorz/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🔷</div><div class="thumb-label">Bloxorz</div></div>
+<h2>Bloxorz</h2>
+<span class="category">Puzzle</span>
+<a class="play" href="bloxorz/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Adventure" data-name="bob the robber">
-  <div class="icon" role="img" aria-label="Game thumbnail">🕵️</div>
-  <h2>Bob the Robber</h2>
-  <span class="category">Adventure</span>
-  <a class="play" href="bobtherobber/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🕵️</div><div class="thumb-label">Bob the Robber</div></div>
+<h2>Bob the Robber</h2>
+<span class="category">Adventure</span>
+<a class="play" href="bobtherobber/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="boxing random">
-  <div class="icon" role="img" aria-label="Game thumbnail">🥊</div>
-  <h2>Boxing Random</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="boxingrandom/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🥊</div><div class="thumb-label">Boxing Random</div></div>
+<h2>Boxing Random</h2>
+<span class="category">Sports</span>
+<a class="play" href="boxingrandom/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Puzzle" data-name="brain out">
-  <div class="icon" role="img" aria-label="Game thumbnail">🧠</div>
-  <h2>Brain Out</h2>
-  <span class="category">Puzzle</span>
-  <a class="play" href="brainout/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🧠</div><div class="thumb-label">Brain Out</div></div>
+<h2>Brain Out</h2>
+<span class="category">Puzzle</span>
+<a class="play" href="brainout/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Puzzle" data-name="brain test">
-  <div class="icon" role="img" aria-label="Game thumbnail">🧠</div>
-  <h2>Brain Test</h2>
-  <span class="category">Puzzle</span>
-  <a class="play" href="braintest/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🧠</div><div class="thumb-label">Brain Test</div></div>
+<h2>Brain Test</h2>
+<span class="category">Puzzle</span>
+<a class="play" href="braintest/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Puzzle" data-name="bubble shooter">
-  <div class="icon" role="img" aria-label="Game thumbnail">🫧</div>
-  <h2>Bubble Shooter</h2>
-  <span class="category">Puzzle</span>
-  <a class="play" href="bubbleshooter/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🫧</div><div class="thumb-label">Bubble Shooter</div></div>
+<h2>Bubble Shooter</h2>
+<span class="category">Puzzle</span>
+<a class="play" href="bubbleshooter/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Puzzle" data-name="candy crush">
-  <div class="icon" role="img" aria-label="Game thumbnail">🍬</div>
-  <h2>Candy Crush</h2>
-  <span class="category">Puzzle</span>
-  <a class="play" href="candycrush/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🍬</div><div class="thumb-label">Candy Crush</div></div>
+<h2>Candy Crush</h2>
+<span class="category">Puzzle</span>
+<a class="play" href="candycrush/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Board" data-name="checkers">
-  <div class="icon" role="img" aria-label="Game thumbnail">⚫</div>
-  <h2>Checkers</h2>
-  <span class="category">Board</span>
-  <a class="play" href="checkers/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">⚫</div><div class="thumb-label">Checkers</div></div>
+<h2>Checkers</h2>
+<span class="category">Board</span>
+<a class="play" href="checkers/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Board" data-name="chess">
-  <div class="icon" role="img" aria-label="Game thumbnail">♟️</div>
-  <h2>Chess</h2>
-  <span class="category">Board</span>
-  <a class="play" href="chess/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">♟️</div><div class="thumb-label">Chess</div></div>
+<h2>Chess</h2>
+<span class="category">Board</span>
+<a class="play" href="chess/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Board" data-name="chess master">
-  <div class="icon" role="img" aria-label="Game thumbnail">♟️</div>
-  <h2>Chess Master</h2>
-  <span class="category">Board</span>
-  <a class="play" href="chessmaster/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">♟️</div><div class="thumb-label">Chess Master</div></div>
+<h2>Chess Master</h2>
+<span class="category">Board</span>
+<a class="play" href="chessmaster/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Racing" data-name="city bike">
-  <div class="icon" role="img" aria-label="Game thumbnail">🚲</div>
-  <h2>City Bike</h2>
-  <span class="category">Racing</span>
-  <a class="play" href="citybike/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🚲</div><div class="thumb-label">City Bike</div></div>
+<h2>City Bike</h2>
+<span class="category">Racing</span>
+<a class="play" href="citybike/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Racing" data-name="city drift">
-  <div class="icon" role="img" aria-label="Game thumbnail">🚗</div>
-  <h2>City Drift</h2>
-  <span class="category">Racing</span>
-  <a class="play" href="citydrift/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🚗</div><div class="thumb-label">City Drift</div></div>
+<h2>City Drift</h2>
+<span class="category">Racing</span>
+<a class="play" href="citydrift/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Strategy" data-name="clash of vikings">
-  <div class="icon" role="img" aria-label="Game thumbnail">🛡️</div>
-  <h2>Clash of Vikings</h2>
-  <span class="category">Strategy</span>
-  <a class="play" href="clashofvikings/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🛡️</div><div class="thumb-label">Clash of Vikings</div></div>
+<h2>Clash of Vikings</h2>
+<span class="category">Strategy</span>
+<a class="play" href="clashofvikings/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Puzzle" data-name="color on">
-  <div class="icon" role="img" aria-label="Game thumbnail">🎨</div>
-  <h2>Color On</h2>
-  <span class="category">Puzzle</span>
-  <a class="play" href="coloron/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🎨</div><div class="thumb-label">Color On</div></div>
+<h2>Color On</h2>
+<span class="category">Puzzle</span>
+<a class="play" href="coloron/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Racing" data-name="crazy cars">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏎️</div>
-  <h2>Crazy Cars</h2>
-  <span class="category">Racing</span>
-  <a class="play" href="crazycars/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏎️</div><div class="thumb-label">Crazy Cars</div></div>
+<h2>Crazy Cars</h2>
+<span class="category">Racing</span>
+<a class="play" href="crazycars/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="cricket">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏏</div>
-  <h2>Cricket</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="cricket/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏏</div><div class="thumb-label">Cricket</div></div>
+<h2>Cricket</h2>
+<span class="category">Sports</span>
+<a class="play" href="cricket/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="crossy road">
-  <div class="icon" role="img" aria-label="Game thumbnail">🚦</div>
-  <h2>Crossy Road</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="crossyroad/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🚦</div><div class="thumb-label">Crossy Road</div></div>
+<h2>Crossy Road</h2>
+<span class="category">Arcade</span>
+<a class="play" href="crossyroad/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Puzzle" data-name="cut the rope">
-  <div class="icon" role="img" aria-label="Game thumbnail">✂️</div>
-  <h2>Cut the Rope</h2>
-  <span class="category">Puzzle</span>
-  <a class="play" href="cutterope/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">✂️</div><div class="thumb-label">Cut the Rope</div></div>
+<h2>Cut the Rope</h2>
+<span class="category">Puzzle</span>
+<a class="play" href="cutterope/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Racing" data-name="drift boss">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏎️</div>
-  <h2>Drift Boss</h2>
-  <span class="category">Racing</span>
-  <a class="play" href="driftboss/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏎️</div><div class="thumb-label">Drift Boss</div></div>
+<h2>Drift Boss</h2>
+<span class="category">Racing</span>
+<a class="play" href="driftboss/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Racing" data-name="drive mad">
-  <div class="icon" role="img" aria-label="Game thumbnail">🚗</div>
-  <h2>Drive Mad</h2>
-  <span class="category">Racing</span>
-  <a class="play" href="drivemad/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🚗</div><div class="thumb-label">Drive Mad</div></div>
+<h2>Drive Mad</h2>
+<span class="category">Racing</span>
+<a class="play" href="drivemad/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Adventure" data-name="duck life">
-  <div class="icon" role="img" aria-label="Game thumbnail">🦆</div>
-  <h2>Duck Life</h2>
-  <span class="category">Adventure</span>
-  <a class="play" href="ducklife/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🦆</div><div class="thumb-label">Duck Life</div></div>
+<h2>Duck Life</h2>
+<span class="category">Adventure</span>
+<a class="play" href="ducklife/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Racing" data-name="earn2die">
-  <div class="icon" role="img" aria-label="Game thumbnail">🚗</div>
-  <h2>Earn2Die</h2>
-  <span class="category">Racing</span>
-  <a class="play" href="earn2die/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🚗</div><div class="thumb-label">Earn2Die</div></div>
+<h2>Earn2Die</h2>
+<span class="category">Racing</span>
+<a class="play" href="earn2die/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Racing" data-name="extreme car">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏎️</div>
-  <h2>Extreme Car</h2>
-  <span class="category">Racing</span>
-  <a class="play" href="extremecar/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏎️</div><div class="thumb-label">Extreme Car</div></div>
+<h2>Extreme Car</h2>
+<span class="category">Racing</span>
+<a class="play" href="extremecar/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="fireballs">
-  <div class="icon" role="img" aria-label="Game thumbnail">🔥</div>
-  <h2>Fireballs</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="fireballs/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🔥</div><div class="thumb-label">Fireballs</div></div>
+<h2>Fireballs</h2>
+<span class="category">Arcade</span>
+<a class="play" href="fireballs/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Adventure" data-name="fireboy watergirl">
-  <div class="icon" role="img" aria-label="Game thumbnail">🔥💧</div>
-  <h2>Fireboy Watergirl</h2>
-  <span class="category">Adventure</span>
-  <a class="play" href="fireboywatergirl/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🔥💧</div><div class="thumb-label">Fireboy Watergirl</div></div>
+<h2>Fireboy Watergirl</h2>
+<span class="category">Adventure</span>
+<a class="play" href="fireboywatergirl/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="flappy bird">
-  <div class="icon" role="img" aria-label="Game thumbnail">🐦</div>
-  <h2>Flappy Bird</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="flappybird/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🐦</div><div class="thumb-label">Flappy Bird</div></div>
+<h2>Flappy Bird</h2>
+<span class="category">Arcade</span>
+<a class="play" href="flappybird/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="football masters">
-  <div class="icon" role="img" aria-label="Game thumbnail">⚽</div>
-  <h2>Football Masters</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="footballmasters/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">⚽</div><div class="thumb-label">Football Masters</div></div>
+<h2>Football Masters</h2>
+<span class="category">Sports</span>
+<a class="play" href="footballmasters/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="fruit ninja">
-  <div class="icon" role="img" aria-label="Game thumbnail">🍉</div>
-  <h2>Fruit Ninja</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="fruitninja/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🍉</div><div class="thumb-label">Fruit Ninja</div></div>
+<h2>Fruit Ninja</h2>
+<span class="category">Arcade</span>
+<a class="play" href="fruitninja/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="geometry dash">
-  <div class="icon" role="img" aria-label="Game thumbnail">🟨</div>
-  <h2>Geometry Dash</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="geometrydash/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🟨</div><div class="thumb-label">Geometry Dash</div></div>
+<h2>Geometry Dash</h2>
+<span class="category">Arcade</span>
+<a class="play" href="geometrydash/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="golf battle">
-  <div class="icon" role="img" aria-label="Game thumbnail">⛳</div>
-  <h2>Golf Battle</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="golfbattle/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">⛳</div><div class="thumb-label">Golf Battle</div></div>
+<h2>Golf Battle</h2>
+<span class="category">Sports</span>
+<a class="play" href="golfbattle/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="head soccer">
-  <div class="icon" role="img" aria-label="Game thumbnail">⚽</div>
-  <h2>Head Soccer</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="headsoccer/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">⚽</div><div class="thumb-label">Head Soccer</div></div>
+<h2>Head Soccer</h2>
+<span class="category">Sports</span>
+<a class="play" href="headsoccer/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="helix jump">
-  <div class="icon" role="img" aria-label="Game thumbnail">🌀</div>
-  <h2>Helix Jump</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="helixjump/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🌀</div><div class="thumb-label">Helix Jump</div></div>
+<h2>Helix Jump</h2>
+<span class="category">Arcade</span>
+<a class="play" href="helixjump/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Adventure" data-name="hero rush">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏃</div>
-  <h2>Hero Rush</h2>
-  <span class="category">Adventure</span>
-  <a class="play" href="herorush/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏃</div><div class="thumb-label">Hero Rush</div></div>
+<h2>Hero Rush</h2>
+<span class="category">Adventure</span>
+<a class="play" href="herorush/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Puzzle" data-name="hexa puzzle">
-  <div class="icon" role="img" aria-label="Game thumbnail">🔷</div>
-  <h2>Hexa Puzzle</h2>
-  <span class="category">Puzzle</span>
-  <a class="play" href="hexapuzzle/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🔷</div><div class="thumb-label">Hexa Puzzle</div></div>
+<h2>Hexa Puzzle</h2>
+<span class="category">Puzzle</span>
+<a class="play" href="hexapuzzle/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Racing" data-name="hill climb racing">
-  <div class="icon" role="img" aria-label="Game thumbnail">🚙</div>
-  <h2>Hill Climb Racing</h2>
-  <span class="category">Racing</span>
-  <a class="play" href="hillclimbracing/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🚙</div><div class="thumb-label">Hill Climb Racing</div></div>
+<h2>Hill Climb Racing</h2>
+<span class="category">Racing</span>
+<a class="play" href="hillclimbracing/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="idle breakout">
-  <div class="icon" role="img" aria-label="Game thumbnail">🧱</div>
-  <h2>Idle Breakout</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="idlebreakout/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🧱</div><div class="thumb-label">Idle Breakout</div></div>
+<h2>Idle Breakout</h2>
+<span class="category">Arcade</span>
+<a class="play" href="idlebreakout/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Board" data-name="ludo">
-  <div class="icon" role="img" aria-label="Game thumbnail">🎲</div>
-  <h2>Ludo</h2>
-  <span class="category">Board</span>
-  <a class="play" href="ludo/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🎲</div><div class="thumb-label">Ludo</div></div>
+<h2>Ludo</h2>
+<span class="category">Board</span>
+<a class="play" href="ludo/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Board" data-name="mahjong">
-  <div class="icon" role="img" aria-label="Game thumbnail">🀄</div>
-  <h2>Mahjong</h2>
-  <span class="category">Board</span>
-  <a class="play" href="mahjong/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🀄</div><div class="thumb-label">Mahjong</div></div>
+<h2>Mahjong</h2>
+<span class="category">Board</span>
+<a class="play" href="mahjong/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Puzzle" data-name="merge master">
-  <div class="icon" role="img" aria-label="Game thumbnail">🔢</div>
-  <h2>Merge Master</h2>
-  <span class="category">Puzzle</span>
-  <a class="play" href="mergemaster/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🔢</div><div class="thumb-label">Merge Master</div></div>
+<h2>Merge Master</h2>
+<span class="category">Puzzle</span>
+<a class="play" href="mergemaster/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Adventure" data-name="minecraft">
-  <div class="icon" role="img" aria-label="Game thumbnail">⛏️</div>
-  <h2>Minecraft</h2>
-  <span class="category">Adventure</span>
-  <a class="play" href="minecraft/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">⛏️</div><div class="thumb-label">Minecraft</div></div>
+<h2>Minecraft</h2>
+<span class="category">Adventure</span>
+<a class="play" href="minecraft/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="mini golf">
-  <div class="icon" role="img" aria-label="Game thumbnail">⛳</div>
-  <h2>Mini Golf</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="minigolf/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">⛳</div><div class="thumb-label">Mini Golf</div></div>
+<h2>Mini Golf</h2>
+<span class="category">Sports</span>
+<a class="play" href="minigolf/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Racing" data-name="monster tracks">
-  <div class="icon" role="img" aria-label="Game thumbnail">🚙</div>
-  <h2>Monster Tracks</h2>
-  <span class="category">Racing</span>
-  <a class="play" href="monstertracks/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🚙</div><div class="thumb-label">Monster Tracks</div></div>
+<h2>Monster Tracks</h2>
+<span class="category">Racing</span>
+<a class="play" href="monstertracks/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Racing" data-name="moto fury">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏍️</div>
-  <h2>Moto Fury</h2>
-  <span class="category">Racing</span>
-  <a class="play" href="motofury/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏍️</div><div class="thumb-label">Moto Fury</div></div>
+<h2>Moto Fury</h2>
+<span class="category">Racing</span>
+<a class="play" href="motofury/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Racing" data-name="moto x3m">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏍️</div>
-  <h2>Moto X3M</h2>
-  <span class="category">Racing</span>
-  <a class="play" href="motox3m/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏍️</div><div class="thumb-label">Moto X3M</div></div>
+<h2>Moto X3M</h2>
+<span class="category">Racing</span>
+<a class="play" href="motox3m/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="ovo">
-  <div class="icon" role="img" aria-label="Game thumbnail">🟥</div>
-  <h2>OVO</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="ovo/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🟥</div><div class="thumb-label">OVO</div></div>
+<h2>OVO</h2>
+<span class="category">Arcade</span>
+<a class="play" href="ovo/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="pacman">
-  <div class="icon" role="img" aria-label="Game thumbnail">🟡</div>
-  <h2>Pacman</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="pacman/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🟡</div><div class="thumb-label">Pacman</div></div>
+<h2>Pacman</h2>
+<span class="category">Arcade</span>
+<a class="play" href="pacman/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="paper.io">
-  <div class="icon" role="img" aria-label="Game thumbnail">🟦</div>
-  <h2>Paper.io</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="paperio/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🟦</div><div class="thumb-label">Paper.io</div></div>
+<h2>Paper.io</h2>
+<span class="category">Arcade</span>
+<a class="play" href="paperio/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Puzzle" data-name="park master">
-  <div class="icon" role="img" aria-label="Game thumbnail">🅿️</div>
-  <h2>Park Master</h2>
-  <span class="category">Puzzle</span>
-  <a class="play" href="parkmaster/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🅿️</div><div class="thumb-label">Park Master</div></div>
+<h2>Park Master</h2>
+<span class="category">Puzzle</span>
+<a class="play" href="parkmaster/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="penalty shooters">
-  <div class="icon" role="img" aria-label="Game thumbnail">⚽</div>
-  <h2>Penalty Shooters</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="penaltyshooters/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">⚽</div><div class="thumb-label">Penalty Shooters</div></div>
+<h2>Penalty Shooters</h2>
+<span class="category">Sports</span>
+<a class="play" href="penaltyshooters/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Racing" data-name="rally racer">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏎️</div>
-  <h2>Rally Racer</h2>
-  <span class="category">Racing</span>
-  <a class="play" href="rallyracer/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏎️</div><div class="thumb-label">Rally Racer</div></div>
+<h2>Rally Racer</h2>
+<span class="category">Racing</span>
+<a class="play" href="rallyracer/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="real fishing">
-  <div class="icon" role="img" aria-label="Game thumbnail">🎣</div>
-  <h2>Real Fishing</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="realfishing/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🎣</div><div class="thumb-label">Real Fishing</div></div>
+<h2>Real Fishing</h2>
+<span class="category">Sports</span>
+<a class="play" href="realfishing/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Adventure" data-name="red ball 4">
-  <div class="icon" role="img" aria-label="Game thumbnail">🔴</div>
-  <h2>Red Ball 4</h2>
-  <span class="category">Adventure</span>
-  <a class="play" href="redball4/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🔴</div><div class="thumb-label">Red Ball 4</div></div>
+<h2>Red Ball 4</h2>
+<span class="category">Adventure</span>
+<a class="play" href="redball4/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="rolling ball">
-  <div class="icon" role="img" aria-label="Game thumbnail">⚽</div>
-  <h2>Rolling Ball</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="rollingball/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">⚽</div><div class="thumb-label">Rolling Ball</div></div>
+<h2>Rolling Ball</h2>
+<span class="category">Arcade</span>
+<a class="play" href="rollingball/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Adventure" data-name="run 3">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏃</div>
-  <h2>Run 3</h2>
-  <span class="category">Adventure</span>
-  <a class="play" href="run3/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏃</div><div class="thumb-label">Run 3</div></div>
+<h2>Run 3</h2>
+<span class="category">Adventure</span>
+<a class="play" href="run3/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="sky jump">
-  <div class="icon" role="img" aria-label="Game thumbnail">🦘</div>
-  <h2>Sky Jump</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="skyjump/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🦘</div><div class="thumb-label">Sky Jump</div></div>
+<h2>Sky Jump</h2>
+<span class="category">Arcade</span>
+<a class="play" href="skyjump/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Racing" data-name="sky riders">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏎️</div>
-  <h2>Sky Riders</h2>
-  <span class="category">Racing</span>
-  <a class="play" href="skyriders/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏎️</div><div class="thumb-label">Sky Riders</div></div>
+<h2>Sky Riders</h2>
+<span class="category">Racing</span>
+<a class="play" href="skyriders/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="slither.io">
-  <div class="icon" role="img" aria-label="Game thumbnail">🐍</div>
-  <h2>Slither.io</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="slitherio/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🐍</div><div class="thumb-label">Slither.io</div></div>
+<h2>Slither.io</h2>
+<span class="category">Arcade</span>
+<a class="play" href="slitherio/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="slope">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏂</div>
-  <h2>Slope</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="slope/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏂</div><div class="thumb-label">Slope</div></div>
+<h2>Slope</h2>
+<span class="category">Arcade</span>
+<a class="play" href="slope/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Racing" data-name="smash karts">
-  <div class="icon" role="img" aria-label="Game thumbnail">🚗</div>
-  <h2>Smash Karts</h2>
-  <span class="category">Racing</span>
-  <a class="play" href="smashkarts/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🚗</div><div class="thumb-label">Smash Karts</div></div>
+<h2>Smash Karts</h2>
+<span class="category">Racing</span>
+<a class="play" href="smashkarts/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Adventure" data-name="snail bob">
-  <div class="icon" role="img" aria-label="Game thumbnail">🐌</div>
-  <h2>Snail Bob</h2>
-  <span class="category">Adventure</span>
-  <a class="play" href="snailbob/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🐌</div><div class="thumb-label">Snail Bob</div></div>
+<h2>Snail Bob</h2>
+<span class="category">Adventure</span>
+<a class="play" href="snailbob/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="soccer stars">
-  <div class="icon" role="img" aria-label="Game thumbnail">⚽</div>
-  <h2>Soccer Stars</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="soccerstars/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">⚽</div><div class="thumb-label">Soccer Stars</div></div>
+<h2>Soccer Stars</h2>
+<span class="category">Sports</span>
+<a class="play" href="soccerstars/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Racing" data-name="speedboat">
-  <div class="icon" role="img" aria-label="Game thumbnail">🚤</div>
-  <h2>Speedboat</h2>
-  <span class="category">Racing</span>
-  <a class="play" href="speedboat/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🚤</div><div class="thumb-label">Speedboat</div></div>
+<h2>Speedboat</h2>
+<span class="category">Racing</span>
+<a class="play" href="speedboat/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="stack ball">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏀</div>
-  <h2>Stack Ball</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="stackball/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏀</div><div class="thumb-label">Stack Ball</div></div>
+<h2>Stack Ball</h2>
+<span class="category">Arcade</span>
+<a class="play" href="stackball/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="stickman hook">
-  <div class="icon" role="img" aria-label="Game thumbnail">🪝</div>
-  <h2>Stickman Hook</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="stickmanhook/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🪝</div><div class="thumb-label">Stickman Hook</div></div>
+<h2>Stickman Hook</h2>
+<span class="category">Arcade</span>
+<a class="play" href="stickmanhook/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="street basketball">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏀</div>
-  <h2>Street Basketball</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="streetbasketball/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏀</div><div class="thumb-label">Street Basketball</div></div>
+<h2>Street Basketball</h2>
+<span class="category">Sports</span>
+<a class="play" href="streetbasketball/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="subway clash">
-  <div class="icon" role="img" aria-label="Game thumbnail">🚇</div>
-  <h2>Subway Clash</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="subwayclash/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🚇</div><div class="thumb-label">Subway Clash</div></div>
+<h2>Subway Clash</h2>
+<span class="category">Arcade</span>
+<a class="play" href="subwayclash/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Adventure" data-name="subway surfers">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏃</div>
-  <h2>Subway Surfers</h2>
-  <span class="category">Adventure</span>
-  <a class="play" href="subwaysurfers/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏃</div><div class="thumb-label">Subway Surfers</div></div>
+<h2>Subway Surfers</h2>
+<span class="category">Adventure</span>
+<a class="play" href="subwaysurfers/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Puzzle" data-name="sudoku">
-  <div class="icon" role="img" aria-label="Game thumbnail">🔢</div>
-  <h2>Sudoku</h2>
-  <span class="category">Puzzle</span>
-  <a class="play" href="sudoku/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🔢</div><div class="thumb-label">Sudoku</div></div>
+<h2>Sudoku</h2>
+<span class="category">Puzzle</span>
+<a class="play" href="sudoku/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="table tennis">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏓</div>
-  <h2>Table Tennis</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="tabletennis/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏓</div><div class="thumb-label">Table Tennis</div></div>
+<h2>Table Tennis</h2>
+<span class="category">Sports</span>
+<a class="play" href="tabletennis/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Adventure" data-name="temple run">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏃</div>
-  <h2>Temple Run</h2>
-  <span class="category">Adventure</span>
-  <a class="play" href="templerun/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏃</div><div class="thumb-label">Temple Run</div></div>
+<h2>Temple Run</h2>
+<span class="category">Adventure</span>
+<a class="play" href="templerun/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="tennis open">
-  <div class="icon" role="img" aria-label="Game thumbnail">🎾</div>
-  <h2>Tennis Open</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="tennisopen/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🎾</div><div class="thumb-label">Tennis Open</div></div>
+<h2>Tennis Open</h2>
+<span class="category">Sports</span>
+<a class="play" href="tennisopen/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Sports" data-name="tiny fishing">
-  <div class="icon" role="img" aria-label="Game thumbnail">🎣</div>
-  <h2>Tiny Fishing</h2>
-  <span class="category">Sports</span>
-  <a class="play" href="tinyfishing/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🎣</div><div class="thumb-label">Tiny Fishing</div></div>
+<h2>Tiny Fishing</h2>
+<span class="category">Sports</span>
+<a class="play" href="tinyfishing/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Racing" data-name="traffic tour">
-  <div class="icon" role="img" aria-label="Game thumbnail">🚗</div>
-  <h2>Traffic Tour</h2>
-  <span class="category">Racing</span>
-  <a class="play" href="traffictour/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🚗</div><div class="thumb-label">Traffic Tour</div></div>
+<h2>Traffic Tour</h2>
+<span class="category">Racing</span>
+<a class="play" href="traffictour/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="tunnel rush">
-  <div class="icon" role="img" aria-label="Game thumbnail">🚇</div>
-  <h2>Tunnel Rush</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="tunnelrush/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🚇</div><div class="thumb-label">Tunnel Rush</div></div>
+<h2>Tunnel Rush</h2>
+<span class="category">Arcade</span>
+<a class="play" href="tunnelrush/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Racing" data-name="turbo racing">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏎️</div>
-  <h2>Turbo Racing</h2>
-  <span class="category">Racing</span>
-  <a class="play" href="turboracing/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏎️</div><div class="thumb-label">Turbo Racing</div></div>
+<h2>Turbo Racing</h2>
+<span class="category">Racing</span>
+<a class="play" href="turboracing/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Puzzle" data-name="unblock me">
-  <div class="icon" role="img" aria-label="Game thumbnail">🧩</div>
-  <h2>Unblock Me</h2>
-  <span class="category">Puzzle</span>
-  <a class="play" href="unblockme/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🧩</div><div class="thumb-label">Unblock Me</div></div>
+<h2>Unblock Me</h2>
+<span class="category">Puzzle</span>
+<a class="play" href="unblockme/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Adventure" data-name="vex 8">
-  <div class="icon" role="img" aria-label="Game thumbnail">🏃</div>
-  <h2>Vex 8</h2>
-  <span class="category">Adventure</span>
-  <a class="play" href="vex8/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🏃</div><div class="thumb-label">Vex 8</div></div>
+<h2>Vex 8</h2>
+<span class="category">Adventure</span>
+<a class="play" href="vex8/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Adventure" data-name="wheely">
-  <div class="icon" role="img" aria-label="Game thumbnail">🚗</div>
-  <h2>Wheely</h2>
-  <span class="category">Adventure</span>
-  <a class="play" href="wheely/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🚗</div><div class="thumb-label">Wheely</div></div>
+<h2>Wheely</h2>
+<span class="category">Adventure</span>
+<a class="play" href="wheely/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Puzzle" data-name="wood block">
-  <div class="icon" role="img" aria-label="Game thumbnail">🪵</div>
-  <h2>Wood Block</h2>
-  <span class="category">Puzzle</span>
-  <a class="play" href="woodblock/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🪵</div><div class="thumb-label">Wood Block</div></div>
+<h2>Wood Block</h2>
+<span class="category">Puzzle</span>
+<a class="play" href="woodblock/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Racing" data-name="zombie derby">
-  <div class="icon" role="img" aria-label="Game thumbnail">🧟</div>
-  <h2>Zombie Derby</h2>
-  <span class="category">Racing</span>
-  <a class="play" href="zombiederby/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🧟</div><div class="thumb-label">Zombie Derby</div></div>
+<h2>Zombie Derby</h2>
+<span class="category">Racing</span>
+<a class="play" href="zombiederby/index.html">▶ PLAY</a>
 </article>
 <article class="card" data-category="Arcade" data-name="zombie tsunami">
-  <div class="icon" role="img" aria-label="Game thumbnail">🧟</div>
-  <h2>Zombie Tsunami</h2>
-  <span class="category">Arcade</span>
-  <a class="play" href="zombiestsunami/index.html">▶ PLAY</a>
+<div class="thumbnail"><div class="thumb-emoji">🧟</div><div class="thumb-label">Zombie Tsunami</div></div>
+<h2>Zombie Tsunami</h2>
+<span class="category">Arcade</span>
+<a class="play" href="zombiestsunami/index.html">▶ PLAY</a>
 </article>
 </section>
 <div id="noResult">No game found 😕</div>
 </main>
-
 <footer>🎮 Meow Games — Have Fun!</footer>
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const search = document.getElementById("search");
@@ -654,13 +723,6 @@ document.addEventListener("DOMContentLoaded", function () {
   search.addEventListener("input", filterGames);
   category.addEventListener("change", filterGames);
   filterGames();
-
-  // Keep every game card as a self-contained thumbnail card.
-  cards.forEach(function(card){
-    const title = card.querySelector("h2");
-    const thumb = card.querySelector(".icon");
-    if(title && thumb){ thumb.setAttribute("aria-label", title.textContent.trim() + " thumbnail"); }
-  });
 });
 </script>
 </body>

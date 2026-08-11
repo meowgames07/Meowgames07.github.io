@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<link rel="stylesheet" href="style.css">
+<head>
 
 <meta charset="UTF-8">
 
@@ -29,7 +28,7 @@
 
 <div class="logo">
 
-🎮 <span>MeowGames07</span>
+ðŸŽ® <span>MeowGames07</span>
 
 </div>
 
@@ -46,21 +45,13 @@ onkeyup="searchGames()">
 </div>
 
 <nav>
-
 <ul>
-
-<li><a href="#">Home</a></li>
-
-<li><a href="#">New Games</a></li>
-
-<li><a href="#">Trending</a></li>
-
-<li><a href="#">Categories</a></li>
-
-<li><a href="#">Contact</a></li>
-
+<li><a href="index.html">Home</a></li>
+<li><a href="#new-games">New Games</a></li>
+<li><a href="#trending">Trending</a></li>
+<li><a href="#categories">Categories</a></li>
+<li><a href="contact.html">Contact</a></li>
 </ul>
-
 </nav>
 
 </header>
@@ -631,19 +622,6 @@ onkeyup="searchGames()">
 <a href="games/geometrydash/index.html" class="play">Play Now</a>
 
 </div>
-
-<div class="card action">
-
-<img src="images/game46.jpg" alt="Gun Mayhem">
-
-<h3>Gun Mayhem</h3>
-
-<p>Action Shooting</p>
-
-<a href="games/gunmayhem/index.html" class="play">Play Now</a>
-
-</div>
-
 <div class="card racing">
 
 <img src="images/game47.jpg" alt="Real City Driver">
@@ -693,9 +671,9 @@ onkeyup="searchGames()">
 </div>
 </section>
 
-<section class="trending">
+<section id="trending" class="trending">
 
-<h2>🔥 Trending Games</h2>
+<h2>ðŸ”¥ Trending Games</h2>
 
 <div class="games-grid">
 
@@ -738,9 +716,9 @@ onkeyup="searchGames()">
 
 </section>
 
-<section class="new-games">
+<section id="new-games" class="new-games">
 
-<h2>🆕 New Games</h2>
+<h2>ðŸ†• New Games</h2>
 
 <div class="games-grid">
 
@@ -784,7 +762,7 @@ onkeyup="searchGames()">
 </section>
 <section class="featured">
 
-<h2>⭐ Featured Games</h2>
+<h2>â­ Featured Games</h2>
 
 <div class="games-grid">
 
@@ -829,42 +807,42 @@ onkeyup="searchGames()">
 
 <section class="top-rated">
 
-<h2>🏆 Top Rated Games</h2>
+<h2>ðŸ† Top Rated Games</h2>
 
 <div class="games-grid">
 
 <div class="card action">
 <img src="images/game66.jpg" alt="Combat Reloaded">
 <h3>Combat Reloaded</h3>
-<p>★★★★★</p>
+<p>â˜…â˜…â˜…â˜…â˜…</p>
 <a href="games/combatreloaded/index.html" class="play">Play Now</a>
 </div>
 
 <div class="card racing">
 <img src="images/game67.jpg" alt="City Drift">
 <h3>City Drift</h3>
-<p>★★★★★</p>
+<p>â˜…â˜…â˜…â˜…â˜…</p>
 <a href="games/citydrift/index.html" class="play">Play Now</a>
 </div>
 
 <div class="card puzzle">
 <img src="images/game68.jpg" alt="Brain Out">
 <h3>Brain Out</h3>
-<p>★★★★★</p>
+<p>â˜…â˜…â˜…â˜…â˜…</p>
 <a href="games/brainout/index.html" class="play">Play Now</a>
 </div>
 
 <div class="card sports">
 <img src="images/game69.jpg" alt="Boxing Random">
 <h3>Boxing Random</h3>
-<p>★★★★★</p>
+<p>â˜…â˜…â˜…â˜…â˜…</p>
 <a href="games/boxingrandom/index.html" class="play">Play Now</a>
 </div>
 
 <div class="card arcade">
 <img src="images/game70.jpg" alt="Run 3">
 <h3>Run 3</h3>
-<p>★★★★★</p>
+<p>â˜…â˜…â˜…â˜…â˜…</p>
 <a href="games/run3/index.html" class="play">Play Now</a>
 </div>
 
@@ -872,27 +850,27 @@ onkeyup="searchGames()">
 
 </section>
 
-<section class="popular-categories">
+<section id="categories" class="popular-categories">
 
-<h2>🎯 Popular Categories</h2>
+<h2>ðŸŽ¯ Popular Categories</h2>
 
 <div class="category-box">
 
-<a href="#">🎮 Action Games</a>
+<a href="#games" data-filter-category="action">ðŸŽ® Action Games</a>
 
-<a href="#">🏎 Racing Games</a>
+<a href="#games" data-filter-category="racing">ðŸŽ Racing Games</a>
 
-<a href="#">🧩 Puzzle Games</a>
+<a href="#games" data-filter-category="puzzle">ðŸ§© Puzzle Games</a>
 
-<a href="#">⚽ Sports Games</a>
+<a href="#games" data-filter-category="sports">âš½ Sports Games</a>
 
-<a href="#">🕹 Arcade Games</a>
+<a href="#games" data-filter-category="arcade">ðŸ•¹ Arcade Games</a>
 
-<a href="#">👧 Girls Games</a>
+<a href="#games" data-filter-category="all">ðŸ‘§ Girls Games</a>
 
-<a href="#">👦 Kids Games</a>
+<a href="#games" data-filter-category="all">ðŸ‘¦ Kids Games</a>
 
-<a href="#">🧠 Brain Games</a>
+<a href="#games" data-filter-category="puzzle">ðŸ§  Brain Games</a>
 
 </div>
 
@@ -967,77 +945,99 @@ Subscribe
 </section>
 
 <footer class="footer">
-
 <div class="footer-grid">
-
 <div>
-
 <h3>MeowGames07</h3>
-
 <p>Play Free HTML5 Games Online.</p>
-
 </div>
 
 <div>
-
 <h3>Quick Links</h3>
-
 <ul>
-
-<li><a href="#">Home</a></li>
-
-<li><a href="#">New Games</a></li>
-
-<li><a href="#">Trending</a></li>
-
-<li><a href="#">Categories</a></li>
-
+<li><a href="index.html">Home</a></li>
+<li><a href="#new-games">New Games</a></li>
+<li><a href="#trending">Trending</a></li>
+<li><a href="#categories">Categories</a></li>
 </ul>
-
 </div>
 
 <div>
-
 <h3>Legal</h3>
-
 <ul>
 <li><a href="about.html">About Us</a></li>
 <li><a href="contact.html">Contact Us</a></li>
 <li><a href="privacy-policy.html">Privacy Policy</a></li>
 <li><a href="disclaimer.html">Disclaimer</a></li>
-<li><a href="terms.html">Terms & Conditions</a></li>
 </ul>
-
 </div>
 
 <div>
-
 <h3>Follow Us</h3>
-<div class="footer-bottom">
-
-<p>
-
-© 2026 MeowGames07. All Rights Reserved.
-
-</p>
-
-<p>
-
-Made with ❤️ for HTML5 Game Lovers.
-
-</p>
-
+<div class="social-links">
+<a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+<a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+<a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+<a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+</div>
+</div>
 </div>
 
+<div class="footer-bottom">
+<p>Â© 2026 MeowGames07. All Rights Reserved.</p>
+<p>Made with â¤ï¸ for HTML5 Game Lovers.</p>
+</div>
 </footer>
 
 <button id="topBtn" title="Go to Top">
 
-⬆
+â¬†
 
 </button>
 
-<script src="script.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const search = document.getElementById('search');
+  const cards = Array.from(document.querySelectorAll('.games-grid .card'));
+  const count = document.createElement('div');
+  count.className = 'game-count';
+  const gamesSection = document.getElementById('games');
+  if (gamesSection) gamesSection.insertAdjacentElement('beforebegin', count);
+
+  function filterGames(category) {
+    const text = (search ? search.value : '').trim().toLowerCase();
+    let visible = 0;
+    cards.forEach(function(card) {
+      const titleEl = card.querySelector('h3, h2');
+      const name = titleEl ? titleEl.textContent.trim().toLowerCase() : '';
+      const cat = ['action','racing','puzzle','sports','arcade'].find(c => card.classList.contains(c)) || '';
+      const categoryMatch = !category || category === 'all' || cat === category;
+      const searchMatch = !text || name.includes(text);
+      const show = categoryMatch && searchMatch;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    count.textContent = visible + (visible === 1 ? ' game found' : ' games found');
+  }
+
+  window.searchGames = function () { filterGames('all'); };
+  window.filterGames = function (category) { filterGames(category || 'all'); };
+
+  if (search) search.addEventListener('input', function () { filterGames('all'); });
+  document.querySelectorAll('[data-filter-category]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      filterGames(this.dataset.filterCategory || 'all');
+      setTimeout(function(){ if (gamesSection) gamesSection.scrollIntoView({behavior:'smooth'}); }, 0);
+    });
+  });
+
+  filterGames('all');
+
+  const topBtn = document.getElementById('topBtn');
+  if (topBtn) {
+    topBtn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+  }
+});
+</script>
 
 </body>
 

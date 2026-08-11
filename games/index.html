@@ -1,135 +1,162 @@
-from PIL import Image, ImageDraw, ImageFont
-import os, re, base64, io, zipfile, html as htmlmod
-from bs4 import BeautifulSoup
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meow Games ðŸŽ®</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#0f1117;color:#fff}
+header{background:#171a22;padding:28px 15px;text-align:center;border-bottom:1px solid #292e3a;position:sticky;top:0;z-index:10}
+h1{margin:0;font-size:32px}
+header p{color:#aaa;margin:8px 0 18px}
+.controls{max-width:850px;margin:auto;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+#search,#category{padding:13px 16px;border:1px solid #303645;border-radius:12px;background:#252a35;color:#fff;font-size:16px;outline:none}
+#search{flex:1;min-width:220px} #category{min-width:150px}
+.container{width:95%;max-width:1250px;margin:25px auto}
+.count{color:#aaa;margin-bottom:15px}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{background:#191d26;border:1px solid #292e3a;border-radius:15px;overflow:hidden;text-align:center;transition:.2s}
+.card:hover{transform:translateY(-4px);background:#202530}
+.thumb{width:100%;aspect-ratio:16/9;display:block;object-fit:cover}
+.cardbody{padding:18px}
+.card h2{font-size:20px;margin:4px 0 9px}
+.category{display:inline-block;color:#9fb2d8;font-size:13px;margin-bottom:14px}
+.play{display:block;text-decoration:none;background:#2878ff;color:#fff;padding:11px;border-radius:9px;font-weight:bold}
+.play:hover{background:#1765e8}
+#noResult{display:none;text-align:center;color:#aaa;padding:45px;font-size:18px}
+footer{text-align:center;color:#777;padding:30px 10px}
+</style>
+</head>
+<body>
+<header>
+<h1>ðŸŽ® MEOW GAMES</h1>
+<p>Choose a game and start playing!</p>
+<div class="controls">
+<input id="search" type="search" placeholder="ðŸ”Ž Search games..." autocomplete="off">
+<select id="category"><option value="all">All Categories</option>
+<option>Puzzle</option><option>Sports</option><option>Arcade</option><option>Board</option>
+</select>
+</div>
+</header>
+<main class="container">
+<div class="count" id="count"></div>
+<section class="games" id="games">
+      <article class="card" data-category="Puzzle" data-name="2048">
+        <img class="thumb" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDUwIj4KICAgICAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeDI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiMxNzFhMjciLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyOTMyNGEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICAgICAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0NTAiIHJ4PSIzMCIgZmlsbD0idXJsKCNnKSIvPgogICAgICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDUiIHI9IjEyNSIgZmlsbD0iIzIwMjYzYSIgc3Ryb2tlPSIjM2I4MmY2IiBzdHJva2Utd2lkdGg9IjUiLz4KICAgICAgPHRleHQgeD0iNDAwIiB5PSIyNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTIwIj7wn5SiPC90ZXh0PgogICAgICA8dGV4dCB4PSI0MDAiIHk9IjM5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjM4IiBmaWxsPSJ3aGl0ZSI+MjA0ODwvdGV4dD4KICAgIDwvc3ZnPg==" alt="2048 thumbnail">
+        <div class="cardbody">
+          <h2>2048</h2>
+          <span class="category">Puzzle</span>
+          <a class="play" href="2048/index.html">â–¶ PLAY</a>
+        </div>
+      </article>
+      <article class="card" data-category="Sports" data-name="8 ball pool">
+        <img class="thumb" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDUwIj4KICAgICAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeDI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiMxNzFhMjciLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyOTMyNGEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICAgICAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0NTAiIHJ4PSIzMCIgZmlsbD0idXJsKCNnKSIvPgogICAgICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDUiIHI9IjEyNSIgZmlsbD0iIzIwMjYzYSIgc3Ryb2tlPSIjM2I4MmY2IiBzdHJva2Utd2lkdGg9IjUiLz4KICAgICAgPHRleHQgeD0iNDAwIiB5PSIyNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTIwIj7wn46xPC90ZXh0PgogICAgICA8dGV4dCB4PSI0MDAiIHk9IjM5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjM4IiBmaWxsPSJ3aGl0ZSI+OCBCYWxsIFBvb2w8L3RleHQ+CiAgICA8L3N2Zz4=" alt="8 Ball Pool thumbnail">
+        <div class="cardbody">
+          <h2>8 Ball Pool</h2>
+          <span class="category">Sports</span>
+          <a class="play" href="8ballpool/index.html">â–¶ PLAY</a>
+        </div>
+      </article>
+      <article class="card" data-category="Sports" data-name="air hockey">
+        <img class="thumb" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDUwIj4KICAgICAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeDI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiMxNzFhMjciLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyOTMyNGEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICAgICAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0NTAiIHJ4PSIzMCIgZmlsbD0idXJsKCNnKSIvPgogICAgICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDUiIHI9IjEyNSIgZmlsbD0iIzIwMjYzYSIgc3Ryb2tlPSIjM2I4MmY2IiBzdHJva2Utd2lkdGg9IjUiLz4KICAgICAgPHRleHQgeD0iNDAwIiB5PSIyNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTIwIj7wn4+SPC90ZXh0PgogICAgICA8dGV4dCB4PSI0MDAiIHk9IjM5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjM4IiBmaWxsPSJ3aGl0ZSI+QWlyIEhvY2tleTwvdGV4dD4KICAgIDwvc3ZnPg==" alt="Air Hockey thumbnail">
+        <div class="cardbody">
+          <h2>Air Hockey</h2>
+          <span class="category">Sports</span>
+          <a class="play" href="airhockey/index.html">â–¶ PLAY</a>
+        </div>
+      </article>
+      <article class="card" data-category="Arcade" data-name="among us">
+        <img class="thumb" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDUwIj4KICAgICAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeDI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiMxNzFhMjciLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyOTMyNGEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICAgICAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0NTAiIHJ4PSIzMCIgZmlsbD0idXJsKCNnKSIvPgogICAgICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDUiIHI9IjEyNSIgZmlsbD0iIzIwMjYzYSIgc3Ryb2tlPSIjM2I4MmY2IiBzdHJva2Utd2lkdGg9IjUiLz4KICAgICAgPHRleHQgeD0iNDAwIiB5PSIyNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTIwIj7wn5Go4oCN8J+agDwvdGV4dD4KICAgICAgPHRleHQgeD0iNDAwIiB5PSIzOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIzOCIgZmlsbD0id2hpdGUiPkFtb25nIFVzPC90ZXh0PgogICAgPC9zdmc+" alt="Among Us thumbnail">
+        <div class="cardbody">
+          <h2>Among Us</h2>
+          <span class="category">Arcade</span>
+          <a class="play" href="amongus/index.html">â–¶ PLAY</a>
+        </div>
+      </article>
+      <article class="card" data-category="Arcade" data-name="angry birds">
+        <img class="thumb" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDUwIj4KICAgICAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeDI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiMxNzFhMjciLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyOTMyNGEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICAgICAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0NTAiIHJ4PSIzMCIgZmlsbD0idXJsKCNnKSIvPgogICAgICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDUiIHI9IjEyNSIgZmlsbD0iIzIwMjYzYSIgc3Ryb2tlPSIjM2I4MmY2IiBzdHJva2Utd2lkdGg9IjUiLz4KICAgICAgPHRleHQgeD0iNDAwIiB5PSIyNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTIwIj7wn5CmPC90ZXh0PgogICAgICA8dGV4dCB4PSI0MDAiIHk9IjM5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjM4IiBmaWxsPSJ3aGl0ZSI+QW5ncnkgQmlyZHM8L3RleHQ+CiAgICA8L3N2Zz4=" alt="Angry Birds thumbnail">
+        <div class="cardbody">
+          <h2>Angry Birds</h2>
+          <span class="category">Arcade</span>
+          <a class="play" href="angrybirds/index.html">â–¶ PLAY</a>
+        </div>
+      </article>
+      <article class="card" data-category="Sports" data-name="archery world">
+        <img class="thumb" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDUwIj4KICAgICAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeDI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiMxNzFhMjciLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyOTMyNGEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICAgICAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0NTAiIHJ4PSIzMCIgZmlsbD0idXJsKCNnKSIvPgogICAgICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDUiIHI9IjEyNSIgZmlsbD0iIzIwMjYzYSIgc3Ryb2tlPSIjM2I4MmY2IiBzdHJva2Utd2lkdGg9IjUiLz4KICAgICAgPHRleHQgeD0iNDAwIiB5PSIyNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTIwIj7wn4+5PC90ZXh0PgogICAgICA8dGV4dCB4PSI0MDAiIHk9IjM5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjM4IiBmaWxsPSJ3aGl0ZSI+QXJjaGVyeSBXb3JsZDwvdGV4dD4KICAgIDwvc3ZnPg==" alt="Archery World thumbnail">
+        <div class="cardbody">
+          <h2>Archery World</h2>
+          <span class="category">Sports</span>
+          <a class="play" href="archeryworld/index.html">â–¶ PLAY</a>
+        </div>
+      </article>
+      <article class="card" data-category="Puzzle" data-name="bubble shooter">
+        <img class="thumb" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDUwIj4KICAgICAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeDI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiMxNzFhMjciLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyOTMyNGEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICAgICAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0NTAiIHJ4PSIzMCIgZmlsbD0idXJsKCNnKSIvPgogICAgICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDUiIHI9IjEyNSIgZmlsbD0iIzIwMjYzYSIgc3Ryb2tlPSIjM2I4MmY2IiBzdHJva2Utd2lkdGg9IjUiLz4KICAgICAgPHRleHQgeD0iNDAwIiB5PSIyNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTIwIj7wn6unPC90ZXh0PgogICAgICA8dGV4dCB4PSI0MDAiIHk9IjM5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjM4IiBmaWxsPSJ3aGl0ZSI+QnViYmxlIFNob290ZXI8L3RleHQ+CiAgICA8L3N2Zz4=" alt="Bubble Shooter thumbnail">
+        <div class="cardbody">
+          <h2>Bubble Shooter</h2>
+          <span class="category">Puzzle</span>
+          <a class="play" href="bubbleshooter/index.html">â–¶ PLAY</a>
+        </div>
+      </article>
+      <article class="card" data-category="Puzzle" data-name="candy crush">
+        <img class="thumb" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDUwIj4KICAgICAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeDI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiMxNzFhMjciLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyOTMyNGEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICAgICAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0NTAiIHJ4PSIzMCIgZmlsbD0idXJsKCNnKSIvPgogICAgICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDUiIHI9IjEyNSIgZmlsbD0iIzIwMjYzYSIgc3Ryb2tlPSIjM2I4MmY2IiBzdHJva2Utd2lkdGg9IjUiLz4KICAgICAgPHRleHQgeD0iNDAwIiB5PSIyNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTIwIj7wn42sPC90ZXh0PgogICAgICA8dGV4dCB4PSI0MDAiIHk9IjM5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjM4IiBmaWxsPSJ3aGl0ZSI+Q2FuZHkgQ3J1c2g8L3RleHQ+CiAgICA8L3N2Zz4=" alt="Candy Crush thumbnail">
+        <div class="cardbody">
+          <h2>Candy Crush</h2>
+          <span class="category">Puzzle</span>
+          <a class="play" href="candycrush/index.html">â–¶ PLAY</a>
+        </div>
+      </article>
+      <article class="card" data-category="Board" data-name="checkers">
+        <img class="thumb" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDUwIj4KICAgICAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeDI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiMxNzFhMjciLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyOTMyNGEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICAgICAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0NTAiIHJ4PSIzMCIgZmlsbD0idXJsKCNnKSIvPgogICAgICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDUiIHI9IjEyNSIgZmlsbD0iIzIwMjYzYSIgc3Ryb2tlPSIjM2I4MmY2IiBzdHJva2Utd2lkdGg9IjUiLz4KICAgICAgPHRleHQgeD0iNDAwIiB5PSIyNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTIwIj7imqs8L3RleHQ+CiAgICAgIDx0ZXh0IHg9IjQwMCIgeT0iMzkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzgiIGZpbGw9IndoaXRlIj5DaGVja2VyczwvdGV4dD4KICAgIDwvc3ZnPg==" alt="Checkers thumbnail">
+        <div class="cardbody">
+          <h2>Checkers</h2>
+          <span class="category">Board</span>
+          <a class="play" href="checkers/index.html">â–¶ PLAY</a>
+        </div>
+      </article>
+      <article class="card" data-category="Board" data-name="chess">
+        <img class="thumb" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDUwIj4KICAgICAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeDI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiMxNzFhMjciLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyOTMyNGEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICAgICAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0NTAiIHJ4PSIzMCIgZmlsbD0idXJsKCNnKSIvPgogICAgICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDUiIHI9IjEyNSIgZmlsbD0iIzIwMjYzYSIgc3Ryb2tlPSIjM2I4MmY2IiBzdHJva2Utd2lkdGg9IjUiLz4KICAgICAgPHRleHQgeD0iNDAwIiB5PSIyNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTIwIj7imZ/vuI88L3RleHQ+CiAgICAgIDx0ZXh0IHg9IjQwMCIgeT0iMzkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzgiIGZpbGw9IndoaXRlIj5DaGVzczwvdGV4dD4KICAgIDwvc3ZnPg==" alt="Chess thumbnail">
+        <div class="cardbody">
+          <h2>Chess</h2>
+          <span class="category">Board</span>
+          <a class="play" href="chess/index.html">â–¶ PLAY</a>
+        </div>
+      </article>
+      <article class="card" data-category="Board" data-name="chess master">
+        <img class="thumb" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDUwIj4KICAgICAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeDI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiMxNzFhMjciLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyOTMyNGEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICAgICAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0NTAiIHJ4PSIzMCIgZmlsbD0idXJsKCNnKSIvPgogICAgICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDUiIHI9IjEyNSIgZmlsbD0iIzIwMjYzYSIgc3Ryb2tlPSIjM2I4MmY2IiBzdHJva2Utd2lkdGg9IjUiLz4KICAgICAgPHRleHQgeD0iNDAwIiB5PSIyNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTIwIj7imZ/vuI88L3RleHQ+CiAgICAgIDx0ZXh0IHg9IjQwMCIgeT0iMzkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzgiIGZpbGw9IndoaXRlIj5DaGVzcyBNYXN0ZXI8L3RleHQ+CiAgICA8L3N2Zz4=" alt="Chess Master thumbnail">
+        <div class="cardbody">
+          <h2>Chess Master</h2>
+          <span class="category">Board</span>
+          <a class="play" href="chessmaster/index.html">â–¶ PLAY</a>
+        </div>
+      </article></section>
+<div id="noResult">No games found ðŸ˜•</div>
+</main>
+<footer>Â© Meow Games ðŸŽ®</footer>
+<script>
+const search=document.getElementById('search');
+const category=document.getElementById('category');
+const cards=[...document.querySelectorAll('.card')];
+const count=document.getElementById('count');
+const noResult=document.getElementById('noResult');
 
-src = "/mnt/data/MeowGames_FINAL_FIXED.html"
-out_dir = "/mnt/data/meow_thumbnails"
-os.makedirs(out_dir, exist_ok=True)
-
-# Read the existing game list from the user's HTML.
-with open(src, "r", encoding="utf-8") as f:
-    source_html = f.read()
-
-soup = BeautifulSoup(source_html, "html.parser")
-games = [(a.get("data-name","").strip(), a.get("data-category","Arcade").strip())
-         for a in soup.select("article.card")]
-
-# Fonts
-font_paths = [
-    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
-    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
-]
-bold_font_path = next(p for p in font_paths if os.path.exists(p))
-regular_font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
-
-# Category-specific visual palettes and simple original symbols.
-palettes = {
-    "Puzzle": ((37, 20, 73), (112, 64, 190), "✦"),
-    "Sports": ((8, 55, 73), (25, 145, 185), "●"),
-    "Racing": ((72, 18, 28), (210, 65, 65), "➤"),
-    "Arcade": ((17, 35, 72), (35, 120, 220), "◆"),
-    "Adventure": ((22, 70, 48), (45, 165, 95), "★"),
-    "Board": ((54, 38, 22), (170, 105, 45), "♟"),
-    "Strategy": ((52, 28, 70), (160, 75, 190), "✚"),
+function filterGames(){
+  const q=search.value.trim().toLowerCase();
+  const cat=category.value;
+  let visible=0;
+  cards.forEach(card=>{
+    const okName=card.dataset.name.includes(q);
+    const okCat=cat==='all'||card.dataset.category===cat;
+    const show=okName&&okCat;
+    card.style.display=show?'':'none';
+    if(show) visible++;
+  });
+  count.textContent=visible+' games found';
+  noResult.style.display=visible?'none':'block';
 }
-
-def safe_filename(name):
-    return re.sub(r"[^a-z0-9]+", "_", name.lower()).strip("_") + ".png"
-
-def make_thumbnail(name, category, idx):
-    W, H = 640, 360
-    c1, c2, symbol = palettes.get(category, palettes["Arcade"])
-    img = Image.new("RGB", (W, H), c1)
-    d = ImageDraw.Draw(img)
-
-    # Gradient-like horizontal bands
-    for x in range(W):
-        t = x / (W - 1)
-        col = tuple(int(c1[i]*(1-t) + c2[i]*t) for i in range(3))
-        d.line([(x, 0), (x, H)], fill=col)
-
-    # Decorative gaming shapes
-    for k in range(9):
-        x = (idx * 73 + k * 91) % W
-        y = (idx * 47 + k * 61) % H
-        r = 12 + ((idx + k) % 5) * 7
-        d.ellipse((x-r, y-r, x+r, y+r), outline=(255,255,255), width=2)
-
-    # Central abstract game emblem
-    cx, cy = W//2, H//2 - 18
-    d.rounded_rectangle((cx-82, cy-62, cx+82, cy+62), radius=24,
-                        fill=(10, 14, 25), outline=(255,255,255), width=3)
-    f_symbol = ImageFont.truetype(bold_font_path, 62)
-    bbox = d.textbbox((0,0), symbol, font=f_symbol)
-    d.text((cx-(bbox[2]-bbox[0])/2, cy-(bbox[3]-bbox[1])/2-6),
-           symbol, font=f_symbol, fill=(255,255,255))
-
-    # Title
-    title = name.title()
-    # Keep title within width.
-    f_title = ImageFont.truetype(bold_font_path, 36 if len(title) <= 17 else 28)
-    bbox = d.textbbox((0,0), title, font=f_title)
-    tw = bbox[2]-bbox[0]
-    if tw > 590:
-        f_title = ImageFont.truetype(bold_font_path, 24)
-        bbox = d.textbbox((0,0), title, font=f_title)
-        tw = bbox[2]-bbox[0]
-    d.rounded_rectangle((24, 276, W-24, 338), radius=14, fill=(0,0,0))
-    d.text(((W-tw)/2, 288), title, font=f_title, fill=(255,255,255))
-
-    # Category badge
-    f_cat = ImageFont.truetype(regular_font_path, 20)
-    cb = d.textbbox((0,0), category, font=f_cat)
-    cw = cb[2]-cb[0]
-    d.rounded_rectangle((18, 18, 18+cw+28, 55), radius=12, fill=(0,0,0))
-    d.text((32, 25), category, font=f_cat, fill=(235,235,255))
-
-    path = os.path.join(out_dir, safe_filename(name))
-    img.save(path, optimize=True)
-    return path
-
-paths = [make_thumbnail(name, cat, i) for i, (name, cat) in enumerate(games)]
-
-# Build a single self-contained HTML file: thumbnails are embedded, so the user
-# does not need to upload a separate images folder.
-for article in soup.select("article.card"):
-    name = article.get("data-name","").strip()
-    path = os.path.join(out_dir, safe_filename(name))
-    if os.path.exists(path):
-        with open(path, "rb") as f:
-            b64 = base64.b64encode(f.read()).decode("ascii")
-        icon = article.select_one(".icon")
-        if icon:
-            icon.name = "img"
-            icon.attrs = {
-                "class": "game-thumb",
-                "src": "data:image/png;base64," + b64,
-                "alt": name.title(),
-                "loading": "lazy"
-            }
-
-# Replace the icon CSS with thumbnail styling.
-style = soup.find("style")
-if style:
-    css = style.string or ""
-    css = re.sub(r"\.icon\{[^}]*\}", "", css)
-    css += """
-.game-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;
-display:block;margin-bottom:12px;border:1px solid #343a4a}
-.card{overflow:hidden}
-"""
-    style.string = css
-
-final_html = os.path.join("/mnt/data", "MeowGames_FINAL_WITH_THUMBNAILS.html")
-with open(final_html, "w", encoding="utf-8") as f:
-    f.write(str(soup))
-
-# Also provide all thumbnails in a ZIP in case the user wants individual files.
-zip_path = "/mnt/data/MeowGames_91_Thumbnails.zip"
-with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
-    for p in paths:
-        z.write(p, arcname=os.path.basename(p))
-
-print(f"Done: {len(games)} different game thumbnails created.")
-print(final_html)
-print(zip_path)
+search.addEventListener('input',filterGames);
+category.addEventListener('change',filterGames);
+filterGames();
+</script>
+</body>
+</html>

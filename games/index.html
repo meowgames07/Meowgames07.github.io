@@ -23,6 +23,19 @@ h1{margin:0;font-size:32px} header p{color:#aaa;margin:8px 0 18px}
 .play:hover{background:#1765e8}
 #noResult{display:none;text-align:center;color:#aaa;padding:45px;font-size:18px}
 footer{text-align:center;color:#777;padding:30px 10px}
+
+.featured{margin-bottom:28px}
+.section-title{margin-bottom:14px}
+.section-title h2,.popular h2{margin:0 0 5px;font-size:24px}
+.section-title p,.popular p{margin:0 0 14px;color:#999}
+.featured-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.featured-card{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;background:linear-gradient(135deg,#202738,#191d26);border:1px solid #30384a;border-radius:15px;padding:14px;transition:.2s}
+.featured-card:hover{transform:translateY(-3px);border-color:#2878ff}
+.featured-icon{font-size:35px;min-width:42px;text-align:center}
+.featured-card strong{display:block;font-size:16px}
+.featured-card span{display:block;color:#9fb2d8;font-size:12px;margin-top:4px}
+.featured-card b{margin-left:auto;font-size:11px;color:#62a0ff;white-space:nowrap}
+.popular{margin:28px 0 14px}
 </style>
 </head>
 <body>
@@ -47,7 +60,24 @@ footer{text-align:center;color:#777;padding:30px 10px}
 
 <main class="container">
   <div class="count" id="count"></div>
-  <section class="games" id="games">
+  
+<section class="featured">
+  <div class="section-title">
+    <h2>⭐ Featured Games</h2>
+    <p>Jump into some of our top picks!</p>
+  </div>
+  <div class="featured-grid">
+    <a class="featured-card" href="2048/index.html"><div class="featured-icon">🧩</div><div><strong>2048</strong><span>Puzzle</span></div><b>PLAY →</b></a>
+    <a class="featured-card" href="chess/index.html"><div class="featured-icon">♟️</div><div><strong>Chess</strong><span>Board</span></div><b>PLAY →</b></a>
+    <a class="featured-card" href="driftboss/index.html"><div class="featured-icon">🏎️</div><div><strong>Drift Boss</strong><span>Racing</span></div><b>PLAY →</b></a>
+    <a class="featured-card" href="basketballstars/index.html"><div class="featured-icon">🏀</div><div><strong>Basketball Stars</strong><span>Sports</span></div><b>PLAY →</b></a>
+  </div>
+</section>
+<section class="popular">
+  <h2>🔥 Popular Games</h2>
+  <p>More games to play and explore.</p>
+</section>
+<section class="games" id="games">
         <article class="card" data-category="Puzzle" data-name="2048">
           <div class="icon">&#129513;</div>
           <h2>2048</h2>

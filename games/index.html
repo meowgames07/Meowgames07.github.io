@@ -624,16 +624,6 @@ footer{text-align:center;color:#777;padding:30px 10px}
 <footer>🎮 Meow Games — Have Fun!</footer>
 
 <script>
-const search = document.getElementById('search');
-const category = document.getElementById('category');
-const cards = [...document.querySelectorAll('.card')];
-const count = document.getElementById('count');
-const noResult = document.getElementById('noResult');
-
-function filterGames() {
-  const q = search.value.trim().toLowerCase();
-  
-<script>
 document.addEventListener("DOMContentLoaded", function () {
   const search = document.getElementById("search");
   const category = document.getElementById("category");
@@ -649,9 +639,10 @@ document.addEventListener("DOMContentLoaded", function () {
     cards.forEach(function (card) {
       const name = (card.dataset.name || "").toLowerCase();
       const gameCategory = card.dataset.category || "";
-      const searchMatch = text === "" || name.includes(text);
-      const categoryMatch = selected === "all" || gameCategory === selected;
-      const show = searchMatch && categoryMatch;
+      const show =
+        (text === "" || name.includes(text)) &&
+        (selected === "all" || gameCategory === selected);
+
       card.style.display = show ? "" : "none";
       if (show) found++;
     });
